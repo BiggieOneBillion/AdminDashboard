@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 
 const DesktopView = ({ children }) => {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState();
 
   useEffect(() => {
     // Function to update window width when resized
@@ -18,6 +18,7 @@ const DesktopView = ({ children }) => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+  
   return (
     <div>
       {windowWidth <= 1280 && (
