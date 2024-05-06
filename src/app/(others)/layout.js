@@ -2,6 +2,7 @@
 import "../globals.css";
 import "@radix-ui/themes/styles.css";
 import { Theme } from "@radix-ui/themes";
+import DesktopView from "@/components/DesktopView";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -14,7 +15,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Theme>{children}</Theme>
+        <Theme>
+          <DesktopView>{children}</DesktopView>
+        </Theme>
       </body>
     </html>
   );
