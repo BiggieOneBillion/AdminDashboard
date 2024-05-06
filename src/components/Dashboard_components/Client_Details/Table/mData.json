@@ -1,26 +1,164 @@
+
+
 [
   {
-    "_id": "PROO1",
-    "client": "Total Energies",
-    "Location": "ada-geoge",
-    "deviceOwned": "100",
-    "ActiveDevices": "30",
-    "AmountPaid": "1000000"
+    "id": 1,
+    "deviceId": "5100177986336968",
+    "deviceName": "Device Name",
+    "size": 10,
+    "AmountPaid": 200000,
+    "status": "Active"
   },
   {
-    "_id": "PROO2",
-    "client": "Total Energies",
-    "Location": "ada-geoge",
-    "deviceOwned": "100",
-    "ActiveDevices": "30",
-    "AmountPaid": "1000000"
+    "id": 2,
+    "deviceId": "5398605634845403",
+    "deviceName": "Device Name",
+    "size": 10,
+    "AmountPaid": 200000,
+    "status": "Active"
   },
   {
-    "_id": "PROO1",
-    "client": "Total Energies",
-    "Location": "ada-geoge",
-    "deviceOwned": "100",
-    "ActiveDevices": "30",
-    "AmountPaid": "1000000"
+    "id": 3,
+    "deviceId": "5007661543210067",
+    "deviceName": "Device Name",
+    "size": 10,
+    "AmountPaid": 200000,
+    "status": "Active"
+  },
+  {
+    "id": 4,
+    "deviceId": "5007669837717143",
+    "deviceName": "Device Name",
+    "size": 10,
+    "AmountPaid": 200000,
+    "status": "Active"
+  },
+  {
+    "id": 5,
+    "deviceId": "5007664734543049",
+    "deviceName": "Device Name",
+    "size": 10,
+    "AmountPaid": 200000,
+    "status": "Active"
+  },
+  {
+    "id": 6,
+    "deviceId": "5235839103246846",
+    "deviceName": "Device Name",
+    "size": 10,
+    "AmountPaid": 200000,
+    "status": "Active"
+  },
+  {
+    "id": 7,
+    "deviceId": "5120867717470278",
+    "deviceName": "Device Name",
+    "size": 10,
+    "AmountPaid": 200000,
+    "status": "Active"
+  },
+  {
+    "id": 8,
+    "deviceId": "5007665896087634",
+    "deviceName": "Device Name",
+    "size": 10,
+    "AmountPaid": 200000,
+    "status": "Active"
+  },
+  {
+    "id": 9,
+    "deviceId": "5007669647930571",
+    "deviceName": "Device Name",
+    "size": 10,
+    "AmountPaid": 200000,
+    "status": "Active"
+  },
+  {
+    "id": 10,
+    "deviceId": "5188145664579428",
+    "deviceName": "Device Name",
+    "size": 10,
+    "AmountPaid": 200000,
+    "status": "Active"
+  },
+  {
+    "id": 11,
+    "deviceId": "5108754813845023",
+    "deviceName": "Device Name",
+    "size": 10,
+    "AmountPaid": 200000,
+    "status": "Active"
+  },
+  {
+    "id": 12,
+    "deviceId": "5100141299848499",
+    "deviceName": "Device Name",
+    "size": 10,
+    "AmountPaid": 200000,
+    "status": "Active"
+  },
+  {
+    "id": 13,
+    "deviceId": "5100138295798611",
+    "deviceName": "Device Name",
+    "size": 10,
+    "AmountPaid": 200000,
+    "status": "Active"
+  },
+  {
+    "id": 14,
+    "deviceId": "5002352272153273",
+    "deviceName": "Device Name",
+    "size": 10,
+    "AmountPaid": 200000,
+    "status": "Active"
+  },
+  {
+    "id": 15,
+    "deviceId": "5522688291033165",
+    "deviceName": "Device Name",
+    "size": 10,
+    "AmountPaid": 200000,
+    "status": "Active"
+  },
+  {
+    "id": 16,
+    "deviceId": "5129697586130435",
+    "deviceName": "Device Name",
+    "size": 10,
+    "AmountPaid": 200000,
+    "status": "Active"
+  },
+  {
+    "id": 17,
+    "deviceId": "5108753176751661",
+    "deviceName": "Device Name",
+    "size": 10,
+    "AmountPaid": 200000,
+    "status": "Active"
+  },
+  {
+    "id": 18,
+    "deviceId": "5396877729362535",
+    "deviceName": "Device Name",
+    "size": 10,
+    "AmountPaid": 200000,
+    "status": "Active"
+  },
+  {
+    "id": 19,
+    "deviceId": "5100143101419667",
+    "deviceName": "Device Name",
+    "size": 10,
+    "AmountPaid": 200000,
+    "status": "Active"
+  },
+  {
+    "id": 20,
+    "deviceId": "5439931757399775",
+    "deviceName": "Device Name",
+    "size": 10,
+    "AmountPaid": 200000,
+    "status": "Active"
   }
 ]

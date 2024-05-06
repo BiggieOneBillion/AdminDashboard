@@ -21,7 +21,7 @@ export const columnData = [
     id: "deviceId",
     header: "Device ID",
     accessorKey: "deviceId",
-    cell: ({ row }) => <DeviceDetailsModal data={row.original} key={v4()} />,
+    cell: ({ row }) => <DeviceDetailsModal data={row.original} header={row.original.deviceId} key={v4()} />,
   },
   {
     id: "deviceName",

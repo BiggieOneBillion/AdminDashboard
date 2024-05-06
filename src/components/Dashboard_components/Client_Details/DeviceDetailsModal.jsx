@@ -6,12 +6,12 @@ import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import NewClientForm from "../Client_Component/NewClientForm";
 import DeviceDetailsCard from "./DeviceDetailsCard";
 
-const DeviceDetailsModal = ({ data }) => {
+const DeviceDetailsModal = ({ data, header }) => {
   // remmember to fetch the data necessay using tanstack query to display the device data
   return (
     <Dialog.Root>
       <Dialog.Trigger className="block w-fit">
-        <span>{data?.deviceId}</span>
+        <span>{header}</span>
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay
