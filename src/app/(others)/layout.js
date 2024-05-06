@@ -16,7 +16,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <Theme>
-          <DesktopView>{children}</DesktopView>
+          {/* <DesktopView> */}
+          {children}
+          {/* </DesktopView> */}
         </Theme>
       </body>
     </html>

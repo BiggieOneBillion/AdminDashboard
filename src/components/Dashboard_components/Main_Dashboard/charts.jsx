@@ -40,7 +40,7 @@ const lastYear = [
 ];
 
 const Chart = () => {
-  const [data, setData ] = useState(thisYear);
+  const [data, setData] = useState(thisYear);
   return (
     <div className="chart">
       <div className="w-full flex items-center justify-between">
@@ -48,14 +48,23 @@ const Chart = () => {
 
         <div className="flex items-center gap-4">
           <button
-          onClick={() => setData(thisYear)}
-          className={data === thisYear ? "rounded-full p-2 border border-[#2020C2] bg-[#2020C2] text-white" : "rounded-full p-2 border-2 border-[#2020C2]"}
-           >
+            onClick={() => setData(thisYear)}
+            className={
+              data === thisYear
+                ? "rounded-full p-2 border border-[#2020C2] bg-[#2020C2] text-white"
+                : "rounded-full p-2 border-2 border-[#2020C2]"
+            }
+          >
             This Year
           </button>
-          <button 
-           onClick={() => setData(lastYear)}
-          className={data === lastYear ? "rounded-full p-2 border border-[#2020C2] bg-[#2020C2] text-white" : "rounded-full p-2 border-2 border-[#2020C2]"}>
+          <button
+            onClick={() => setData(lastYear)}
+            className={
+              data === lastYear
+                ? "rounded-full p-2 border border-[#2020C2] bg-[#2020C2] text-white"
+                : "rounded-full p-2 border-2 border-[#2020C2]"
+            }
+          >
             Last Year
           </button>
         </div>
@@ -77,30 +86,31 @@ const Chart = () => {
               y2="221.002"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#2020C2" />
-              <stop
-                offset="0.333333"
-                stop-color="#2020C2"
-                stop-opacity="0.72"
-              />
-              <stop offset="0.65625" stop-color="#2020C2" stop-opacity="0.38" />
-              <stop offset="1" stop-color="#2020C2" stop-opacity="0.12" />
+              <stop stopColor="#2020C2" />
+              <stop offset="0.333333" stopColor="#2020C2" stopOpacity="0.72" />
+              <stop offset="0.65625" stopColor="#2020C2" stopOpacity="0.38" />
+              <stop offset="1" stopColor="#2020C2" stopOpacity="0.12" />
             </linearGradient>
           </defs>
-          <XAxis dataKey="name" stroke="#D9D9D9" tickLine={false}      tickMargin={20}    tick={{
+          <XAxis
+            dataKey="name"
+            stroke="#D9D9D9"
+            tickLine={false}
+            tickMargin={20}
+            tick={{
               stroke: "#181619",
               strokeLinecap: 1,
               strokeWidth: 1,
-              fontSize: 10
-            }}/>
+              fontSize: 10,
+            }}
+          />
           <YAxis
-          stroke="#D9D9D9"
-          tickMargin={40}
-      
+            stroke="#D9D9D9"
+            tickMargin={40}
             tick={{
               stroke: "black",
               strokeWidth: 1,
-              fontSize: 10
+              fontSize: 10,
             }}
             tickLine={false}
           />
