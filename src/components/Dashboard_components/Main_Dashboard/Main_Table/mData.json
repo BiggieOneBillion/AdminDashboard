@@ -1,0 +1,26 @@
+[
+  {
+    "_id": "PROO1",
+    "client": "Total Energies",
+    "Location": "ada-geoge",
+    "deviceOwned": "100",
+    "ActiveDevices": "30",
+    "AmountPaid": "1000000"
+  },
+  {
+    "_id": "PROO2",
+    "client": "Total Energies",
+    "Location": "ada-geoge",
+    "deviceOwned": "100",
+    "ActiveDevices": "30",
+    "AmountPaid": "1000000"
+  },
+  {
+    "_id": "PROO1",
+    "client": "Total Energies",
+    "Location": "ada-geoge",
+    "deviceOwned": "100",
+    "ActiveDevices": "30",
+    "AmountPaid": "1000000"
+  }
+]

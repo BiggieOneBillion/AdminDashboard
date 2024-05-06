@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "deviceId": "5465663249636665",
+    "purchaseDate": "03/19/2024",
+    "cliient": "Total Energies",
+    "status": "Active",
+    "size": "10 inches",
+    "deviceName": "Device X"
+  },
+  {
+    "id": 2,
+    "deviceId": "5273821049159104",
+    "purchaseDate": "11/16/2023",
+    "cliient": "Total Energies",
+    "status": "Active",
+    "size": "10 inches",
+    "deviceName": "Device X"
+  },
+  {
+    "id": 3,
+    "deviceId": "5575974990398075",
+    "purchaseDate": "06/01/2023",
+    "cliient": "Total Energies",
+    "status": "Active",
+    "size": "10 inches",
+    "deviceName": "Device X"
+  },
+  {
+    "id": 4,
+    "deviceId": "5010121218378835",
+    "purchaseDate": "08/11/2023",
+    "cliient": "Total Energies",
+    "status": "Active",
+    "size": "10 inches",
+    "deviceName": "Device X"
+  },
+  {
+    "id": 5,
+    "deviceId": "5002352368597441",
+    "purchaseDate": "11/04/2023",
+    "cliient": "Total Energies",
+    "status": "Active",
+    "size": "10 inches",
+    "deviceName": "Device X"
+  },
+  {
+    "id": 6,
+    "deviceId": "5318873746868526",
+    "purchaseDate": "10/27/2023",
+    "cliient": "Total Energies",
+    "status": "Active",
+    "size": "10 inches",
+    "deviceName": "Device X"
+  },
+  {
+    "id": 7,
+    "deviceId": "5100134370198132",
+    "purchaseDate": "08/02/2023",
+    "cliient": "Total Energies",
+    "status": "Active",
+    "size": "10 inches",
+    "deviceName": "Device X"
+  },
+  {
+    "id": 8,
+    "deviceId": "5459374824311397",
+    "purchaseDate": "09/22/2023",
+    "cliient": "Total Energies",
+    "status": "Active",
+    "size": "10 inches",
+    "deviceName": "Device X"
+  },
+  {
+    "id": 9,
+    "deviceId": "5108758716179471",
+    "purchaseDate": "05/13/2024",
+    "cliient": "Total Energies",
+    "status": "Active",
+    "size": "10 inches",
+    "deviceName": "Device X"
+  },
+  {
+    "id": 10,
+    "deviceId": "5224054121697458",
+    "purchaseDate": "12/30/2023",
+    "cliient": "Total Energies",
+    "status": "Active",
+    "size": "10 inches",
+    "deviceName": "Device X"
+  },
+  {
+    "id": 11,
+    "deviceId": "5002352992197824",
+    "purchaseDate": "06/17/2023",
+    "cliient": "Total Energies",
+    "status": "Active",
+    "size": "10 inches",
+    "deviceName": "Device X"
+  },
+  {
+    "id": 12,
+    "deviceId": "5010122466197232",
+    "purchaseDate": "06/03/2023",
+    "cliient": "Total Energies",
+    "status": "Active",
+    "size": "10 inches",
+    "deviceName": "Device X"
+  },
+  {
+    "id": 13,
+    "deviceId": "5100133308733465",
+    "purchaseDate": "08/13/2023",
+    "cliient": "Total Energies",
+    "status": "Active",
+    "size": "10 inches",
+    "deviceName": "Device X"
+  },
+  {
+    "id": 14,
+    "deviceId": "5007667697261152",
+    "purchaseDate": "06/07/2023",
+    "cliient": "Total Energies",
+    "status": "Active",
+    "size": "10 inches",
+    "deviceName": "Device X"
+  },
+  {
+    "id": 15,
+    "deviceId": "5384241471873401",
+    "purchaseDate": "02/11/2024",
+    "cliient": "Total Energies",
+    "status": "Active",
+    "size": "10 inches",
+    "deviceName": "Device X"
+  },
+  {
+    "id": 16,
+    "deviceId": "5010126297465817",
+    "purchaseDate": "12/16/2023",
+    "cliient": "Total Energies",
+    "status": "Active",
+    "size": "10 inches",
+    "deviceName": "Device X"
+  },
+  {
+    "id": 17,
+    "deviceId": "5108758507500133",
+    "purchaseDate": "12/04/2023",
+    "cliient": "Total Energies",
+    "status": "Active",
+    "size": "10 inches",
+    "deviceName": "Device X"
+  },
+  {
+    "id": 18,
+    "deviceId": "5048379791071476",
+    "purchaseDate": "05/01/2024",
+    "cliient": "Total Energies",
+    "status": "Active",
+    "size": "10 inches",
+    "deviceName": "Device X"
+  },
+  {
+    "id": 19,
+    "deviceId": "5539750505290121",
+    "purchaseDate": "12/15/2023",
+    "cliient": "Total Energies",
+    "status": "Active",
+    "size": "10 inches",
+    "deviceName": "Device X"
+  },
+  {
+    "id": 20,
+    "deviceId": "5514885702721301",
+    "purchaseDate": "06/13/2023",
+    "cliient": "Total Energies",
+    "status": "Active",
+    "size": "10 inches",
+    "deviceName": "Device X"
+  }
+]
