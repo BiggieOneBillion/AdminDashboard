@@ -3,7 +3,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { IoMdClose } from "react-icons/io";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
 
-const Modal = ({ trigger, content, title }) => {
+const Modal = ({ trigger, content, title, width="w-[800px]" }) => {
   return (
     <Dialog.Root>
       <Dialog.Trigger className="block w-fit">{trigger}</Dialog.Trigger>
@@ -12,9 +12,9 @@ const Modal = ({ trigger, content, title }) => {
           className={`bg-[rgba(0,0,0,0.5)] data-[state=open]:animate-overlayShow fixed inset-0`}
         />
         <Dialog.Content className="data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[95hv] overflow-y-scroll max-w-fit translate-x-[-50%] translate-y-[-50%] rounded-xl bg-[#D8D8DB]y bg-white p-4 shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
-          <div className="w-[800px] h-fit pb-4 px-5 space-y-10">
+          <div className={`${width} h-fit pb-4 px-5 space-y-10`}>
             {/* close btn, title, question  */}
-            <div className="space-y-10">
+            <div className="space-y-5">
               <div className="flex justify-between items-center py-4">
                 {/* back-button icon and notification text */}
                 <div className="flex items-center gap-3">
@@ -22,7 +22,7 @@ const Modal = ({ trigger, content, title }) => {
                   <Dialog.Close className="p-0 m-0">
                     <MdOutlineKeyboardBackspace size={20} />
                   </Dialog.Close>
-                  <h3 className="text-sm font-medium">{title}</h3>
+                  <h3 className="text-base font-medium">{title}</h3>
                 </div>
                 {/* more icon */}
                 <Dialog.Close className="p-0 m-0">
