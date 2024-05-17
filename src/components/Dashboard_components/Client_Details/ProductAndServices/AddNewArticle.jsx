@@ -3,6 +3,7 @@ import { PiImageThin } from "react-icons/pi";
 import { FiPlus } from "react-icons/fi";
 import { IoClose } from "react-icons/io5";
 import { PiTrash } from "react-icons/pi";
+import { v4 } from "uuid";
 
 const ArticleForm = ({ index, removeForm }) => (
   <div className="grid grid-cols-[1fr_200px_1fr] gap-4 h-[50px] relative">
@@ -58,7 +59,7 @@ const AddNewArticle = ({ register }) => {
     <div className="space-y-6 mb-10">
       <div className="space-y-3">
         {count.map((el, i) => (
-          <ArticleForm index={i} removeForm={removeForm} />
+          <ArticleForm index={i} removeForm={removeForm} key={v4()} />
         ))}
       </div>
       <div className="btn-add-container grid place-content-center">
