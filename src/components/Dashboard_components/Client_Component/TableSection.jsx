@@ -52,9 +52,9 @@ const TableSection = () => {
               <AiOutlineSearch />
             </button>
           </div>
-          <div className="border p-2 rounded-md mr-4">
+          {/* <div className="border p-2 rounded-md mr-4">
             <MyDropdownMenu />
-          </div>
+          </div> */}
         </div>
 
         <Table

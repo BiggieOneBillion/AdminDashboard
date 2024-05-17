@@ -12,15 +12,15 @@ const Navigation = () => {
     <div className="flex flex-col overflow-y-auto duration-300 ease-linear">
       <nav className=" py-4  lg:px-6">
         <div>
-          <ul className="mb-6 flex flex-col gap-1.5">
+          <ul className="mb-6 flex flex-col gap-3">
             {menuItems.map((menuItem) => {
               return (
                 <Link href={menuItem.path} key={menuItem.id}>
                   <label
-                    className={`group relative cursor-pointer flex items-center gap-2.5  py-2 px-4 font-medium  duration-300 ease-in-out hover:bg-[#DFDFFF] hover:text-[#24249C]  rounded-md
+                    className={`group relative cursor-pointer flex text-base items-center gap-2.5  py-2 px-4 font-normal  duration-300 ease-in-out hover:bg-[#DFDFFF] hover:text-[#24249C]  rounded-md
                ${
-                 pathName === menuItem.path
-                   ? "bg-[#DFDFFF] text-[#24249C] "
+                 pathName.includes(menuItem.path)
+                   ? "bg-[#DFDFFF] text-[#24249C]"
                    : "bg-white text-[#5C5C5C]"
                }
                `}

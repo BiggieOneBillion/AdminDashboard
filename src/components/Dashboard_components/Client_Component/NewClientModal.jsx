@@ -5,6 +5,15 @@ import { HiPlus } from "react-icons/hi";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import NewClientForm from "./NewClientForm";
 
+const CancelBtn = () => (
+  <Dialog.Close className="col-span-2">
+    <button className="py-3 text-center text-sm w-full text-gray-400 bg-white border flex justify-center items-center gap-2 rounded-lg btn-animate">
+      <IoMdClose size={20} />
+      <span>Cancel</span>
+    </button>
+  </Dialog.Close>
+);
+
 const NewClientModal = () => {
   return (
     <Dialog.Root>
@@ -37,7 +46,7 @@ const NewClientModal = () => {
                 </Dialog.Close>
               </div>
               {/* New Client Form */}
-              <NewClientForm />
+              <NewClientForm closeBtn={<CancelBtn />} />
             </div>
           </div>
         </Dialog.Content>

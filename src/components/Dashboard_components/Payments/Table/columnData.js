@@ -1,5 +1,7 @@
 import { v4 } from "uuid";
 import DeviceDetailsModal from "../../Client_Details/DeviceDetailsModal";
+import Link from "next/link";
+
 
 // {
 //   "id": 1,
@@ -19,6 +21,9 @@ export const columnData = [
     id: "client",
     header: "Client",
     accessorKey: "client",
+    cell: ({row}) => (
+      <Link href={'/payments/1234567890'}>{row.original.client}</Link>
+    )
   },
   {
     id: "deviceOwned",
@@ -38,7 +43,7 @@ export const columnData = [
       <span
         key={v4()}
         className={`px-2 py-1 rounded-xl text-sm inline-block ${
-          row.original.status === "Incomplete"
+          row.original.paymentStatus === "Incomplete"
             ? "text-red-500 bg-red-200"
             : "text-green-500 bg-green-200"
         }`}

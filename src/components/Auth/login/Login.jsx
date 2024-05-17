@@ -8,6 +8,9 @@ import { loginService } from "../../../services/auth-service/auth.service";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "@/validation/loginValidations";
+import axios from "axios";
+import cookies_settings from "@/libs/cookies_settings";
+import { userStore } from "@/store/user";
 
 const InputContainer = ({ label, register, name, type = "text", errors }) => (
   <div className="flex flex-col gap-2 text-black">
@@ -32,6 +35,8 @@ const Login = () => {
     text: "Login",
   });
 
+  const [inCorrect, setInCorrect] = useState(false);
+
   const {
     register,
     reset,
@@ -41,14 +46,40 @@ const Login = () => {
     resolver: zodResolver(loginSchema),
   });
 
+  // from zustand store-- to update the user object and token
+  const updateUser = userStore((state) => state.updateUser);
+  const setToken = userStore((state) => state.setToken);
+  const user = userStore((state) => state.user);
+  const token_id = userStore((state) => state.token_id);
+  // const { updateUser, setToken } = userStore();
+
   const onSubmit = async (values) => {
-    console.log(values);
+    setInCorrect(false);
     setBtnState({ ...btnState, status: true, text: "...Loading" });
-    setTimeout(() => {
+    try {
+      const response = await axios.post(
+        "https://api-prestigecalendar.olotusquare.co/api/v1/admin/login",
+        values
+      );
+      console.log(response.data.entity.admin.fullname);
+      cookies_settings(response.data);
+      setToken(response.data.entity.token);
+      let newUser = {
+        fullname: response.data.entity.admin.fullname,
+        id: response.data.entity.admin.id,
+      };
+      updateUser(newUser);
+      router.push("/dashboard");
       setBtnState({ ...btnState, status: false, text: "Successful!!" });
-    }, 3000);
-    //  const loginUser = await loginService({ email, password });
-    //  console.log(loginUser);
+    } catch (error) {
+      // console.log(error);
+      if (error.response?.status === 422) {
+        setBtnState({ ...btnState, status: false, text: "Try Again" });
+        setInCorrect(true);
+        return;
+      }
+      setBtnState({ ...btnState, status: false, text: "Try Again" });
+    }
   };
 
   return (
@@ -91,6 +122,15 @@ const Login = () => {
             </div>
             <form className="gap-[60px] grid ">
               <div className="grid gap-[8px]">
+                {inCorrect && (
+                  <span className="block w-full py-2 px-3 rounded-lg bg-red-200 text-red-700 text-sm">
+                    Incorrect Credientials
+                  </span>
+                )}
+                {/* <div>
+                  <p>User: {user.fullname}</p>
+                  <p>token: {token_id}</p>
+                </div> */}
                 <InputContainer
                   label={"Email"}
                   name={"email"}
@@ -105,10 +145,10 @@ const Login = () => {
                   type="password"
                   errors={errors}
                 />
-                <div className=" mt-1">
+                {/* <div className=" mt-1">
                   <input type="checkbox" checked className="mr-1 p-[2px]" />
                   <span className="text-[#262633]">Keep me signed in</span>
-                </div>
+                </div> */}
               </div>
 
               <div>
@@ -124,7 +164,7 @@ const Login = () => {
 
               <div className=" flex gap-1">
                 <p className="  text-[#262633]">forgot password? </p>{" "}
-                <Link href="/recover" className="text-[#FF971E]">
+                <Link href="/forgetPassword" className="text-[#FF971E]">
                   recover it here
                 </Link>
               </div>

@@ -16,7 +16,7 @@ export const recoverEmailSchema = z.object({
 });
 
 export const recoverCodeSchema = z.object({
-  code: z.string().min(6, { message: "Not Valid, must be 6 characters long" }),
+  code: z.string().min(4, { message: "Not Valid, must be 6 characters long" }),
 });
 
 export const newPasswordSchema = z

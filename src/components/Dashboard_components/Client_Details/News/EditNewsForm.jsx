@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import InputContainer from "@/components/InputComponent";
 import { IoSaveSharp } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
+import { PiImageThin, PiTrash } from "react-icons/pi";
 
 const Container = ({ children }) => (
   <div className="p-4 border rounded-lg flex flex-col gap-2 bg-whitey">
@@ -17,7 +18,7 @@ const TextAreaContainer = ({ label, register, name, errors }) => (
     </label>
     <textarea
       className="px-4 w-full py-2 text-base border rounded-xl text-black bg-white disabled:bg-[rgba(233,233,249,0.3)]"
-      rows={20}
+      rows={10}
       {...register(name)}
     ></textarea>
     <span className="h-4 text-red-600 text-sm">
@@ -26,10 +27,43 @@ const TextAreaContainer = ({ label, register, name, errors }) => (
   </div>
 );
 
+const ArticleForm = ({}) => (
+  <div className="grid grid-cols-[1fr_200px_1fr] gap-4 h-[50px] relative">
+    {/* first input */}
+    <div className="w-full h-full border border-blue-700 rounded-2xl">
+      <label
+        htmlFor="imgFile"
+        className=" h-full flex px-5 justify-between items-center w-full "
+      >
+        <input type="file" id="imgFile" className="hidden" />
+        <span className="text-xs font-light text-black">Upload An Image</span>
+        <span>
+          <PiImageThin size={20} />
+        </span>
+      </label>
+    </div>
+    {/* second input */}
+    <div className="w-full h-full border rounded-2xl overflow-hidden">
+      <input
+        type="text"
+        placeholder="Title"
+        className="h-full px-3 py-1 w-full placeholder:text-sm placeholder:font-light rounded-2xl focus-within:outline-none text-sm font-normal"
+      />
+    </div>
+    {/* third input */}
+    <div className="w-full h-full border rounded-xl overflow-hidden">
+      <input
+        type="text"
+        placeholder="Sub text"
+        className="h-full px-3 py-1 w-full placeholder:text-sm placeholder:font-light rounded-2xl  focus-within:outline-none text-sm font-normal"
+      />
+    </div>
+  </div>
+);
 
 // FORM INCOMPLETE
 
-const EditNewsForm = () => {
+const EditNewsForm = ({closeBtn}) => {
   const {
     register,
     handleSubmit,
@@ -45,6 +79,7 @@ const EditNewsForm = () => {
           register={register}
         />
       </Container>
+      <ArticleForm />
       {/* btn container */}
       <div className="flex justify-end gap-5">
         <button className="py-3 w-[150px] text-center text-sm text-white bg-[#24249C]  flex justify-center items-center gap-2 rounded-lg btn-animate">

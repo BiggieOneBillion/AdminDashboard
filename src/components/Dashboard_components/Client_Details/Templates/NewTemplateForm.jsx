@@ -3,6 +3,13 @@ import { useForm } from "react-hook-form";
 import InputContainer from "@/components/InputComponent";
 import { IoSaveSharp } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { newTemplateSchema } from "@/validation/ClientSectionValidations";
+import { PiImageThin } from "react-icons/pi";
+import ImageFormContainer from "./ImageFormContainer";
+import QuoteContainer from "./QuotesContainer";
+import SelectInput from "./SelectInput";
+import { v4 } from "uuid";
 
 const Container = ({ children }) => (
   <div className="p-4 border rounded-lg flex flex-col gap-2 bg-whitey">
@@ -10,12 +17,13 @@ const Container = ({ children }) => (
   </div>
 );
 
-const InputRadioContainer = ({ label, register, name, errors, id }) => (
+const InputRadioContainer = ({ label, register, name, errors, id, value }) => (
   <div className="flex flex-col gap-2 text-black">
     <div className="flex items-center justify-start gap-1">
       <input
         id={id}
         type="radio"
+        value={value}
         className="px-4 w-fit py-2 text-base border rounded-xl text-black bg-white disabled:bg-[rgba(233,233,249,0.3)] "
         {...register(name)}
       />
@@ -29,9 +37,43 @@ const InputRadioContainer = ({ label, register, name, errors, id }) => (
         <span>{label}</span>
       </label>
     </div>
-    <span className="h-4 text-red-600 text-sm">
+    {/* <span className="h-4 text-red-600 text-sm">
       {errors[name] && errors[name].message}
-    </span>
+    </span> */}
+  </div>
+);
+
+const ArticleForm = ({}) => (
+  <div className="grid grid-cols-[1fr_200px_1fr] gap-4 h-[50px] relative">
+    {/* first input */}
+    <div className="w-full h-full border border-blue-700 rounded-2xl">
+      <label
+        htmlFor="imgFile"
+        className=" h-full flex px-5 justify-between items-center w-full "
+      >
+        <input type="file" id="imgFile" className="hidden" />
+        <span className="text-xs font-light text-black">Upload An Image</span>
+        <span>
+          <PiImageThin size={20} />
+        </span>
+      </label>
+    </div>
+    {/* second input */}
+    <div className="w-full h-full border rounded-2xl overflow-hidden">
+      <input
+        type="text"
+        placeholder="Title"
+        className="h-full px-3 py-1 w-full placeholder:text-sm placeholder:font-light rounded-2xl focus-within:outline-none text-sm font-normal"
+      />
+    </div>
+    {/* third input */}
+    <div className="w-full h-full border rounded-xl overflow-hidden">
+      <input
+        type="text"
+        placeholder="Sub text"
+        className="h-full px-3 py-1 w-full placeholder:text-sm placeholder:font-light rounded-2xl  focus-within:outline-none text-sm font-normal"
+      />
+    </div>
   </div>
 );
 
@@ -57,12 +99,25 @@ const InputContainer2 = ({
   </div>
 );
 
-const NewTemplateForm = () => {
+const NewTemplateForm = ({ closeBtn }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    resolver: zodResolver(newTemplateSchema),
+    defaultValues: {
+      size: "10inches",
+    },
+  });
+
+  const onSubmit = (value) => {
+    console.log(value);
+  };
+
+  const delayData = ["12 hours", "24 hours"];
+
+  const orderData = ["Shuffle", "linear"];
   return (
     <div className="space-y-3 ">
       <Container>
@@ -124,17 +179,19 @@ const NewTemplateForm = () => {
         <div className="flex items-center justify-start gap-5">
           <InputRadioContainer
             errors={errors}
-            name={"screenSize"}
-            label={"10 inches"}
+            name={"size"}
+            label={"10 Inches"}
             register={register}
             id={"10inches"}
+            value={"10inches"}
           />
           <InputRadioContainer
             errors={errors}
-            name={"screenSize"}
-            label={"21 inches"}
+            name={"size"}
+            label={"21 Inches"}
             register={register}
             id={"21inches"}
+            value={"21inches"}
           />
         </div>
         {/* Purchase Date and IMEI Number Input */}
@@ -144,6 +201,7 @@ const NewTemplateForm = () => {
             label={"Purchase Date"}
             name={"purchaseDate"}
             register={register}
+            type="date"
           />
           <InputContainer
             errors={errors}
@@ -152,17 +210,43 @@ const NewTemplateForm = () => {
             register={register}
           />
         </div>
+        {/* Image input container */}
+        <Container>
+          <h1 className="font-medium text-lg text-black mb-4">Images</h1>
+          <ImageFormContainer />
+        </Container>
+        {/* Quotes input container */}
+        <Container>
+          <h1 className="font-medium text-lg text-black mb-4">Quotes</h1>
+          <QuoteContainer />
+        </Container>
+        {/* delay, order, filesize */}
+        <Container>
+          <div className="w-full grid grid-cols-2 gap-10">
+            <SelectInput
+              label={"Delay"}
+              data={delayData}
+              placeholder={"Select Delay"}
+            />
+            <SelectInput
+              label={"Order"}
+              data={orderData}
+              placeholder={"Select Order"}
+            />
+          </div>
+        </Container>
       </Container>
       {/* btn container */}
       <div className="grid grid-cols-5 gap-5">
-        <button className="py-3 col-span-3 text-center text-sm w-full text-white bg-[#24249C]  flex justify-center items-center gap-2 rounded-lg btn-animate">
+        <button
+          // onClick={handleSubmit(onSubmit)}
+          type="submit"
+          className="py-3 col-span-3 text-center text-sm w-full text-white bg-[#24249C]  flex justify-center items-center gap-2 rounded-lg btn-animate"
+        >
           <IoSaveSharp size={20} />
           <span>Save</span>
         </button>
-        <button className="py-3 col-span-2 text-center text-sm w-full text-gray-400 bg-white border flex justify-center items-center gap-2 rounded-lg btn-animate">
-          <IoMdClose size={20} />
-          <span>Cancel</span>
-        </button>
+        {closeBtn}
       </div>
     </div>
   );

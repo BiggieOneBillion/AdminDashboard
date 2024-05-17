@@ -4,27 +4,46 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { recoverEmailSchema } from "@/validation/loginValidations";
+import axios from "axios";
 
-const ForgetPasswordForm = ({setIndex}) => {
+const ForgetPasswordForm = ({ setIndex, userInfo, setUserInfo }) => {
   // This state handles the btn text and btn disabled state.
   const [btnState, setBtnState] = useState({
     status: false,
     text: "Recover Password",
   });
 
+  const [inCorrect, setInCorrect] = useState(false);
+
   const {
     register,
     reset,
     formState: { errors },
     handleSubmit,
-  } = useForm({resolver:zodResolver(recoverEmailSchema)});
+  } = useForm({ resolver: zodResolver(recoverEmailSchema) });
 
   const onSubmit = async (values) => {
     console.log(values);
     setBtnState({ ...btnState, status: true, text: "...Loading" });
-    setTimeout(()=>{
-      setIndex(2)
-    },1000)
+    try {
+      const response = await axios.post(
+        "https://api-prestigecalendar.olotusquare.co/api/v1/admin/forgot-password",
+        values
+      );
+      console.log(response.data);
+      setBtnState({ ...btnState, status: false, text: "Successful!!" });
+      setUserInfo({ ...userInfo, email: values.email });
+      setIndex(2);
+    } catch (error) {
+      console.log(error.response.status);
+      if (error.response.status === 422) {
+        setBtnState({ ...btnState, status: false, text: "Try Again" });
+        setInCorrect(true);
+      }
+    }
+    // setTimeout(()=>{
+    //   setIndex(2)
+    // },1000)
     //  const loginUser = await loginService({ email, password });
     //  console.log(loginUser);
   };
@@ -39,6 +58,11 @@ const ForgetPasswordForm = ({setIndex}) => {
       </div>
       <form className="gap-[60px] grid">
         <div className="grid gap-[8px]">
+          {inCorrect && (
+            <span className="block w-full py-2 px-3 rounded-lg bg-red-200 text-red-700 text-sm">
+              Incorrect Email
+            </span>
+          )}
           <InputContainer
             label={"Email"}
             name={"email"}

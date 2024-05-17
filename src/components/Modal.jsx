@@ -2,8 +2,18 @@ import React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { IoMdClose } from "react-icons/io";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
+import ModalContainer from "./ModalContainer";
 
-const Modal = ({ trigger, content, title, width="w-[800px]" }) => {
+const CloseBtn = () => (
+  <Dialog.Close className="col-span-2">
+    <span className="py-3 text-center text-sm w-full text-gray-400 bg-white border flex justify-center items-center gap-2 rounded-lg btn-animate">
+      <IoMdClose size={20} />
+      <span>Cancel</span>
+    </span>
+  </Dialog.Close>
+);
+
+const Modal = ({ trigger, content, title, width = "w-[800px]" }) => {
   return (
     <Dialog.Root>
       <Dialog.Trigger className="block w-fit">{trigger}</Dialog.Trigger>
@@ -11,8 +21,8 @@ const Modal = ({ trigger, content, title, width="w-[800px]" }) => {
         <Dialog.Overlay
           className={`bg-[rgba(0,0,0,0.5)] data-[state=open]:animate-overlayShow fixed inset-0`}
         />
-        <Dialog.Content className="data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[95hv] overflow-y-scroll max-w-fit translate-x-[-50%] translate-y-[-50%] rounded-xl bg-[#D8D8DB]y bg-white p-4 shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
-          <div className={`${width} h-fit pb-4 px-5 space-y-10`}>
+        <Dialog.Content className="data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[80hv] overflow-y-scroll max-w-fit translate-x-[-50%] translate-y-[-50%] rounded-xl bg-[#D8D8DB]y bg-white p-4 shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
+          <div className={`${width} h-fit pb-4 px-5 space-y-10 max-h-[95vh] overflow-y-scroll`}>
             {/* close btn, title, question  */}
             <div className="space-y-5">
               <div className="flex justify-between items-center py-4">
@@ -30,7 +40,7 @@ const Modal = ({ trigger, content, title, width="w-[800px]" }) => {
                 </Dialog.Close>
               </div>
               {/* New Client Form */}
-              {content}
+              <ModalContainer closeBtn={<CloseBtn/>}>{content}</ModalContainer>
             </div>
           </div>
         </Dialog.Content>

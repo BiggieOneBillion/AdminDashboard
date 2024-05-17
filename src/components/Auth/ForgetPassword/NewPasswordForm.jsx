@@ -30,10 +30,25 @@ const NewPasswordForm = () => {
   const onSubmit = async (values) => {
     console.log(values);
     setBtnState({ ...btnState, status: true, text: "...Loading" });
-    setTimeout(() => {
+    try {
+      const response = await axios.post(
+        "https://api-prestigecalendar.olotusquare.co/api/v1/admin/reset-password",
+        values
+      );
+      console.log(response.data);
       setBtnState({ ...btnState, status: true, text: "Done" });
       openDialog();
-    }, 1000);
+    } catch (error) {
+      console.log(error);
+      // if (error.response.status === 422) {
+        setBtnState({ ...btnState, status: false, text: "Try Again" });
+        // setInCorrect(true);
+      // }
+    }
+    // setTimeout(() => {
+    //   setBtnState({ ...btnState, status: true, text: "Done" });
+    //   openDialog();
+    // }, 1000);
 
     //  const loginUser = await loginService({ email, password });
     //  console.log(loginUser);

@@ -1,12 +1,12 @@
 "use  client";
 import Modal from "@/components/Modal";
 import React from "react";
-import NewPaymentForm from "../Payments/NewPaymentForm";
 import { HiPlus } from "react-icons/hi";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import TableSection from "./TableSection";
 import { useRouter } from "next/navigation";
 import { v4 } from "uuid";
+import NewPaymentForm from "./NewPaymentForm";
 
 const Trigger = () => (
   <div className="flex items-center gap-3 py-3 px-4 text-white font-medium bg-[#24249C] rounded-lg">

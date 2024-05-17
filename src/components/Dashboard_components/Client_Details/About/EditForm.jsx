@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import InputContainer from "@/components/InputComponent";
 import { IoSaveSharp } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { editAboutValidation } from "@/validation/ClientSectionValidations";
 
 const Container = ({ children }) => (
   <div className="p-4 border rounded-lg flex flex-col gap-2 bg-whitey">
@@ -26,12 +28,18 @@ const TextAreaContainer = ({ label, register, name, errors }) => (
   </div>
 );
 
-const EditForm = () => {
+const EditForm = ({ closeBtn }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    resolver: zodResolver(editAboutValidation),
+  });
+
+  const onSubmit = (value) => {
+    console.log(value);
+  };
   return (
     <div className="space-y-3 ">
       <Container>
@@ -49,15 +57,15 @@ const EditForm = () => {
         />
       </Container>
       {/* btn container */}
-      <div className="flex justify-end gap-5">
-        <button className="py-3 w-[150px] text-center text-sm text-white bg-[#24249C]  flex justify-center items-center gap-2 rounded-lg btn-animate">
+      <div className="grid grid-cols-6 gap-5">
+        <button
+          onClick={handleSubmit(onSubmit)}
+          className="py-3 col-span-4 w-full  text-center text-sm text-white bg-[#24249C]  flex justify-center items-center gap-2 rounded-lg btn-animate"
+        >
           <IoSaveSharp size={20} />
           <span>Save</span>
         </button>
-        <button className="py-3  w-[150px] text-center text-sm text-gray-400 bg-white border flex justify-center items-center gap-2 rounded-lg btn-animate">
-          <IoMdClose size={20} />
-          <span>Cancel</span>
-        </button>
+        {closeBtn}
       </div>
     </div>
   );

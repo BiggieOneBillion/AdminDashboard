@@ -2,7 +2,7 @@ import React from "react";
 import TableSection from "./TableSection";
 import Board from "@/components/Board";
 import { clientBoardData } from "./data";
-import NewDeviceModal from "../Client_Details/NewDeviceModal";
+import NewDeviceModal from "./NewDeviceModal";
 
 const Index = () => {
   return (

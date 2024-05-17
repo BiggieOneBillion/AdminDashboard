@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import InputContainer from "@/components/InputComponent";
 import { IoSaveSharp } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { newDeviceSchema } from "@/validation/ClientSectionValidations";
 
 const Container = ({ children }) => (
   <div className="p-4 border rounded-lg flex flex-col gap-2 bg-whitey">
@@ -10,12 +12,13 @@ const Container = ({ children }) => (
   </div>
 );
 
-const InputRadioContainer = ({ label, register, name, errors, id }) => (
+const InputRadioContainer = ({ label, register, name, errors, id, value }) => (
   <div className="flex flex-col gap-2 text-black">
     <div className="flex items-center justify-start gap-1">
       <input
         id={id}
         type="radio"
+        value={value}
         className="px-4 w-fit py-2 text-base border rounded-xl text-black bg-white disabled:bg-[rgba(233,233,249,0.3)] "
         {...register(name)}
       />
@@ -29,18 +32,27 @@ const InputRadioContainer = ({ label, register, name, errors, id }) => (
         <span>{label}</span>
       </label>
     </div>
-    <span className="h-4 text-red-600 text-sm">
+    {/* <span className="h-4 text-red-600 text-sm">
       {errors[name] && errors[name].message}
-    </span>
+    </span> */}
   </div>
 );
 
-const NewDeviceForm = () => {
+const NewDeviceForm = ({ closeBtn }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    resolver: zodResolver(newDeviceSchema),
+    defaultValues: {
+      screenSize: "10inches",
+    },
+  });
+
+  const onSubmit = (value) => {
+    console.log(value);
+  };
   return (
     <div className="space-y-3 ">
       <Container>
@@ -106,6 +118,7 @@ const NewDeviceForm = () => {
             label={"10 inches"}
             register={register}
             id={"10inches"}
+            value={"10inches"}
           />
           <InputRadioContainer
             errors={errors}
@@ -113,6 +126,7 @@ const NewDeviceForm = () => {
             label={"21 inches"}
             register={register}
             id={"21inches"}
+            value={"21inches"}
           />
         </div>
         {/* Purchase Date and IMEI Number Input */}
@@ -121,7 +135,9 @@ const NewDeviceForm = () => {
             errors={errors}
             label={"Purchase Date"}
             name={"purchaseDate"}
+            placeholder="YYYY-MM-DD"
             register={register}
+            type="date"
           />
           <InputContainer
             errors={errors}
@@ -133,14 +149,14 @@ const NewDeviceForm = () => {
       </Container>
       {/* btn container */}
       <div className="grid grid-cols-5 gap-5">
-        <button className="py-3 col-span-3 text-center text-sm w-full text-white bg-[#24249C]  flex justify-center items-center gap-2 rounded-lg btn-animate">
+        <button
+          onClick={handleSubmit(onSubmit)}
+          className="py-3 col-span-3 text-center text-sm w-full text-white bg-[#24249C]  flex justify-center items-center gap-2 rounded-lg btn-animate"
+        >
           <IoSaveSharp size={20} />
           <span>Save</span>
         </button>
-        <button className="py-3 col-span-2 text-center text-sm w-full text-gray-400 bg-white border flex justify-center items-center gap-2 rounded-lg btn-animate">
-          <IoMdClose size={20} />
-          <span>Cancel</span>
-        </button>
+        {closeBtn}
       </div>
     </div>
   );

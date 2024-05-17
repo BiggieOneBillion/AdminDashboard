@@ -4,13 +4,18 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { recoverCodeSchema } from "@/validation/loginValidations";
+import axios from "axios";
 
-const ResetCodeForm = ({ setIndex }) => {
+const ResetCodeForm = ({ setIndex, userInfo }) => {
   // This state handles the btn text and btn disabled state.
   const [btnState, setBtnState] = useState({
     status: false,
     text: "Reset Password",
   });
+
+  const [inCorrect, setInCorrect] = useState(false);
+
+  const [errorMessage, setErrorMessage] = useState("");
 
   const {
     register,
@@ -20,11 +25,29 @@ const ResetCodeForm = ({ setIndex }) => {
   } = useForm({ resolver: zodResolver(recoverCodeSchema) });
 
   const onSubmit = async (values) => {
-    console.log(values);
+    setInCorrect(false);
+    console.log(values.code, userInfo.email);
+
     setBtnState({ ...btnState, status: true, text: "...Loading" });
-    setTimeout(() => {
+    try {
+      const response = await axios.post(
+        "https://api-prestigecalendar.olotusquare.co/api/v1/admin/verify-otp",
+        { email: userInfo.email, otp: values.code }
+      );
+      console.log(response.data);
+      setBtnState({ ...btnState, status: false, text: "Successful!!" });
       setIndex(3);
-    }, 1000);
+    } catch (error) {
+      // console.log(error.response.data.message);
+      // if (error.response.status === 422) {
+      setErrorMessage(error.response.data.message);
+      setBtnState({ ...btnState, status: false, text: "Try Again" });
+      setInCorrect(true);
+      // }
+    }
+    // setTimeout(() => {
+    //   setIndex(3);
+    // }, 1000);
     //  const loginUser = await loginService({ email, password });
     //  console.log(loginUser);
   };
@@ -42,6 +65,11 @@ const ResetCodeForm = ({ setIndex }) => {
       </div>
       <form className="gap-[60px] grid">
         <div className="grid gap-[8px]">
+          {inCorrect && (
+            <span className="block w-full py-2 px-3 rounded-lg bg-red-200 text-red-700 text-sm">
+              {errorMessage}
+            </span>
+          )}
           <InputContainer
             label={"Enter Code"}
             name={"code"}

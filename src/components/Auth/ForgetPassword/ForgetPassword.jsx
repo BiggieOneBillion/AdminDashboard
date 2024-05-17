@@ -9,6 +9,9 @@ import NewPasswordForm from "./NewPasswordForm";
 const ForgetPassword = () => {
   // state to control which component is displayed in the forget password process
   const [index, setIndex] = useState(1);
+  const [userInfo, setUserInfo] = useState({
+    email: "",
+  });
   return (
     <div className="h-screen overflow-hidden flex justify-center items-center bg-[#f1f1f1] border border-red-950 ">
       <div className="container mx-auto ">
@@ -38,8 +41,14 @@ const ForgetPassword = () => {
               </h2>
             </div>
           </div>
-          {index === 1 && <ForgetPasswordForm setIndex={setIndex} />}
-          {index === 2 && <ResetCodeForm setIndex={setIndex} />}
+          {index === 1 && (
+            <ForgetPasswordForm
+              setIndex={setIndex}
+              userInfo={userInfo}
+              setUserInfo={setUserInfo}
+            />
+          )}
+          {index === 2 && <ResetCodeForm setIndex={setIndex} userInfo={userInfo} />}
           {index === 3 && <NewPasswordForm setIndex={setIndex} />}
         </div>
       </div>

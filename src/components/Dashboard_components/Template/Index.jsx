@@ -1,9 +1,10 @@
 "use client";
 import React from "react";
-import NewTemplateModal from "../Client_Details/Templates/NewTemplateModal";
 import Board from "../Client_Component/Board";
 import { clientBoardData } from "./data";
 import TableSection from "./TableSection";
+import Modal from "@/components/Modal";
+import NewTemplateModal from "./NewTemplateModal";
 
 const Index = () => {
   return (

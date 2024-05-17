@@ -14,7 +14,7 @@ export const columnData = [
     header: "Client",
     accessorKey: "client",
     cell: ({ row }) => (
-      <Link key={v4()} href={"/dashboard/clients/1234567890987"}>
+      <Link key={v4()} href={"/clients/1234567890987"}>
         {row.original.client}
       </Link>
     ),
