@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { PiTrash } from "react-icons/pi";
 import { v4 } from "uuid";
 
-const ArticleForm = ({ index, removeForm }) => (
+const ArticleForm = ({ removeForm }) => (
   <div className="h-[50px] relative">
     {/* quote input */}
     <div className="w-full h-full border rounded-2xl overflow-hidden">
@@ -15,14 +15,14 @@ const ArticleForm = ({ index, removeForm }) => (
     </div>
 
     {/* delete form btn */}
-    {index !== 0 && (
+    {/* {index !== 0 && (
       <button
         onClick={removeForm}
         className="absolute top-[-10px] right-[-10px] bg-white  rounded-full text-red-400 btn-animate"
       >
         <PiTrash size={18} />
       </button>
-    )}
+    )} */}
   </div>
 );
 
@@ -40,7 +40,8 @@ const QuoteContainer = () => {
   };
   return (
     <div>
-      <div className="space-y-3">
+      <ArticleForm removeForm={removeForm} />
+      {/* <div className="space-y-3">
         {count.map((el, i) => (
           <ArticleForm key={v4()} index={i} removeForm={removeForm} />
         ))}
@@ -52,7 +53,7 @@ const QuoteContainer = () => {
         >
           Add
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };

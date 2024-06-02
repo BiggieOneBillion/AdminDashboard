@@ -12,8 +12,7 @@ import Table from "../Main_Dashboard/Main_Table/Tables/Table";
 
 
 
-const TableSection = () => {
-  const [data, setData] = useState([]);
+const TableSection = ({data}) => {
   const [filtering, setFiltering] = useState("");
 
   const filterState = {
@@ -21,23 +20,9 @@ const TableSection = () => {
     setFiltering,
   };
 
-  //   useEffect(() => {
-  //     axios
-  //       .get("/api/user")
-  //       .then((res) => setData(res.data.result))
-  //       .catch((error) => console.log(error));
-  //   }, []);
 
-  // data && console.log(data);
   return (
     <div className="space-y-10 bg-white px-4 py-5 rounded-2xl">
-      {/* TABLE */}
-      {/* {data.length == 0 && (
-        <h1 className="h-[500px] flex justify-center items-center text-2xl font-semibold text-black">
-          Loading...
-        </h1>
-      )} */}
-      {/* {data.length > 0 && ( */}
       <section className="table space-y-5 w-full">
         <div className="flex justify-end items-center gap-3 py-4 border-b w-full">
           <div className="flex items-center border px-5 py-1 rounded-2xl">
@@ -59,7 +44,7 @@ const TableSection = () => {
 
         <Table
           columnData={columnData}
-          mData={mData}
+          mData={data}
           filterState={filterState}
         />
       </section>

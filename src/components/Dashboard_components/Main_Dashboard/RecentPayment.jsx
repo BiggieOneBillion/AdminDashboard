@@ -20,13 +20,17 @@ const PaymentList = ({ data }) => (
             <Image
               width="40"
               height="40"
-              src={paydata.src}
+              src={
+                paydata.client.logoUrl
+                  ? paydata.client.logoUrl
+                  : "/images/no-image-2.png"
+              }
               className="p-1 bg-white rounded-full"
               alt="payment image"
             />
-            <span>{paydata.company}</span>
+            <span>{paydata.client.name}</span>
           </div>
-          <span>N{paydata.amount / 1000}K</span>
+          <span>N{paydata.details[0].amount / 1000}K</span>
         </div>
       </li>
     ))}

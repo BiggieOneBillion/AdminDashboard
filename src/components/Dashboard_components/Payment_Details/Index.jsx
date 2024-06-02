@@ -4,9 +4,13 @@ import React from "react";
 import { HiPlus } from "react-icons/hi";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import TableSection from "./TableSection";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { v4 } from "uuid";
 import NewPaymentForm from "./NewPaymentForm";
+import { userStore } from "@/store/user";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import TopBoard from "./TopBoard";
 
 const Trigger = () => (
   <div className="flex items-center gap-3 py-3 px-4 text-white font-medium bg-[#24249C] rounded-lg">
@@ -16,28 +20,88 @@ const Trigger = () => (
 );
 
 const Index = () => {
-  const data = [
-    {
-      number: 10,
-      text: "Device Owned",
-    },
-    {
-      number: 7,
-      text: "Active Device",
-    },
-    {
-      number: 1,
-      text: "Unpaid Invoice",
-    },
-    {
-      number: 100000,
-      text: "Total Revenue",
-    },
-  ];
-
   const route = useRouter();
 
   const handleGoBack = () => route.back();
+
+  const params = useParams();
+
+  const token_id = userStore((state) => state.token_id);
+  const {
+    data: tableData,
+    isLoading,
+    isError,
+    refetch,
+  } = useQuery({
+    queryKey: ["client_invoice_info", `${params.id}`],
+    queryFn: async () => {
+      const response = await axios.get(
+        `https://api-prestigecalendar.olotusquare.co/api/v1/admin/payments/from/${params.id}?page=1&limit=3`,
+        {
+          headers: {
+            Authorization: `Bearer ${token_id}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      return response.data;
+    },
+    staleTime: 5 * 1000,
+  });
+
+  if (isLoading) {
+    return (
+      <div className=" h-[100%] bg-[rgba(0,0,0,0.5)]y flex justify-center items-center">
+        <div className="loader"></div>
+      </div>
+    );
+  }
+
+  if (isError || tableData === undefined) {
+    return (
+      <div className="py-10 flex justify-center gap-3 items-center w-full">
+        <p className="px-2 py-1 border text-black text-sm capitalize">
+          Error while fetching data. Try again
+        </p>
+        <button
+          onClick={() => refetch()}
+          className="border rounded-sm font-medium text-black text-sm px-4 py-2 bg-transparent active:scale-95 transition-transform duration-200 ease-in-out"
+        >
+          ReLoad
+        </button>
+      </div>
+    );
+  }
+
+  tableData && console.log(tableData);
+
+  //   {
+  //     "count": 0,
+  //     "rows": [],
+  //     "analytics": {
+  //         "client": {
+  //             "id": "888fe7dc-f762-479b-b301-83bc10f8a971",
+  //             "name": "Pagac Inc",
+  //             "location": "Doyleport",
+  //             "email": "Diego83@gmail.com",
+  //             "mobile": "936.330.5003 x940",
+  //             "about": "Tepidus cursim cur demo bibo suscipit comparo. Thesaurus summopere ulciscor vesica acies. Theca ulciscor tracto tener.\nThorax solum tamdiu molestias. Utrum degenero dedico casso spargo. Supra crastinus nesciunt certe spes amor desparatus tamdiu ulterius adeptio.",
+  //             "logoUrl": "https://loremflickr.com/640/480?lock=8361745978490880",
+  //             "status": true,
+  //             "password": "$2a$10$8NuBQwCYh4gX/UPq75P93uDMEleiEgnxNSpsABCs6grgyA8H0L.Mm"
+  //         },
+  //         "deviceCount": 10,
+  //         "incompletePaymentCount": 0,
+  //         "totalRevenue": null
+  //     }
+  // }
+
+  tableData?.entity.rows.forEach((row, index) => {
+    row.serial = index + 1;
+  });
+
+  const mData = tableData?.entity.rows;
+
   return (
     <main className="flex flex-col gap-5">
       <div className="flex items-center justify-between">
@@ -56,65 +120,14 @@ const Index = () => {
         />
         {/* {index == 3 && <NewProduct />} */}
       </div>
-      <div className="w-full grid grid-cols-2 gap-5">
-        {/* left side */}
-        <div className="w-full grid grid-cols-2 gap-5">
-          {/* first container for image, company name, email */}
-          <div className="rounded-xl border-4 border-white py-5 px-2 flex items-center justify-center gap-5 bg-[#f8f8ff]">
-            {/* image container */}
-            <div className="image-container h-[80px] w-[80px] rounded-full border"></div>
-            {/* company name and email */}
-            <div className="space-y-2">
-              <h3 className="font-medium text-base">Total Energies</h3>
-              <p className="font-light text-sm">totalenergies@gmail.com</p>
-            </div>
-          </div>
-          {/* client id, location, mobile */}
-          <div className="rounded-xl border-4 border-white py-5 px-5 flex flex-col justify-center  gap-2 bg-[#f8f8ff]">
-            {/* client id */}
-            <div className="flex item-center justify-start gap-10 w-full">
-              <span className="text-sm font-normal w-[80px] text-[#646464]">
-                Client ID
-              </span>
-              <span className="text-sm font-medium text-black">PC001</span>
-            </div>
-            {/* location */}
-            <div className="flex item-center justify-start gap-10 w-full">
-              <span className="text-sm font-normal w-[80px] text-[#646464]">
-                Location
-              </span>
-              <span className="text-sm font-medium text-black">
-                Port Harcourt
-              </span>
-            </div>
-            {/* mobile */}
-            <div className="flex item-center justify-start gap-10 w-full">
-              <span className="text-sm font-normal w-[80px] text-[#646464]">
-                Mobile
-              </span>
-              <span className="text-sm font-medium text-black">
-                +234 90 223 3674
-              </span>
-            </div>
-          </div>
-        </div>
-        <div className="w-full grid grid-cols-4 bg-[#FDF6DE] rounded-xl border-4 border-white py-5 px-3">
-          {data.map((datum) => (
-            <div
-              key={v4()}
-              className="flex flex-col justify-center gap-3 items-center w-full h-full"
-            >
-              <p className="font-semibold text-2xl text-black">
-                {datum.number}
-              </p>
-              <p className="font-light text-sm uppercase text-black">
-                {datum.text}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-      <TableSection />
+      {<TopBoard data={tableData?.entity.analytics} />}
+      {mData.length > 0 ? (
+        <TableSection data={mData} />
+      ) : (
+        <p className="font-semibold text-3xl text-[rgba(0,0,0,0.1)] h-[200px] text-center w-full">
+          No Table Info Avaliable
+        </p>
+      )}
     </main>
   );
 };

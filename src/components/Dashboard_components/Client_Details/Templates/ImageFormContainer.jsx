@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { PiImageThin, PiTrash } from "react-icons/pi";
 import { v4 } from "uuid";
 
-const ArticleForm = ({ index, removeForm }) => (
+const ArticleForm = ({  removeForm }) => (
   <div className="grid grid-cols-[1fr_200px_1fr] gap-4 h-[50px] relative">
     {/* first input */}
     <div className="w-full h-full border border-blue-700 rounded-2xl">
@@ -34,14 +34,14 @@ const ArticleForm = ({ index, removeForm }) => (
       />
     </div>
     {/* delete form btn */}
-    {index !== 0 && (
+    {/* {index !== 0 && (
       <button
         onClick={removeForm}
         className="absolute top-[-10px] right-[-10px] bg-white  rounded-full text-red-400 btn-animate"
       >
         <PiTrash size={18} />
       </button>
-    )}
+    )} */}
   </div>
 );
 
@@ -59,20 +59,23 @@ const ImageFormContainer = () => {
   };
   return (
     <div>
-      <div className="space-y-3">
-        {count.map((el, i) => (
-          <ArticleForm key={v4()} index={i} removeForm={removeForm} />
-        ))}
-      </div>
-      <div className="flex justify-end items-center mt-5">
-        <button
-          onClick={addMoreForm}
-          className="text-base font-medium text-blue-500 bg-blue-200 rounded-md px-4 py-1 w-fit"
-        >
-          Add
-        </button>
-      </div>
+       <ArticleForm key={v4()}  removeForm={removeForm} />
     </div>
+    // <div>
+    //   <div className="space-y-3">
+    //     {count.map((el, i) => (
+    //       <ArticleForm key={v4()} index={i} removeForm={removeForm} />
+    //     ))}
+    //   </div>
+    //   <div className="flex justify-end items-center mt-5">
+    //     <button
+    //       onClick={addMoreForm}
+    //       className="text-base font-medium text-blue-500 bg-blue-200 rounded-md px-4 py-1 w-fit"
+    //     >
+    //       Add
+    //     </button>
+    //   </div>
+    // </div>
   );
 };
 

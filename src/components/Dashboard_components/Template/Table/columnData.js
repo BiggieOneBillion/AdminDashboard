@@ -1,5 +1,8 @@
 import { v4 } from "uuid";
 import DeviceDetailsModal from "../../Client_Details/DeviceDetailsModal";
+import TemplateDevice from "../TemplateDetails";
+import { MdOutlineMoreVert } from "react-icons/md";
+import ActionMenu from "@/components/ActionMenu";
 
 // {
 //   "id": 20,
@@ -19,12 +22,27 @@ export const columnData = [
     id: "client",
     header: "Client",
     accessorKey: "client",
+    cell: ({ row }) => (
+      <DeviceDetailsModal
+        data={row.original}
+        header={row.original.client}
+        key={v4()}
+        details={<TemplateDevice />}
+      />
+    ),
   },
   {
     id: "templateName",
     header: "Template Name",
     accessorKey: "templateName",
-    // cell: ({ row }) => <DeviceDetailsModal data={row.original} key={v4()} />,
+    cell: ({ row }) => (
+      <DeviceDetailsModal
+        data={row.original}
+        header={row.original.templateName}
+        key={v4()}
+        details={<TemplateDevice />}
+      />
+    ),
   },
   {
     id: "size",
@@ -36,5 +54,16 @@ export const columnData = [
     header: "Transistion Delay",
     accessorKey: "transistionDelay",
     cell: ({ row }) => <span>{row.original.transistionDelay}hours</span>,
+  },
+  {
+    id: "id",
+    header: "Actions",
+    accessorKey: "id",
+    cell: () => (
+      <span>
+        {/* <MdOutlineMoreVert size={20} /> */}
+        <ActionMenu />
+      </span>
+    ),
   },
 ];

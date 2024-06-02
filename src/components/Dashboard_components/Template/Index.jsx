@@ -1,10 +1,11 @@
 "use client";
 import React from "react";
-import Board from "../Client_Component/Board";
+
 import { clientBoardData } from "./data";
 import TableSection from "./TableSection";
 import Modal from "@/components/Modal";
 import NewTemplateModal from "./NewTemplateModal";
+import Board from "./Board";
 
 const Index = () => {
   return (
@@ -17,7 +18,7 @@ const Index = () => {
         <NewTemplateModal />
       </div>
       <Board boardData={clientBoardData} />
-      <TableSection />
+      {/* <TableSection /> */}
     </main>
   );
 };

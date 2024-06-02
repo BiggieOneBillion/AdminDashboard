@@ -12,6 +12,7 @@ import { PiImageThin } from "react-icons/pi";
 const NewClientForm = ({ closeBtn }) => {
   const { mutations } = usePostData({
     url: "https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients",
+    queryName: "clients_info",
   });
 
   const [btnState, setBtnState] = useState({
@@ -22,33 +23,38 @@ const NewClientForm = ({ closeBtn }) => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: zodResolver(newClientSchema),
-    defaultValues: {
-      cliendId: "45678903211234",
-    },
+    // defaultValues: {
+    //   cliendId: "45678903211234",
+    // },
   });
 
   const onSubmit = (value) => {
     console.log(value);
     // once you get the values you make a request using the mutations.mutate({})
+    mutations.mutate(value);
     // pass the values to the mutate function
     // if successful then change submit btn text to successful
-
+    // clear the input fields
+    setTimeout(() => {
+      reset();
+    }, 1000);
     // setBtnState({ text: "...saving" });
     // mutations.mutate({});
   };
 
   return (
     <div className="space-y-3">
-      <InputContainer
+      {/* <InputContainer
         errors={errors}
         label={"Client ID"}
         name={"clientId"}
         register={register}
         isDisabled={true}
-      />
-      <div className="space-y-2">
+      /> */}
+      {/* <div className="space-y-2">
         <div className="w-full h-[50px] border border-blue-700 rounded-2xl">
           <label
             htmlFor="imgFile"
@@ -72,7 +78,7 @@ const NewClientForm = ({ closeBtn }) => {
         <span className="h-4 text-red-600 text-sm">
           {errors["logoUrl"] && errors["logoUrl"].message}
         </span>
-      </div>
+      </div> */}
       <InputContainer
         errors={errors}
         label={"Name"}
@@ -113,12 +119,14 @@ const NewClientForm = ({ closeBtn }) => {
         <button
           onClick={handleSubmit(onSubmit)}
           className={`py-3 col-span-3 disabled:bg-blue-400 disabled:cursor-wait  text-center text-sm w-full text-white bg-[#24249C]  flex justify-center items-center gap-2 rounded-lg ${
-            mutations.isPending ? "" : "btn-animate"
+            mutations.isPending || mutations.isSuccess ? "" : "btn-animate"
           } `}
-          disabled={mutations.isPending}
+          disabled={mutations.isPending || mutations.isSuccess}
         >
           <IoSaveSharp size={20} />
-          <span>{btnState.text}</span>
+          {/* <span>{btnState.text}</span> */}
+          {mutations.isPending && "...saving"}
+          {mutations.isSuccess && "Done!!!"}
         </button>
         {closeBtn}
       </div>

@@ -7,15 +7,67 @@ import { columnData } from "./Main_Table/columnData";
 import { CiFilter } from "react-icons/ci";
 import { AiOutlineSearch } from "react-icons/ai";
 import Table from "./Main_Table/Tables/Table";
+import { userStore } from "@/store/user";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 const TableSection = () => {
-  const [data, setData] = useState([]);
+
+  // const [data, setData] = useState([]);
   const [filtering, setFiltering] = useState("");
 
   const filterState = {
     filtering,
     setFiltering,
   };
+
+  // data fetching
+  const token_id = userStore((state) => state.token_id);
+  const { data, isLoading, isError, refetch } = useQuery({
+    queryKey: ["main_dashboard_clients_info"],
+    queryFn: async () => {
+      const response = await axios.get(
+        "https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients?page=1&limit=15",
+        {
+          headers: {
+            Authorization: `Bearer ${token_id}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      return response.data;
+    },
+    staleTime: 5 * 1000,
+  });
+
+  if (isLoading) {
+    return (
+      <div className="fixed inset-0 w-screen h-screen bg-[rgba(0,0,0,0.5)] flex justify-center items-center">
+        <div className="loader"></div>
+      </div>
+    );
+  }
+
+  if (isError || data === undefined || data?.entity.data === undefined) {
+    // console.log(data);
+    return (
+      <div className="py-10 flex justify-center gap-3 items-center w-full">
+        <p className="px-2 py-1 border text-black text-sm capitalize">
+          Error while fetching data. Try again
+        </p>
+        <button
+          onClick={() => refetch()}
+          className="border rounded-sm font-medium text-black text-sm px-4 py-2 bg-transparent active:scale-95 transition-transform duration-200 ease-in-out"
+        >
+          ReLoad
+        </button>
+      </div>
+    );
+  }
+
+  console.log(data?.entity.data);
+
+  
 
   //   useEffect(() => {
   //     axios
@@ -55,7 +107,7 @@ const TableSection = () => {
 
         <Table
           columnData={columnData}
-          mData={mData}
+          mData={data?.entity.data}
           filterState={filterState}
         />
       </section>

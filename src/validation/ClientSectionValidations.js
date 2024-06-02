@@ -11,7 +11,7 @@ export const newClientSchema = z.object({
     .string()
     .min(11, { message: "Cannot be empty and must be 11 digits" }),
   password: z.string().min(6, { message: "Cannot be less than 6 characters" }),
-  logoUrl: z.any(),
+  // logoUrl: z.any(),
   // .instanceof(File)
   // .refine((file) => ["image/jpeg", "image/png"].includes(file.files[0].type), {
   //   message: "Only JPEG or PNG files are accepted",
@@ -31,9 +31,9 @@ export const newTemplateSchema = z.object({
 
 export const newDeviceSchema = z.object({
   deviceId: z.string().min(1, { message: "Field cannot be empty" }),
-  imeiNumber: z.string().min(10, { message: "Field cannot be empty" }),
+  imei: z.string().min(10, { message: "Field cannot be empty" }),
   purchaseDate: z.string().date(),
-  screenSize: z.enum(["21inches", "10inches"]),
+  size: z.enum(["21", "10"]),
 });
 
 export const editAboutValidation = z.object({

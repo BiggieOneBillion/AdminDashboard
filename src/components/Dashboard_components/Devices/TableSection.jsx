@@ -27,7 +27,6 @@ const TableSection = () => {
         <TableContainer>
           <Table
             columnData={columnData}
-            mData={mData}
             filterState={filterState}
           />
         </TableContainer>

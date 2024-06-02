@@ -10,6 +10,7 @@ import ImageFormContainer from "./ImageFormContainer";
 import QuoteContainer from "./QuotesContainer";
 import SelectInput from "./SelectInput";
 import { v4 } from "uuid";
+import { clientStore } from "@/store/clients";
 
 const Container = ({ children }) => (
   <div className="p-4 border rounded-lg flex flex-col gap-2 bg-whitey">
@@ -100,6 +101,9 @@ const InputContainer2 = ({
 );
 
 const NewTemplateForm = ({ closeBtn }) => {
+  
+  const singleClient = clientStore((state) => state.singleClient);
+
   const {
     register,
     handleSubmit,
@@ -108,6 +112,11 @@ const NewTemplateForm = ({ closeBtn }) => {
     resolver: zodResolver(newTemplateSchema),
     defaultValues: {
       size: "10inches",
+      clientId: singleClient[0]?.id,
+      name: singleClient[0]?.name,
+      email: singleClient[0]?.email,
+      location: singleClient[0]?.location,
+      phoneNumber: singleClient[0]?.mobile,
     },
   });
 

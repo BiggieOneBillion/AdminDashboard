@@ -1,8 +1,8 @@
 import React from "react";
 import TableSection from "./TableSection";
-import Board from "@/components/Board";
 import { clientBoardData } from "./data";
 import NewDeviceModal from "./NewDeviceModal";
+import Board from "./Board";
 
 const Index = () => {
   return (
@@ -12,7 +12,7 @@ const Index = () => {
           <h1 className="font-bold">Devices</h1>
         </div>
         {/* add new client */}
-        <NewDeviceModal />
+        {/* <NewDeviceModal /> */}
       </div>
       <Board boardData={clientBoardData} />
       <TableSection />

@@ -13,6 +13,7 @@ import TemplateCard from "./Templates/TemplateCard";
 import About from "./About/About";
 import Service from "./ProductAndServices/Service";
 import News from "./News/News";
+import TemplateContainer from "./Templates/TemplateContainer";
 
 const TableSection = ({ index, setIndex }) => {
   const [filtering, setFiltering] = useState("");
@@ -42,12 +43,11 @@ const TableSection = ({ index, setIndex }) => {
           <TableContainer>
             <Table
               columnData={columnData}
-              mData={mData}
               filterState={filterState}
             />
           </TableContainer>
         )}
-        {index === 1 && <TemplateCard />}
+        {index === 1 && <TemplateContainer />}
         {index === 2 && <About />}
         {index === 3 && <Service />}
         {index === 4 && <News />}

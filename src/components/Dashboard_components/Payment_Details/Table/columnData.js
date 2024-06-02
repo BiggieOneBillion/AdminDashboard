@@ -1,11 +1,26 @@
 import { v4 } from "uuid";
 import PaymentDetailsModal from "../PaymentDetailsModal";
 
+// {
+//   "id": "32f77289-5fc4-4d75-9274-9b529dc30cb2",
+//   "clientId": "350484b5-b9d7-4384-8276-5bbb9c81cbd1",
+//   "transactionId": "TX1234567890",
+//   "date": "2024-05-17",
+//   "deviceName": "Tab T01",
+//   "deviceSize": "10 inches",
+//   "deviceId": "DEV001",
+//   "amount": 299.99,
+//   "isComplete": true,
+//   "deletedAt": null,
+//   "createdAt": "2024-05-17T00:26:23.915Z",
+//   "updatedAt": "2024-05-17T00:27:55.178Z"
+// }
+
 export const columnData = [
   {
-    id: "id",
+    id: "serial",
     header: "S/N",
-    accessorKey: "id",
+    accessorKey: "serial",
   },
   {
     id: "transactionId",
@@ -30,9 +45,9 @@ export const columnData = [
     accessorKey: "deviceName",
   },
   {
-    id: "size",
+    id: "deviceSize",
     header: "Size",
-    accessorKey: "size",
+    accessorKey: "deviceSize",
   },
   {
     id: "date",
@@ -40,24 +55,24 @@ export const columnData = [
     accessorKey: "date",
   },
   {
-    id: "Amount",
+    id: "amount",
     header: "Amount",
-    accessorKey: "Amount",
+    accessorKey: "amount",
   },
   {
-    id: "status",
+    id: "isComplete",
     header: "Transistion Delay",
-    accessorKey: "status",
+    accessorKey: "isComplete",
     cell: ({ row }) => (
       <span
         key={v4()}
         className={`px-2 py-1 rounded-xl text-sm inline-block ${
-          row.original.status === "Incomplete"
-            ? "text-red-500 bg-red-200"
-            : "text-green-500 bg-green-200"
+          row.original.isComplete
+            ? "text-green-500 bg-green-200"
+            : "text-red-500 bg-red-200"
         }`}
       >
-        {row.original.status}
+        {row.original.isComplete ? "Complete" : "Incomplete"}
       </span>
     ),
   },

@@ -8,7 +8,7 @@ import Table from "../Main_Dashboard/Main_Table/Tables/Table";
 import MyDropdownMenu from "./Table/DropDownMenu";
 
 
-const TableSection = () => {
+const TableSection = ({data}) => {
   const [filtering, setFiltering] = useState("");
 
   const filterState = {
@@ -28,7 +28,7 @@ const TableSection = () => {
         <TableContainer>
           <Table
             columnData={columnData}
-            mData={mData}
+            mData={data}
             filterState={filterState}
           />
         </TableContainer>

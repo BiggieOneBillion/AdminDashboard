@@ -9,9 +9,15 @@ import TableSection from "./TableSection";
 import { userStore } from "@/store/user";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { analyticsStore } from "@/store/clients";
 
 const Main = () => {
   const token_id = userStore((state) => state.token_id);
+
+  const updateAnalyticsData = analyticsStore(
+    (state) => state.updateAnalyticsData
+  );
+
   const { data, isLoading, isError } = useQuery({
     queryKey: ["dashboard_info"],
     queryFn: async () => {
@@ -47,6 +53,13 @@ const Main = () => {
     );
   }
 
+  // update the client analytics in the analytics store
+  data &&
+    updateAnalyticsData({
+      clientCount: data?.entity.clientCount,
+      allDeviceCount: data?.entity.allDeviceCount,
+      activeDeviceCount: data?.entity.activeDeviceCount,
+    });
   // data && console.log(data.entity);
 
   return (

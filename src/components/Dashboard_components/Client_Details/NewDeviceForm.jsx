@@ -5,6 +5,10 @@ import { IoSaveSharp } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { newDeviceSchema } from "@/validation/ClientSectionValidations";
+import { clientStore } from "@/store/clients";
+import usePostData from "@/hooks/usePostData";
+import { useQueryClient } from "@tanstack/react-query";
+// import { QueryClient } from "@tanstack/react-query";
 
 const Container = ({ children }) => (
   <div className="p-4 border rounded-lg flex flex-col gap-2 bg-whitey">
@@ -39,22 +43,48 @@ const InputRadioContainer = ({ label, register, name, errors, id, value }) => (
 );
 
 const NewDeviceForm = ({ closeBtn }) => {
+  const queryClient = useQueryClient();
+  //  get single client values from clientStore.
+  const singleClient = clientStore((state) => state.singleClient);
+
+  // submiting data
+  const { mutations } = usePostData({
+    url: `https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/${singleClient[0]?.id}/devices`,
+    queryName: "client_device_info",
+  });
+
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: zodResolver(newDeviceSchema),
     defaultValues: {
-      screenSize: "10inches",
+      size: "10",
+      clientId: singleClient[0]?.id,
+      name: singleClient[0]?.name,
+      email: singleClient[0]?.email,
+      location: singleClient[0]?.location,
+      phoneNumber: singleClient[0]?.mobile,
     },
   });
 
   const onSubmit = (value) => {
     console.log(value);
+    mutations.mutate({ ...value });
+    // mutations.isSuccess &&
+    //   queryClient.invalidateQueries({
+    //     queryKey: ["main_dashboard_clients_info"],
+    //   });
+    // clear the input fields
+    setTimeout(() => {
+      reset();
+    }, 1000);
   };
+
   return (
-    <div className="space-y-3 ">
+    <div className="space-y-3">
       <Container>
         <h1 className="font-medium text-lg text-black mb-4">
           Client&apos;s Details
@@ -114,19 +144,19 @@ const NewDeviceForm = ({ closeBtn }) => {
         <div className="flex items-center justify-start gap-5">
           <InputRadioContainer
             errors={errors}
-            name={"screenSize"}
+            name={"size"}
             label={"10 inches"}
             register={register}
-            id={"10inches"}
-            value={"10inches"}
+            id={"10"}
+            value={"10"}
           />
           <InputRadioContainer
             errors={errors}
-            name={"screenSize"}
+            name={"size"}
             label={"21 inches"}
             register={register}
-            id={"21inches"}
-            value={"21inches"}
+            id={"21"}
+            value={"21"}
           />
         </div>
         {/* Purchase Date and IMEI Number Input */}
@@ -142,19 +172,31 @@ const NewDeviceForm = ({ closeBtn }) => {
           <InputContainer
             errors={errors}
             label={"IMEI number"}
-            name={"imeiNumber"}
+            name={"imei"}
             register={register}
           />
         </div>
       </Container>
       {/* btn container */}
       <div className="grid grid-cols-5 gap-5">
-        <button
+        {/* <button
           onClick={handleSubmit(onSubmit)}
           className="py-3 col-span-3 text-center text-sm w-full text-white bg-[#24249C]  flex justify-center items-center gap-2 rounded-lg btn-animate"
         >
           <IoSaveSharp size={20} />
           <span>Save</span>
+        </button> */}
+        <button
+          onClick={handleSubmit(onSubmit)}
+          className={`py-3 col-span-3 disabled:bg-blue-400 disabled:cursor-wait  text-center text-sm w-full text-white bg-[#24249C]  flex justify-center items-center gap-2 rounded-lg ${
+            mutations.isPending ? "" : "btn-animate"
+          } `}
+          disabled={mutations.isPending || mutations.isSuccess}
+        >
+          <IoSaveSharp size={20} />
+          {/* <span>{btnState.text}</span> */}
+          {mutations.isPending && "...saving"}
+          {mutations.isSuccess && "Done!!!"}
         </button>
         {closeBtn}
       </div>

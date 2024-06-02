@@ -1,6 +1,12 @@
 import { v4 } from "uuid";
 
 const Board = ({boardData}) => {
+
+//   {
+//     "clientCount": 12,
+//     "allDeviceCount": 101,
+//     "activeDeviceCount": 101
+// }
   
   return (
     <div className="grid grid-cols-1  md:grid-cols-2 md:gap-6 xl:grid-cols-3 2xl:gap-0 bg-[#FDF6DE] border-4 border-white rounded-2xl">

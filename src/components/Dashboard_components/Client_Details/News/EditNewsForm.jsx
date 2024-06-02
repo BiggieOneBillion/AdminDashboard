@@ -71,14 +71,14 @@ const EditNewsForm = ({closeBtn}) => {
   } = useForm();
   return (
     <div className="space-y-3 ">
-      <Container>
+      {/* <Container>
         <TextAreaContainer
           errors={errors}
           label={"Body"}
           name={"body"}
           register={register}
         />
-      </Container>
+      </Container> */}
       <ArticleForm />
       {/* btn container */}
       <div className="flex justify-end gap-5">

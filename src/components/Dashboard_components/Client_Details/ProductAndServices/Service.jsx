@@ -13,19 +13,16 @@ const Service = () => {
         <EditServiceModal />
       </div>
       {/* description */}
-      <p className="service-description font-normal text-sm text-[#646464] leading-[1.8]">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque adipisci
-        deleniti repellendus voluptate hic, magni blanditiis in eum consectetur
-        eaque distinctio commodi, inventore laudantium veniam facere neque modi
-        nobis minus saepe quaerat. Nobis error maiores voluptas quo iusto
-        temporibus repudiandae!.
-      </p>
+      <p className="service-description font-normal text-sm text-[#646464] leading-[1.8]"></p>
       {/* cards */}
-      <div className="grid grid-cols-2 gap-10">
+      {/* <div className="grid grid-cols-2 gap-10">
         {count.map((el) => (
           <Card datum={el} key={v4()} />
         ))}
-      </div>
+      </div> */}
+      <p className="text-3xl font-extrabold text-[rgba(0,0,0,0.1)] text-center">
+        No Service/Product Avaliable
+      </p>
     </div>
   );
 };

@@ -5,6 +5,7 @@ import { IoSaveSharp } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { paymentSchema } from "@/validation/PaymentSectionValidation";
+import usePostData from "@/hooks/usePostData";
 
 const Container = ({ children }) => (
   <div className="py-4 bordery rounded-lg flex flex-col gap-2 bg-whitey">
@@ -42,15 +43,62 @@ const NewPaymentForm = ({ closeBtn }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitSuccessful },
+    reset,
   } = useForm({
     resolver: zodResolver(paymentSchema),
     defaultValues: {
       paymentStatus: "incomplete",
+      deviceSize: "10 inches",
     },
   });
 
-  const onSubmit = (value) => console.log(value);
+  const { mutations } = usePostData({
+    url: "https://api-prestigecalendar.olotusquare.co/api/v1/admin/payments",
+    queryName: "clients_payment_overall_info",
+  });
+
+  const onSubmit = (value) => {
+    const input = {
+      clientId: value.clientId,
+      transactionId: value.transactionId,
+      date: value.date,
+      deviceName: value.deviceName,
+      deviceSize: value.deviceSize,
+      deviceId: value.deviceId,
+      amount: value.amountPaid,
+      isComplete: value.paymentStatus == "incomplete" ? true : false,
+    };
+
+    mutations.mutate(input);
+
+    console.log(input);
+
+    setTimeout(
+      () =>
+        reset({
+          clientId: "",
+          transactionId: "",
+          date: "",
+          deviceName: "",
+          deviceId: "",
+        }),
+      1000
+    );
+  };
+
+  // React.useEffect(() => {
+  //   if (isSubmitSuccessful) {
+  //     reset({
+  //       clientId: "",
+  //       transactionId: "",
+  //       date: "",
+  //       deviceName: "",
+  //       deviceId: "",
+  //       amountPaid: "",
+  //     });
+  //   }
+  // }, [mutations.isSuccess]);
 
   return (
     <div className="space-y-3 ">
@@ -71,12 +119,12 @@ const NewPaymentForm = ({ closeBtn }) => {
           />
         </div>
         {/* clients name */}
-        <InputContainer
+        {/* <InputContainer
           errors={errors}
           label={"Client name"}
           name={"name"}
           register={register}
-        />
+        /> */}
         {/* Date and size Input */}
         <div className="grid grid-cols-2 gap-5">
           <InputContainer
@@ -84,15 +132,36 @@ const NewPaymentForm = ({ closeBtn }) => {
             label={"Date"}
             name={"date"}
             register={register}
-            type="'date"
+            type="date"
           />
-          <InputContainer
+          {/* <InputContainer
             errors={errors}
             label={"Size"}
-            name={"size"}
+            name={"deviceSize"}
             register={register}
             type="number"
-          />
+          /> */}
+          <div className="space-y-5">
+            <p className="text-sm text-[rgba(0,0,0,0.6)]">Size</p>
+            <div className="flex items-center justify-start gap-5">
+              <InputRadioContainer
+                errors={errors}
+                name={"deviceSize"}
+                label={"10 inches"}
+                register={register}
+                id={"10"}
+                value={"10 inches"}
+              />
+              <InputRadioContainer
+                errors={errors}
+                name={"deviceSize"}
+                label={"21 inches"}
+                register={register}
+                id={"21"}
+                value={"21 inches"}
+              />
+            </div>
+          </div>
         </div>
         {/* Device Id and Device name */}
         <div className="grid grid-cols-2 gap-5">
@@ -140,10 +209,15 @@ const NewPaymentForm = ({ closeBtn }) => {
       <div className="grid grid-cols-5 gap-5">
         <button
           onClick={handleSubmit(onSubmit)}
-          className="py-3 col-span-3 text-center text-sm w-full text-white bg-[#24249C]  flex justify-center items-center gap-2 rounded-lg btn-animate"
+          className={`py-3 col-span-3 text-center text-sm w-full text-white bg-[#24249C]  flex justify-center items-center gap-2 rounded-lg ${
+            mutations.isPending || mutations.isSuccess ? "" : "btn-animate"
+          }`}
+          disabled={mutations.isPending || mutations.isSuccess}
         >
           <IoSaveSharp size={20} />
-          <span>Save</span>
+          {mutations.isPending && "Saving..."}
+          {mutations.isSuccess && "Done"}
+          {/* <span>Save</span> */}
         </button>
         {closeBtn}
       </div>
