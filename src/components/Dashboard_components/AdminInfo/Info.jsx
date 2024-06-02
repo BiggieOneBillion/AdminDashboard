@@ -3,12 +3,28 @@
 import React from "react";
 import { RiNotification2Line } from "react-icons/ri";
 import NotificationDialog from "./NotificationDialog";
-import { userStore } from "@/store/user";
+import { resetAll, userStore } from "@/store/user";
+import { MdLogout } from "react-icons/md";
+import MyDropdownMenu from "./DropDownMenu";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const Info = () => {
+  const route = useRouter();
   const user = userStore((state) => state.user);
-    // console.log(user);
-    // console.log('token', token_id);
+  // const reset = userStore((state) => state.reset);
+  // const resetState = resetAll((state) => state.resetAll);
+  // console.log(user);
+  // console.log('token', token_id);
+  const handleLogout = async () => {
+    try {
+      const response = await axios.get("/api/delete-cookies");
+      // console.log(response.data.message);
+      if (response.data.message === "done!!!") {
+        route.replace("/");
+      }
+    } catch (error) {}
+  };
   return (
     <div className="right-section-top basis-[80px] lg:px-10  flex items-center gap-5 justify-end bg-white">
       <div className="flex items-center gap-2">
@@ -23,6 +39,15 @@ const Info = () => {
         <div className="space-y-1">
           <p className="text-sm text-black font-normal">{user.fullname}</p>
         </div>
+        <MyDropdownMenu>
+          <button
+            onClick={() => handleLogout()}
+            className="py-3 mr-5 mt-5 bg-white px-10 rounded-md border text-sm flex items-center gap-2"
+          >
+            Log out
+            <MdLogout size={20} />
+          </button>
+        </MyDropdownMenu>
       </div>
     </div>
   );

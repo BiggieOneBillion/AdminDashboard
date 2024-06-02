@@ -61,7 +61,7 @@ const Login = () => {
         "https://api-prestigecalendar.olotusquare.co/api/v1/admin/login",
         values
       );
-      console.log(response.data.entity.admin.fullname);
+      // console.log(response.data.entity.admin.fullname);
       cookies_settings(response.data);
       setToken(response.data.entity.token);
       let newUser = {

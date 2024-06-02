@@ -65,7 +65,7 @@ const TableSection = () => {
     );
   }
 
-  console.log(data?.entity.data);
+  // console.log(data?.entity.data);
 
   
 
