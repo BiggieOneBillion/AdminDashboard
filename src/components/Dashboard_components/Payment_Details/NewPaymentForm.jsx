@@ -71,10 +71,10 @@ const NewPaymentForm = ({ closeBtn, data }) => {
     });
 
   const onSubmit = (value) => {
-    console.log({
-      ...value,
-      isComplete: value.isComplete === "incomplete" ? false : true,
-    });
+    // console.log({
+    //   ...value,
+    //   isComplete: value.isComplete === "incomplete" ? false : true,
+    // });
     handleRequest({
       ...value,
       isComplete: value.isComplete === "incomplete" ? false : true,

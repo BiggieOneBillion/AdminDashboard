@@ -101,7 +101,7 @@ const Index = () => {
 
   const mData = tableData?.entity.rows;
 
-  console.log(tableData.entity);
+  // console.log(tableData.entity);
 
   return (
     <main className="flex flex-col gap-5">
