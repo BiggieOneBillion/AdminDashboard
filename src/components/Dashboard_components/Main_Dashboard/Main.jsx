@@ -60,7 +60,7 @@ const Main = () => {
       allDeviceCount: data?.entity.allDeviceCount,
       activeDeviceCount: data?.entity.activeDeviceCount,
     });
-  // data && console.log(data.entity);
+  // data && // console.log(data.entity);
 
   return (
     <main className="flex flex-col gap-5">

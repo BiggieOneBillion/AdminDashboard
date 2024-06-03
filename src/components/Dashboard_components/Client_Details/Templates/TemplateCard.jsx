@@ -986,7 +986,7 @@ const TemplateCard = ({ data }) => {
 
   const clientData = clientStore((state) => state.singleClient);
 
-  // console.log(clientData[0].logoUrl);
+  // // console.log(clientData[0].logoUrl);
 
   return (
     <Container>
@@ -995,7 +995,7 @@ const TemplateCard = ({ data }) => {
         {/* logo */}
         <div className="h-[50px] w-[50px] rounded-full border overflow-hidden">
           <Image
-          alt="company logo"
+            alt="company logo"
             height={50}
             width={50}
             className="object-cover h-[50px] w-[50px]"

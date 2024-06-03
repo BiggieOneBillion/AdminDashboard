@@ -19,10 +19,10 @@ const TableContainer = ({ children }) => {
   //     axios
   //       .get("/api/user")
   //       .then((res) => setData(res.data.result))
-  //       .catch((error) => console.log(error));
+  //       .catch((error) => // console.log(error));
   //   }, []);
 
-  // data && console.log(data);
+  // data && // console.log(data);
   return (
     <div>
       {/* TABLE */}

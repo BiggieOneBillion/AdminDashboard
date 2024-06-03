@@ -73,32 +73,31 @@ const Index = () => {
     );
   }
 
-  tableData && console.log(tableData);
+  // tableData && // console.log(tableData);
+    //   {
+    //     "count": 0,
+    //     "rows": [],
+    //     "analytics": {
+    //         "client": {
+    //             "id": "888fe7dc-f762-479b-b301-83bc10f8a971",
+    //             "name": "Pagac Inc",
+    //             "location": "Doyleport",
+    //             "email": "Diego83@gmail.com",
+    //             "mobile": "936.330.5003 x940",
+    //             "about": "Tepidus cursim cur demo bibo suscipit comparo. Thesaurus summopere ulciscor vesica acies. Theca ulciscor tracto tener.\nThorax solum tamdiu molestias. Utrum degenero dedico casso spargo. Supra crastinus nesciunt certe spes amor desparatus tamdiu ulterius adeptio.",
+    //             "logoUrl": "https://loremflickr.com/640/480?lock=8361745978490880",
+    //             "status": true,
+    //             "password": "$2a$10$8NuBQwCYh4gX/UPq75P93uDMEleiEgnxNSpsABCs6grgyA8H0L.Mm"
+    //         },
+    //         "deviceCount": 10,
+    //         "incompletePaymentCount": 0,
+    //         "totalRevenue": null
+    //     }
+    // }
 
-  //   {
-  //     "count": 0,
-  //     "rows": [],
-  //     "analytics": {
-  //         "client": {
-  //             "id": "888fe7dc-f762-479b-b301-83bc10f8a971",
-  //             "name": "Pagac Inc",
-  //             "location": "Doyleport",
-  //             "email": "Diego83@gmail.com",
-  //             "mobile": "936.330.5003 x940",
-  //             "about": "Tepidus cursim cur demo bibo suscipit comparo. Thesaurus summopere ulciscor vesica acies. Theca ulciscor tracto tener.\nThorax solum tamdiu molestias. Utrum degenero dedico casso spargo. Supra crastinus nesciunt certe spes amor desparatus tamdiu ulterius adeptio.",
-  //             "logoUrl": "https://loremflickr.com/640/480?lock=8361745978490880",
-  //             "status": true,
-  //             "password": "$2a$10$8NuBQwCYh4gX/UPq75P93uDMEleiEgnxNSpsABCs6grgyA8H0L.Mm"
-  //         },
-  //         "deviceCount": 10,
-  //         "incompletePaymentCount": 0,
-  //         "totalRevenue": null
-  //     }
-  // }
-
-  tableData?.entity.rows.forEach((row, index) => {
-    row.serial = index + 1;
-  });
+    tableData?.entity.rows.forEach((row, index) => {
+      row.serial = index + 1;
+    });
 
   const mData = tableData?.entity.rows;
 

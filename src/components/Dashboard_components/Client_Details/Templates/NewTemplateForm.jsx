@@ -101,7 +101,6 @@ const InputContainer2 = ({
 );
 
 const NewTemplateForm = ({ closeBtn }) => {
-  
   const singleClient = clientStore((state) => state.singleClient);
 
   const {
@@ -121,7 +120,7 @@ const NewTemplateForm = ({ closeBtn }) => {
   });
 
   const onSubmit = (value) => {
-    console.log(value);
+    // console.log(value);
   };
 
   const delayData = ["12 hours", "24 hours"];

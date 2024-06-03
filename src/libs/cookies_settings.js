@@ -2,7 +2,7 @@ import Cookies from "js-cookie";
 
 export default function cookies_settings(authObject) {
   Cookies.set("_token", authObject.entity.token);
-  // console.log(authObject);
+  // // console.log(authObject);
   //   Cookies.set(
   //     "user",
   //     {

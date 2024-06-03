@@ -49,7 +49,7 @@ const TemplateContainer = () => {
     );
   }
 
-  templateData && console.log(templateData.entity.rows);
+  // templateData && // console.log(templateData.entity.rows);
   return (
     <>
       {templateData.entity.rows.length > 0 ? (

@@ -57,7 +57,7 @@ const PaymentDetailsModal = ({ data, header }) => {
     );
   }
 
-  tableData && console.log(tableData);
+  tableData && // console.log(tableData);
 
   return (
     <Dialog.Root>

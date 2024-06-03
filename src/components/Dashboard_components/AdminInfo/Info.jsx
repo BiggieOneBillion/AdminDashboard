@@ -14,12 +14,12 @@ const Info = () => {
   const user = userStore((state) => state.user);
   // const reset = userStore((state) => state.reset);
   // const resetState = resetAll((state) => state.resetAll);
-  // console.log(user);
-  // console.log('token', token_id);
+  // // console.log(user);
+  // // console.log('token', token_id);
   const handleLogout = async () => {
     try {
       const response = await axios.get("/api/delete-cookies");
-      // console.log(response.data.message);
+      // // console.log(response.data.message);
       if (response.data.message === "done!!!") {
         route.replace("/");
       }

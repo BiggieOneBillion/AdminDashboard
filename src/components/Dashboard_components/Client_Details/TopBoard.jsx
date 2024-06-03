@@ -26,7 +26,7 @@ const data = [
 ];
 
 const TopBoard = ({ id }) => {
-  // console.log(id);
+  // // console.log(id);
   const token_id = userStore((state) => state.token_id);
   const updateSingleClientDetails = clientStore(
     (state) => state.updateSingleClientDetails
@@ -96,13 +96,13 @@ const TopBoard = ({ id }) => {
   //     "totalAmountPaid": 0
   // }
 
-  //   console.log(data?.entity);
+  //   // console.log(data?.entity);
   if (clientInfo?.entity?.data.length > 0) {
-    // console.log(clientInfo?.entity?.data);
+    // // console.log(clientInfo?.entity?.data);
     const result = clientInfo?.entity?.data.filter((el) => el.id == id);
     // update single client store
     updateSingleClientDetails(result);
-    // console.log(result);
+    // // console.log(result);
     const statisticsData = [
       result[0].devicesOwned,
       result[0].activeDevices,

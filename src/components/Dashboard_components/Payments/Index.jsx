@@ -66,7 +66,7 @@ const Index = () => {
     );
   }
 
-  // tableData && console.log(tableData);
+  // tableData && // console.log(tableData);
 
   tableData.entity.data.forEach((row, index) => {
     row.serial = index + 1;
@@ -88,7 +88,10 @@ const Index = () => {
           width="w-[600px]"
         />
       </div>
-      <Board boardData={clientBoardData} analytics={tableData.entity.analytics} />
+      <Board
+        boardData={clientBoardData}
+        analytics={tableData.entity.analytics}
+      />
       <TableSection data={mData} />
     </main>
   );

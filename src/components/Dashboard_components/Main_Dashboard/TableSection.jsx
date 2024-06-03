@@ -12,7 +12,6 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 const TableSection = () => {
-
   // const [data, setData] = useState([]);
   const [filtering, setFiltering] = useState("");
 
@@ -49,7 +48,7 @@ const TableSection = () => {
   }
 
   if (isError || data === undefined || data?.entity.data === undefined) {
-    // console.log(data);
+    // // console.log(data);
     return (
       <div className="py-10 flex justify-center gap-3 items-center w-full">
         <p className="px-2 py-1 border text-black text-sm capitalize">
@@ -65,18 +64,16 @@ const TableSection = () => {
     );
   }
 
-  // console.log(data?.entity.data);
-
-  
+  // // console.log(data?.entity.data);
 
   //   useEffect(() => {
   //     axios
   //       .get("/api/user")
   //       .then((res) => setData(res.data.result))
-  //       .catch((error) => console.log(error));
+  //       .catch((error) => // console.log(error));
   //   }, []);
 
-  // data && console.log(data);
+  // data && // console.log(data);
   return (
     <div className="space-y-10 bg-white px-4 py-5 rounded-2xl">
       {/* TABLE */}

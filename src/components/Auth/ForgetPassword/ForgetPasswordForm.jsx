@@ -23,19 +23,19 @@ const ForgetPasswordForm = ({ setIndex, userInfo, setUserInfo }) => {
   } = useForm({ resolver: zodResolver(recoverEmailSchema) });
 
   const onSubmit = async (values) => {
-    console.log(values);
+    // console.log(values);
     setBtnState({ ...btnState, status: true, text: "...Loading" });
     try {
       const response = await axios.post(
         "https://api-prestigecalendar.olotusquare.co/api/v1/admin/forgot-password",
         values
       );
-      console.log(response.data);
+      // console.log(response.data);
       setBtnState({ ...btnState, status: false, text: "Successful!!" });
       setUserInfo({ ...userInfo, email: values.email });
       setIndex(2);
     } catch (error) {
-      console.log(error.response.status);
+      // console.log(error.response.status);
       if (error.response.status === 422) {
         setBtnState({ ...btnState, status: false, text: "Try Again" });
         setInCorrect(true);
@@ -45,7 +45,7 @@ const ForgetPasswordForm = ({ setIndex, userInfo, setUserInfo }) => {
     //   setIndex(2)
     // },1000)
     //  const loginUser = await loginService({ email, password });
-    //  console.log(loginUser);
+    //  // console.log(loginUser);
   };
   return (
     <div className="w-1/3 grid gap-[60px] py-6 px-12 bg-white ">

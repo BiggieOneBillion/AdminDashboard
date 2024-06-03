@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import InputContainer from "@/components/InputComponent";
 import { IoSaveSharp } from "react-icons/io5";
@@ -8,6 +8,7 @@ import { newDeviceSchema } from "@/validation/ClientSectionValidations";
 import { clientStore } from "@/store/clients";
 import usePostData from "@/hooks/usePostData";
 import { useQueryClient } from "@tanstack/react-query";
+import useAxiosPost from "@/hooks/useAxiosPost";
 // import { QueryClient } from "@tanstack/react-query";
 
 const Container = ({ children }) => (
@@ -48,7 +49,12 @@ const NewDeviceForm = ({ closeBtn }) => {
   const singleClient = clientStore((state) => state.singleClient);
 
   // submiting data
-  const { mutations } = usePostData({
+  // const { mutations } = usePostData({
+  //   url: `https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/${singleClient[0]?.id}/devices`,
+  //   queryName: "client_device_info",
+  // });
+
+  const { handleRequest, isError, isLoading, isSuccess } = useAxiosPost({
     url: `https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/${singleClient[0]?.id}/devices`,
     queryName: "client_device_info",
   });
@@ -71,20 +77,45 @@ const NewDeviceForm = ({ closeBtn }) => {
   });
 
   const onSubmit = (value) => {
-    console.log(value);
-    mutations.mutate({ ...value });
+    // // console.log(value);
+    // mutations.mutate({ ...value });
+    handleRequest(value);
     // mutations.isSuccess &&
     //   queryClient.invalidateQueries({
     //     queryKey: ["main_dashboard_clients_info"],
     //   });
     // clear the input fields
-    setTimeout(() => {
-      reset();
-    }, 1000);
+    // mutations.isSuccess &&
+    // setTimeout(() => {
+    //   reset({
+    //     deviceId: "",
+    //     imei: "",
+    //     purchaseDate: "",
+    //     size: "",
+    //   });
+    // }, 1000);
   };
+
+  useEffect(() => {
+    reset({
+      deviceId: "",
+      imei: "",
+      purchaseDate: "",
+    });
+  }, [isSuccess]);
 
   return (
     <div className="space-y-3">
+      {isError && (
+        <p className="text-red-600 bg-red-300 py-3 text-center w-full text-sm">
+          Error Try Again!!!
+        </p>
+      )}
+      {isSuccess && (
+        <p className="text-green-600 bg-green-300 py-3 text-center w-full text-sm">
+          Success
+        </p>
+      )}
       <Container>
         <h1 className="font-medium text-lg text-black mb-4">
           Client&apos;s Details
@@ -189,14 +220,14 @@ const NewDeviceForm = ({ closeBtn }) => {
         <button
           onClick={handleSubmit(onSubmit)}
           className={`py-3 col-span-3 disabled:bg-blue-400 disabled:cursor-wait  text-center text-sm w-full text-white bg-[#24249C]  flex justify-center items-center gap-2 rounded-lg ${
-            mutations.isPending ? "" : "btn-animate"
+            isLoading || isSuccess ? "" : "btn-animate"
           } `}
-          disabled={mutations.isPending || mutations.isSuccess}
+          disabled={isLoading || isSuccess}
         >
           <IoSaveSharp size={20} />
           {/* <span>{btnState.text}</span> */}
-          {mutations.isPending && "...saving"}
-          {mutations.isSuccess && "Done!!!"}
+          {isLoading && "...saving"}
+          {isSuccess && "Done!!!"}
         </button>
         {closeBtn}
       </div>

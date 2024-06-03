@@ -43,7 +43,7 @@ const DeviceDetailsModal = ({ data, header, details }) => {
   // }
 
   if (isError || deviceDetails === undefined) {
-    console.log(deviceDetails);
+    // console.log(deviceDetails);
     return (
       <div className="py-10 flex justify-center gap-3 items-center w-full">
         <p className="px-2 py-1 border text-black text-sm capitalize">
@@ -59,7 +59,7 @@ const DeviceDetailsModal = ({ data, header, details }) => {
     );
   }
 
-  // deviceDetails && console.log(deviceDetails);
+  // deviceDetails && // console.log(deviceDetails);
 
   // Map through children and clone each element with additional props
   const childrenWithProps = React.Children.map(details, (child) => {

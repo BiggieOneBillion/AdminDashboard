@@ -20,7 +20,7 @@ export const apiWithAuth = (properties) =>
   });
 
 export const getApiResponse = (data) => {
-  console.log(data);
+  // console.log(data);
   return {
     status: true,
     data: data.data,
@@ -28,7 +28,7 @@ export const getApiResponse = (data) => {
 };
 
 export const getErrorResponse = (error) => {
-  console.log(error);
+  // console.log(error);
   return {
     status: false,
     data: error?.response?.data,

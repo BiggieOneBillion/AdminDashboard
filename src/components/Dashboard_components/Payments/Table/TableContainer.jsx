@@ -54,7 +54,7 @@ const TableContainer = ({ children }) => {
     );
   }
 
-  // tableData && console.log(tableData);
+  // tableData && // console.log(tableData);
 
   tableData.entity.data.forEach((row, index) => {
     row.serial = index + 1;

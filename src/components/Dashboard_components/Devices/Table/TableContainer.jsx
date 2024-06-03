@@ -55,11 +55,10 @@ const TableContainer = ({ children }) => {
     );
   }
 
-  tableData && console.log(tableData);
-
-  tableData.entity.rows.forEach((row, index) => { row.serial = index + 1; });
-
-  
+  // tableData && // console.log(tableData);
+    tableData.entity.rows.forEach((row, index) => {
+      row.serial = index + 1;
+    });
 
   const mData = tableData.entity.rows;
 
@@ -78,10 +77,10 @@ const TableContainer = ({ children }) => {
   //     axios
   //       .get("/api/user")
   //       .then((res) => setData(res.data.result))
-  //       .catch((error) => console.log(error));
+  //       .catch((error) => // console.log(error));
   //   }, []);
 
-  // data && console.log(data);
+  // data && // console.log(data);
   return (
     <div>
       {/* TABLE */}

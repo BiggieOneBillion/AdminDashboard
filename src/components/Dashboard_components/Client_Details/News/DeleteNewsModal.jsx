@@ -27,7 +27,7 @@ const DeleteNewsModal = ({ clientId, newsId }) => {
       setBtnText("Done!!");
       queryClient.invalidateQueries({ queryKey: ["client_news_info"] });
     } catch (error) {
-      //   console.log(error);
+      //   // console.log(error);
       setBtnText("Try Again");
     }
   };

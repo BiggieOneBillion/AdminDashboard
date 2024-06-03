@@ -37,7 +37,7 @@ const Index = () => {
   }
 
   if (isError || data === undefined || data?.entity.data === undefined) {
-    // console.log(data);
+    // // console.log(data);
     return (
       <div className="py-10 flex justify-center gap-3 items-center w-full">
         <p className="px-2 py-1 border text-black text-sm capitalize">
@@ -53,7 +53,7 @@ const Index = () => {
     );
   }
 
-  console.log(data?.entity);
+  // console.log(data?.entity);
 
   return (
     <main className="flex flex-col gap-5">

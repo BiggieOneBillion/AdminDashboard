@@ -38,7 +38,12 @@ const ArticleForm = ({ register }) => (
         htmlFor="imgFile"
         className=" h-full flex px-5 justify-between items-center w-full "
       >
-        <input type="file" id="imgFile" className="hidden" {...register('image')} />
+        <input
+          type="file"
+          id="imgFile"
+          className="hidden"
+          {...register("image")}
+        />
         <span className="text-xs font-light text-black">Upload An Image</span>
         <span>
           <PiImageThin size={20} />
@@ -66,7 +71,6 @@ const ArticleForm = ({ register }) => (
   </div>
 );
 
-
 const AddNewsForm = ({ closeBtn }) => {
   const {
     register,
@@ -77,20 +81,18 @@ const AddNewsForm = ({ closeBtn }) => {
   const params = useParams();
 
   const { mutations } = usePostData({
-    url: `https://api-prestigecalendar.olotusquare.co/api/v1/admin/assets/for/${params.id}`
-  })
+    url: `https://api-prestigecalendar.olotusquare.co/api/v1/admin/assets/for/${params.id}`,
+  });
 
   const onSubmit = (values) => {
-    mutations.mutate(values.image)
+    mutations.mutate(values.image);
     if (mutations.isSuccess) {
-      console.log(mutations.data.data);
+      // console.log(mutations.data.data);
     }
     // submit the file to s3 bucket and then get the url
     // after successfully getting the url then we proceed to sending the remaining data with the url gotten from s3 bucket
     // handle errors!
   };
-
-  
 
   return (
     <div className="space-y-3">

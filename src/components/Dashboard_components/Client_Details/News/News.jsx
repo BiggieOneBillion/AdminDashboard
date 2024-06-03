@@ -11,7 +11,7 @@ const News = () => {
   // const count = [1, 2, 3, 4, 5, 6, 7];
   const params = useParams();
 
-  // console.log(params);
+  // // console.log(params);
 
   const token_id = userStore((state) => state.token_id);
   const { data, isLoading, isError, error } = useQuery({
@@ -40,7 +40,7 @@ const News = () => {
   }
 
   if (isError) {
-    console.log(error);
+    // console.log(error);
     return (
       <div className="py-10 flex justify-center items-center w-full">
         <p className="px-2 py-1 border text-black text-sm capitalize">
@@ -50,7 +50,7 @@ const News = () => {
     );
   }
 
-  // data && console.log(data);
+  // data && // console.log(data);
 
   return (
     <div className="space-y-5">

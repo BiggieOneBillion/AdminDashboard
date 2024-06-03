@@ -38,7 +38,7 @@ const EditForm = ({ closeBtn }) => {
   });
 
   const onSubmit = (value) => {
-    console.log(value);
+    // console.log(value);
   };
   return (
     <div className="space-y-3 ">

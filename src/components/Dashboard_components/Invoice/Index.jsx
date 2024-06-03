@@ -65,11 +65,10 @@ const Index = () => {
     );
   }
 
-  tableData && console.log(tableData);
-
-  tableData.entity.rows.forEach((row, index) => {
-    row.serial = index + 1;
-  });
+  // tableData && // console.log(tableData);
+    tableData.entity.rows.forEach((row, index) => {
+      row.serial = index + 1;
+    });
 
   const mData = tableData.entity.rows;
   return (

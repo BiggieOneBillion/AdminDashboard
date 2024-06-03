@@ -26,7 +26,7 @@ const ResetCodeForm = ({ setIndex, userInfo }) => {
 
   const onSubmit = async (values) => {
     setInCorrect(false);
-    console.log(values.code, userInfo.email);
+    // console.log(values.code, userInfo.email);
 
     setBtnState({ ...btnState, status: true, text: "...Loading" });
     try {
@@ -34,11 +34,11 @@ const ResetCodeForm = ({ setIndex, userInfo }) => {
         "https://api-prestigecalendar.olotusquare.co/api/v1/admin/verify-otp",
         { email: userInfo.email, otp: values.code }
       );
-      console.log(response.data);
+      // console.log(response.data);
       setBtnState({ ...btnState, status: false, text: "Successful!!" });
       setIndex(3);
     } catch (error) {
-      // console.log(error.response.data.message);
+      // // console.log(error.response.data.message);
       // if (error.response.status === 422) {
       setErrorMessage(error.response.data.message);
       setBtnState({ ...btnState, status: false, text: "Try Again" });
@@ -49,7 +49,7 @@ const ResetCodeForm = ({ setIndex, userInfo }) => {
     //   setIndex(3);
     // }, 1000);
     //  const loginUser = await loginService({ email, password });
-    //  console.log(loginUser);
+    //  // console.log(loginUser);
   };
   return (
     <div className="w-1/3 grid gap-[60px] py-6 px-12 bg-white ">

@@ -19,7 +19,7 @@ const Index = () => {
 
   const params = useParams();
 
-  // console.log(params);
+  // // console.log(params);
 
   const handleGoBack = () => router.back();
 
@@ -60,7 +60,7 @@ const Index = () => {
   //   );
   // }
 
-  // clientData && console.log(clientData)
+  // clientData && // console.log(clientData)
 
   return (
     <main className="flex flex-col gap-5">
@@ -72,7 +72,7 @@ const Index = () => {
           <h1 className="font-bold">Client</h1>
         </div>
         {/* add new client */}
-        {index == 0 && <NewClientModal />}  
+        {index == 0 && <NewClientModal />}
         {index == 1 && <NewTemplateModal />}
         {/* {index == 3 && <NewProduct />} */}
       </div>

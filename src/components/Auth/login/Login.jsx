@@ -61,7 +61,7 @@ const Login = () => {
         "https://api-prestigecalendar.olotusquare.co/api/v1/admin/login",
         values
       );
-      // console.log(response.data.entity.admin.fullname);
+      // // console.log(response.data.entity.admin.fullname);
       cookies_settings(response.data);
       setToken(response.data.entity.token);
       let newUser = {
@@ -72,7 +72,7 @@ const Login = () => {
       router.push("/dashboard");
       setBtnState({ ...btnState, status: true, text: "Successful!!" });
     } catch (error) {
-      // console.log(error);
+      // // console.log(error);
       if (error.response?.status === 422) {
         setBtnState({ ...btnState, status: false, text: "Try Again" });
         setInCorrect(true);
@@ -154,7 +154,11 @@ const Login = () => {
               <div>
                 <button
                   type="submit"
-                  className={`w-full text-center ${ btnState.text === 'Successful!!' ?  "disabled:bg-green-400 text-green-900" : "bg-[#24249c] text-white disabled:bg-[rgba(36,36,156,0.4)]"}  rounded-md py-3 `}
+                  className={`w-full text-center ${
+                    btnState.text === "Successful!!"
+                      ? "disabled:bg-green-400 text-green-900"
+                      : "bg-[#24249c] text-white disabled:bg-[rgba(36,36,156,0.4)]"
+                  }  rounded-md py-3 `}
                   onClick={handleSubmit(onSubmit)}
                   disabled={btnState.status}
                 >

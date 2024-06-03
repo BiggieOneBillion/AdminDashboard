@@ -1,4 +1,3 @@
-
 import {
   useReactTable,
   flexRender,
@@ -14,16 +13,16 @@ import { BiCaretDown, BiCaretUp } from "react-icons/bi";
 
 export default function Table({
   columnData,
-//   viewType,
-  size=20,
+  //   viewType,
+  size = 20,
   filterState,
-  mData
+  mData,
 }) {
   const data = useMemo(() => mData, [mData]);
   const columns = useMemo(() => columnData, [columnData]);
   const [sorting, setSorting] = useState();
 
-  // console.log(mData);
+  // // console.log(mData);
 
   const table = useReactTable({
     data,
@@ -42,8 +41,8 @@ export default function Table({
       minSize: 50,
       // size: Number.MAX_SAFE_INTEGER,
       size: 70,
-      maxSize: Number.MAX_SAFE_INTEGER
-    }
+      maxSize: Number.MAX_SAFE_INTEGER,
+    },
   });
 
   useEffect(() => {
@@ -62,7 +61,7 @@ export default function Table({
               {headerGroup.headers.map((header) => (
                 <th
                   key={v4()}
-                  style={{width:"50px"}}
+                  style={{ width: "50px" }}
                   className="text-gray-500 font-semibold text-xs"
                   onClick={header.column.getToggleSortingHandler()}
                 >
@@ -91,8 +90,15 @@ export default function Table({
           {table.getRowModel().rows.map((row) => (
             <tr key={v4()}>
               {row.getVisibleCells().map((cell) => (
-                <td key={v4()} className="text-sm font-medium text-gray-500"
-                style={{width: cell.column.getSize() === Number.MAX_SAFE_INTEGER ? "auto" : cell.column.getSize()}}
+                <td
+                  key={v4()}
+                  className="text-sm font-medium text-gray-500"
+                  style={{
+                    width:
+                      cell.column.getSize() === Number.MAX_SAFE_INTEGER
+                        ? "auto"
+                        : cell.column.getSize(),
+                  }}
                 >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>

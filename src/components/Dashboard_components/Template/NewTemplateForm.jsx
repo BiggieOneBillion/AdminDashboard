@@ -110,7 +110,7 @@ const NewTemplateForm = ({ closeBtn }) => {
   });
 
   const onSubmit = (value) => {
-    console.log(value);
+    // console.log(value);
   };
 
   const delayData = ["12 hours", "24 hours"];

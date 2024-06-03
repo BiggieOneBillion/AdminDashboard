@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import InputContainer from "@/components/InputComponent";
 import { IoSaveSharp } from "react-icons/io5";
@@ -8,9 +8,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { userStore } from "@/store/user";
 import usePostData from "@/hooks/usePostData";
 import { PiImageThin } from "react-icons/pi";
+import useAxiosPost from "@/hooks/useAxiosPost";
 
 const NewClientForm = ({ closeBtn }) => {
-  const { mutations } = usePostData({
+  // const { mutations } = usePostData({
+  //   url: "https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients",
+  //   queryName: "clients_info",
+  // });
+  const { handleRequest, isError, isLoading, isSuccess } = useAxiosPost({
     url: "https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients",
     queryName: "clients_info",
   });
@@ -32,21 +37,49 @@ const NewClientForm = ({ closeBtn }) => {
   });
 
   const onSubmit = (value) => {
-    console.log(value);
+    // // console.log(value);
     // once you get the values you make a request using the mutations.mutate({})
-    mutations.mutate(value);
+    // mutations.mutate(value);
+    handleRequest(value);
     // pass the values to the mutate function
     // if successful then change submit btn text to successful
     // clear the input fields
-    setTimeout(() => {
-      reset();
-    }, 1000);
+    // mutations.isSuccess &&
+    //   setTimeout(() => {
+    //     reset({
+    //       email: "",
+    //       name: "",
+    //       location: "",
+    //       mobile: "",
+    //       password: "",
+    //     });
+    //   }, 1000);
     // setBtnState({ text: "...saving" });
     // mutations.mutate({});
   };
 
+  useEffect(() => {
+    reset({
+      email: "",
+      name: "",
+      location: "",
+      mobile: "",
+      password: "",
+    });
+  }, [isSuccess]);
+
   return (
     <div className="space-y-3">
+      {isError && (
+        <p className="text-red-600 bg-red-300 py-3 text-center w-full text-sm">
+          Error Try Again!!!
+        </p>
+      )}
+      {isSuccess && (
+        <p className="text-green-600 bg-green-300 py-3 text-center w-full text-sm">
+          Success
+        </p>
+      )}
       {/* <InputContainer
         errors={errors}
         label={"Client ID"}
@@ -119,14 +152,17 @@ const NewClientForm = ({ closeBtn }) => {
         <button
           onClick={handleSubmit(onSubmit)}
           className={`py-3 col-span-3 disabled:bg-blue-400 disabled:cursor-wait  text-center text-sm w-full text-white bg-[#24249C]  flex justify-center items-center gap-2 rounded-lg ${
-            mutations.isPending || mutations.isSuccess ? "" : "btn-animate"
+            isSuccess ? "" : "btn-animate"
           } `}
-          disabled={mutations.isPending || mutations.isSuccess}
+          // disabled={mutations.isPending || mutations.isSuccess}
+          disabled={isLoading || isSuccess}
         >
           <IoSaveSharp size={20} />
           {/* <span>{btnState.text}</span> */}
-          {mutations.isPending && "...saving"}
-          {mutations.isSuccess && "Done!!!"}
+          {/* {mutations.isPending && "...saving"}
+          {mutations.isSuccess && "Done!!!"} */}
+          {isLoading && "...saving"}
+          {isSuccess && "Done!!!"}
         </button>
         {closeBtn}
       </div>
