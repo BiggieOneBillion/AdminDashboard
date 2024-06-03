@@ -20,7 +20,7 @@ const PaymentDetailsModal = ({ data, header }) => {
     queryKey: ["clients_single_invoice_info", `${data.id}`],
     queryFn: async () => {
       const response = await axios.get(
-        `https://api-prestigecalendar.olotusquare.co/api/v1/admin/invoices/${data.id}`,
+        `https://api-prestigecalendar.olotusquare.co/api/v1/admin/payments/${data.id}`,
         {
           headers: {
             Authorization: `Bearer ${token_id}`,
@@ -45,7 +45,7 @@ const PaymentDetailsModal = ({ data, header }) => {
     return (
       <div className="py-10 flex justify-center gap-3 items-center w-full">
         <p className="px-2 py-1 border text-black text-sm capitalize">
-          Error while fetching data. Try again
+          Invalid Id
         </p>
         <button
           onClick={() => refetch()}
@@ -57,7 +57,7 @@ const PaymentDetailsModal = ({ data, header }) => {
     );
   }
 
-  tableData && // console.log(tableData);
+  // tableData && // console.log(tableData);
 
   return (
     <Dialog.Root>

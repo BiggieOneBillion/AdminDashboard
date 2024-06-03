@@ -1,9 +1,10 @@
 import { userStore } from "@/store/user";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
 export default function usePostData({ url, queryName, fn }) {
   const token_id = userStore((state) => state.token_id);
+  const queryClient = useQueryClient();
   const mutations = useMutation({
     mutationFn: (data) => {
       return axios.post(url, data, {
@@ -15,7 +16,7 @@ export default function usePostData({ url, queryName, fn }) {
     },
     onSuccess: () => {
       queryClient.invalidateQueries(queryName);
-      fn();
+      if (fn) fn();
     },
     retry: false,
   });

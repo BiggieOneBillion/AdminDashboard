@@ -27,6 +27,7 @@ export const columnData = [
     header: "Transaction ID",
     accessorKey: "transactionId",
     cell: ({ row }) => (
+      // <span>{row.original.transactionId}</span>
       <PaymentDetailsModal
         key={v4()}
         data={row.original}

@@ -101,6 +101,8 @@ const Index = () => {
 
   const mData = tableData?.entity.rows;
 
+  console.log(tableData.entity);
+
   return (
     <main className="flex flex-col gap-5">
       <div className="flex items-center justify-between">
@@ -112,7 +114,9 @@ const Index = () => {
         </div>
         {/* add new payment */}
         <Modal
-          content={<NewPaymentForm />}
+          content={<NewPaymentForm 
+            data={tableData?.entity.analytics.client} 
+            />}
           title={"New Payment"}
           trigger={<Trigger />}
           width="w-[600px]"

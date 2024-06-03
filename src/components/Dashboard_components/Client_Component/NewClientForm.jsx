@@ -70,9 +70,9 @@ const NewClientForm = ({ closeBtn }) => {
 
   return (
     <div className="space-y-3">
-      {isError && (
+      { isError && (
         <p className="text-red-600 bg-red-300 py-3 text-center w-full text-sm">
-          Error Try Again!!!
+          Credentials already exists
         </p>
       )}
       {isSuccess && (

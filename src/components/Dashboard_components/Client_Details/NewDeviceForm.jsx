@@ -54,11 +54,6 @@ const NewDeviceForm = ({ closeBtn }) => {
   //   queryName: "client_device_info",
   // });
 
-  const { handleRequest, isError, isLoading, isSuccess } = useAxiosPost({
-    url: `https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/${singleClient[0]?.id}/devices`,
-    queryName: "client_device_info",
-  });
-
   const {
     register,
     handleSubmit,
@@ -76,9 +71,23 @@ const NewDeviceForm = ({ closeBtn }) => {
     },
   });
 
+  const { handleRequest, isError, isLoading, isSuccess, errorMsg } =
+    useAxiosPost({
+      url: `https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/${singleClient[0]?.id}/devices`,
+      queryName: "client_device_info",
+      fn: () => {
+        reset({
+          deviceId: "",
+          imei: "",
+          purchaseDate: "",
+        });
+      },
+    });
+
   const onSubmit = (value) => {
-    // // console.log(value);
+    console.log(value);
     // mutations.mutate({ ...value });
+
     handleRequest(value);
     // mutations.isSuccess &&
     //   queryClient.invalidateQueries({
@@ -108,7 +117,7 @@ const NewDeviceForm = ({ closeBtn }) => {
     <div className="space-y-3">
       {isError && (
         <p className="text-red-600 bg-red-300 py-3 text-center w-full text-sm">
-          Error Try Again!!!
+          Device id or Imei id already exist!
         </p>
       )}
       {isSuccess && (

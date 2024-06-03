@@ -5,6 +5,7 @@ import { IoSaveSharp } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { paymentSchema } from "@/validation/PaymentSectionValidation";
+import useAxiosPost from "@/hooks/useAxiosPost";
 
 const Container = ({ children }) => (
   <div className="py-4 bordery rounded-lg flex flex-col gap-2 bg-whitey">
@@ -38,7 +39,8 @@ const InputRadioContainer = ({ label, register, name, errors, id, value }) => (
   </div>
 );
 
-const NewPaymentForm = ({ closeBtn }) => {
+const NewPaymentForm = ({ closeBtn, data }) => {
+  // console.log(data);
   const {
     register,
     handleSubmit,
@@ -46,16 +48,51 @@ const NewPaymentForm = ({ closeBtn }) => {
   } = useForm({
     resolver: zodResolver(paymentSchema),
     defaultValues: {
-      paymentStatus: "incomplete",
+      isComplete: "incomplete",
+      clientId: data.id,
+      name: data.name,
     },
   });
 
+  const { handleRequest, isError, isLoading, isSuccess, errorMsg } =
+    useAxiosPost({
+      url: "https://api-prestigecalendar.olotusquare.co/api/v1/admin/payments",
+      queryName: "client_device_info",
+      fn: () => {
+        reset({
+          transactionId: "",
+          deviceSize: "",
+          date: "",
+          deviceId: "",
+          deviceName: "",
+          amount: "",
+        });
+      },
+    });
+
   const onSubmit = (value) => {
-    // console.log(value);
-  }
+    console.log({
+      ...value,
+      isComplete: value.isComplete === "incomplete" ? false : true,
+    });
+    handleRequest({
+      ...value,
+      isComplete: value.isComplete === "incomplete" ? false : true,
+    });
+  };
 
   return (
     <div className="space-y-3 ">
+      {isError && (
+        <p className="text-red-600 bg-red-300 py-3 text-center w-full text-sm">
+          Credential must be unique!
+        </p>
+      )}
+      {isSuccess && (
+        <p className="text-green-600 bg-green-300 py-3 text-center w-full text-sm">
+          Success
+        </p>
+      )}
       <Container>
         {/* client and tansaction Id  */}
         <div className="grid grid-cols-2 gap-5">
@@ -64,13 +101,14 @@ const NewPaymentForm = ({ closeBtn }) => {
             label={"Transaction ID"}
             name={"transactionId"}
             register={register}
-            isDisabled={true}
+            // isDisabled={true}
           />
           <InputContainer
             errors={errors}
             label={"Client ID"}
             name={"clientId"}
             register={register}
+            isDisabled={true}
           />
         </div>
         {/* clients name */}
@@ -88,12 +126,12 @@ const NewPaymentForm = ({ closeBtn }) => {
             label={"Date"}
             name={"date"}
             register={register}
-            type="'date"
+            type="date"
           />
           <InputContainer
             errors={errors}
             label={"Size"}
-            name={"size"}
+            name={"deviceSize"}
             register={register}
             type="number"
           />
@@ -117,25 +155,25 @@ const NewPaymentForm = ({ closeBtn }) => {
         <InputContainer
           errors={errors}
           label={"Amount paid"}
-          name={"amountPaid"}
+          name={"amount"}
           register={register}
         />
         {/* Radio buttons */}
         <div className="flex items-center justify-start gap-5">
           <InputRadioContainer
             errors={errors}
-            name={"paymentStatus"}
+            name={"isComplete"}
             label={"Complete"}
             register={register}
-            id={"Complete"}
+            id={"complete"}
             value={"complete"}
           />
           <InputRadioContainer
             errors={errors}
-            name={"paymentStatus"}
+            name={"isComplete"}
             label={"Incomplete"}
             register={register}
-            id={"Incomplete"}
+            id={"incomplete"}
             value={"incomplete"}
           />
         </div>
@@ -144,10 +182,14 @@ const NewPaymentForm = ({ closeBtn }) => {
       <div className="grid grid-cols-5 gap-5">
         <button
           onClick={handleSubmit(onSubmit)}
-          className="py-3 col-span-3 text-center text-sm w-full text-white bg-[#24249C]  flex justify-center items-center gap-2 rounded-lg btn-animate"
+          className={`py-3 col-span-3 text-center text-sm w-full text-white bg-[#24249C]  flex justify-center items-center gap-2 rounded-lg btn-animate ${
+            isLoading || isSuccess ? "" : "btn-animate"
+          }`}
+          disabled={isLoading || isSuccess}
         >
           <IoSaveSharp size={20} />
-          <span>Save</span>
+          {isLoading && "...saving"}
+          {isSuccess && "Done!!!"}
         </button>
         {closeBtn}
       </div>
