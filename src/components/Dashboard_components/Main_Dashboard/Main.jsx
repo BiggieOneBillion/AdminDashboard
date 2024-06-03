@@ -62,6 +62,8 @@ const Main = () => {
     });
   // data && // console.log(data.entity);
 
+  // console.log(data.entity);
+
   return (
     <main className="flex flex-col gap-5">
       <h1 className="font-bold">Dashboard</h1>

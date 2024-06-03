@@ -30,7 +30,7 @@ const PaymentList = ({ data }) => (
             />
             <span>{paydata.client.name}</span>
           </div>
-          <span>N{paydata.details[0].amount / 1000}K</span>
+          <span>N{paydata.amount / 1000}K</span>
         </div>
       </li>
     ))}
@@ -38,6 +38,7 @@ const PaymentList = ({ data }) => (
 );
 
 const RecentPayment = ({ info }) => {
+  // console.log(info);
   return (
     <>
       <div className="bg-white w-1/3  p-[14px] rounded-xl flex flex-col  shadow-xl h-[450px]">

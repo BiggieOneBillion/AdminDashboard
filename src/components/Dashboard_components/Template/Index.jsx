@@ -18,7 +18,7 @@ const Index = () => {
         <NewTemplateModal />
       </div>
       <Board boardData={clientBoardData} />
-      {/* <TableSection /> */}
+      <TableSection />
     </main>
   );
 };
