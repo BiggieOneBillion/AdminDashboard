@@ -2,17 +2,15 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import InputContainer from "@/components/InputComponent";
 import { IoSaveSharp } from "react-icons/io5";
-import { IoMdClose } from "react-icons/io";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { newTemplateSchema } from "@/validation/ClientSectionValidations";
+
 import { PiImageThin } from "react-icons/pi";
-import ImageFormContainer from "./ImageFormContainer";
-import QuoteContainer from "./QuotesContainer";
-import SelectInput from "./SelectInput";
+import {newTemplateSchema} from "@/validation/ClientSectionValidations"
+
 import { v4 } from "uuid";
 import { clientStore } from "@/store/clients";
 import useAxiosPost2 from "@/hooks/useAxiosPost2";
 import { useParams } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const Container = ({ children }) => (
   <div className="p-4 border rounded-lg flex flex-col gap-2 bg-whitey">
@@ -109,7 +107,7 @@ const InputContainer2 = ({
   </div>
 );
 
-const NewTemplateForm = ({ closeBtn }) => {
+const NewTemplateForm1 = ({ closeBtn }) => {
   const singleClient = clientStore((state) => state.singleClient);
 
   const params = useParams();
@@ -119,16 +117,16 @@ const NewTemplateForm = ({ closeBtn }) => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    // resolver: zodResolver(newTemplateSchema),
+    resolver: zodResolver(newTemplateSchema),
     defaultValues: {
       screenSize: "10",
       delay: "24hours",
       order: "shuffle",
-      clientId: singleClient[0]?.id,
-      name: singleClient[0]?.name,
-      email: singleClient[0]?.email,
-      location: singleClient[0]?.location,
-      phoneNumber: singleClient[0]?.mobile,
+      //   clientId: singleClient[0]?.id,
+      //   name: singleClient[0]?.name,
+      //   email: singleClient[0]?.email,
+      //   location: singleClient[0]?.location,
+      //   phoneNumber: singleClient[0]?.mobile,
     },
   });
 
@@ -187,7 +185,7 @@ const NewTemplateForm = ({ closeBtn }) => {
           label={"Client ID"}
           name={"clientId"}
           register={register}
-          isDisabled={true}
+        //   isDisabled={true}
         />
         {/* Name and Email Input  */}
         <div className="grid grid-cols-2 gap-5">
@@ -196,14 +194,14 @@ const NewTemplateForm = ({ closeBtn }) => {
             label={"Name"}
             name={"name"}
             register={register}
-            isDisabled={true}
+            // isDisabled={true}
           />
           <InputContainer
             errors={errors}
             label={"Email"}
             name={"email"}
             register={register}
-            isDisabled={true}
+            // isDisabled={true}
           />
         </div>
         {/* Location and Phone Number Input */}
@@ -213,14 +211,14 @@ const NewTemplateForm = ({ closeBtn }) => {
             label={"Location"}
             name={"location"}
             register={register}
-            isDisabled={true}
+            // isDisabled={true}
           />
           <InputContainer
             errors={errors}
             label={"Phone Number"}
             name={"phoneNumber"}
             register={register}
-            isDisabled={true}
+            // isDisabled={true}
           />
         </div>
       </Container>
@@ -375,4 +373,4 @@ const NewTemplateForm = ({ closeBtn }) => {
   );
 };
 
-export default NewTemplateForm;
+export default NewTemplateForm1;

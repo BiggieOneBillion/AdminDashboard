@@ -10,7 +10,7 @@ const Service = () => {
       {/* title and edit icon */}
       <div className="flex items-center justify-between">
         <h1 className="font-medium text-lg text-black">Service</h1>
-        <EditServiceModal />
+        {/* <EditServiceModal /> */}
       </div>
       {/* description */}
       <p className="service-description font-normal text-sm text-[#646464] leading-[1.8]"></p>

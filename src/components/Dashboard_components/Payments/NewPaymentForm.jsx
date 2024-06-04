@@ -6,6 +6,7 @@ import { IoMdClose } from "react-icons/io";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { paymentSchema } from "@/validation/PaymentSectionValidation";
 import usePostData from "@/hooks/usePostData";
+import useAxiosPost from "@/hooks/useAxiosPost";
 
 const Container = ({ children }) => (
   <div className="py-4 bordery rounded-lg flex flex-col gap-2 bg-whitey">
@@ -46,19 +47,36 @@ const NewPaymentForm = ({ closeBtn }) => {
     formState: { errors, isSubmitSuccessful },
     reset,
   } = useForm({
-    resolver: zodResolver(paymentSchema),
+    // resolver: zodResolver(paymentSchema),
     defaultValues: {
       paymentStatus: "incomplete",
       deviceSize: "10 inches",
     },
   });
 
-  const { mutations } = usePostData({
-    url: "https://api-prestigecalendar.olotusquare.co/api/v1/admin/payments",
-    queryName: "clients_payment_overall_info",
-  });
+  // const { mutations } = usePostData({
+  //   url: "https://api-prestigecalendar.olotusquare.co/api/v1/admin/payments",
+  //   queryName: "clients_payment_overall_info",
+  // });
+
+  const { handleRequest, isError, isLoading, isSuccess, errorMsg } =
+    useAxiosPost({
+      url: "https://api-prestigecalendar.olotusquare.co/api/v1/admin/payments",
+      queryName: "clients_payment_overall_info",
+      fn: () => {
+        reset({
+          transactionId: "",
+          deviceSize: "",
+          date: "",
+          deviceId: "",
+          deviceName: "",
+          amount: "",
+        });
+      },
+    });
 
   const onSubmit = (value) => {
+    
     const input = {
       clientId: value.clientId,
       transactionId: value.transactionId,
@@ -70,38 +88,24 @@ const NewPaymentForm = ({ closeBtn }) => {
       isComplete: value.paymentStatus == "incomplete" ? true : false,
     };
 
-    mutations.mutate(input);
+    // mutations.mutate(input);
+    handleRequest(input);
 
-    // console.log(input);
-
-    setTimeout(
-      () =>
-        reset({
-          clientId: "",
-          transactionId: "",
-          date: "",
-          deviceName: "",
-          deviceId: "",
-        }),
-      1000
-    );
+    console.log(input)
   };
-
-  // React.useEffect(() => {
-  //   if (isSubmitSuccessful) {
-  //     reset({
-  //       clientId: "",
-  //       transactionId: "",
-  //       date: "",
-  //       deviceName: "",
-  //       deviceId: "",
-  //       amountPaid: "",
-  //     });
-  //   }
-  // }, [mutations.isSuccess]);
 
   return (
     <div className="space-y-3 ">
+      {isError && (
+        <p className="text-red-600 bg-red-300 py-3 text-center w-full text-sm">
+          Credential must be unique!
+        </p>
+      )}
+      {isSuccess && (
+        <p className="text-green-600 bg-green-300 py-3 text-center w-full text-sm">
+          Success
+        </p>
+      )}
       <Container>
         {/* client and tansaction Id  */}
         <div className="grid grid-cols-2 gap-5">
@@ -210,13 +214,13 @@ const NewPaymentForm = ({ closeBtn }) => {
         <button
           onClick={handleSubmit(onSubmit)}
           className={`py-3 col-span-3 text-center text-sm w-full text-white bg-[#24249C]  flex justify-center items-center gap-2 rounded-lg ${
-            mutations.isPending || mutations.isSuccess ? "" : "btn-animate"
+            isLoading || isSuccess ? "" : "btn-animate"
           }`}
-          disabled={mutations.isPending || mutations.isSuccess}
+          disabled={isLoading || isSuccess}
         >
           <IoSaveSharp size={20} />
-          {mutations.isPending && "Saving..."}
-          {mutations.isSuccess && "Done"}
+          {isLoading && "...saving"}
+          {isSuccess && "Done!!!"}
           {/* <span>Save</span> */}
         </button>
         {closeBtn}

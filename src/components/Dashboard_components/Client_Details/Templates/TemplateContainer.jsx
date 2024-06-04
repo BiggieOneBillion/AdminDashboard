@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import React from "react";
 import TemplateCard from "./TemplateCard";
 import axios from "axios";
+import { v4 } from "uuid";
 
 const TemplateContainer = () => {
   const params = useParams();
@@ -15,7 +16,7 @@ const TemplateContainer = () => {
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ["template_data_info_0987654"],
+    queryKey: ["template_data_info_0987654", params.id],
     queryFn: async () => {
       const response = await axios.get(
         `https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/${params.id}/templates`,
@@ -53,7 +54,7 @@ const TemplateContainer = () => {
   return (
     <>
       {templateData.entity.rows.length > 0 ? (
-        <div>
+        <div className="grid grid-cols-3 gap-5">
           {templateData.entity.rows.map((row) => (
             <TemplateCard data={row} key={v4()}/>
           ))}

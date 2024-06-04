@@ -29,12 +29,31 @@ const Card = ({ datum }) => {
   //   return mutations
   // }
 
+  //   [
+  //     {
+  //         "id": "cb916a18-3dbf-4aad-bce9-67fc1f3ba0a7",
+  //         "clientId": "5c04e022-dae4-4852-ae71-61a8e2f0e046",
+  //         "coverImageUrl": "jnasoiudjknfaskdjnfaskbjdnxfaskdbj",
+  //         "title": "jo ookk",
+  //         "subtext": "sdfsad sdf szdf arsdf a d",
+  //         "createdAt": "2024-06-03T14:45:14.620Z",
+  //         "updatedAt": "2024-06-03T14:45:14.620Z",
+  //         "deletedAt": null
+  //     }
+  // ]
+
   return (
     <div className="p-5 rounded-xl border h-fit w-full space-y-3">
       {/* image container */}
       <div className="image-container w-full h-[150px]">
         <Image
-          src={datum.coverImageUrl}
+          src={
+            datum.coverImageUrl.endsWith(".png") ||
+            datum.coverImageUrl.endsWith(".jpg") ||
+            datum.coverImageUrl.endsWith(".jpeg")
+              ? datum.coverImageUrl
+              : "/images/no-image-2.png"
+          }
           width={200}
           height={150}
           alt="services-images"
@@ -49,7 +68,7 @@ const Card = ({ datum }) => {
             <EDMenu />
           </MyDropdownMenu> */}
           <div className="flex items-center gap-3">
-            <EditNewsModal />
+            <EditNewsModal info={datum}/>
             <DeleteNewsModal clientId={datum.clientId} newsId={datum.id} />
           </div>
         </div>

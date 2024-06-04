@@ -52,6 +52,8 @@ const News = () => {
 
   // data && // console.log(data);
 
+  // console.log(data);
+
   return (
     <div className="space-y-5">
       {/* title and edit icon */}

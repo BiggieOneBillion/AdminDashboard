@@ -10,7 +10,7 @@ export const paymentSchema = z.object({
     message: "must be 10 or 21",
   }),
   date: z.string().date(),
-  deviceId: z.string().min(10, { message: "Field cannot be empty" }),
+  deviceId: z.string().min(1, { message: "must be 10 characters" }),
   deviceName: z.string().min(1, { message: "Field cannot be empty" }),
   amount: z
     .string()

@@ -10,7 +10,7 @@ const About = () => {
           <p className="font-bold text-4xl text-[rgba(0,0,0,0.1)] text-left">No Content Avaliable</p>
         </p>
       </section>
-      <EditAboutModal />
+      {/* <EditAboutModal /> */}
     </div>
   );
 };

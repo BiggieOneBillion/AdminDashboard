@@ -11,9 +11,9 @@ const Trigger = () => (
   </div>
 );
 
-const EditNewsModal = () => {
+const EditNewsModal = ({info}) => {
   return (
-    <Modal content={<EditNewsForm />} title={"Edit News"} trigger={<Trigger />} />
+    <Modal content={<EditNewsForm info={info} />} title={"Edit News"} trigger={<Trigger />} />
   );
 };
 

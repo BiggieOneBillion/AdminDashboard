@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import InputContainer from "@/components/InputComponent";
 import { IoSaveSharp } from "react-icons/io5";
@@ -7,6 +7,8 @@ import { PiImageThin, PiTrash } from "react-icons/pi";
 import axios from "axios";
 import usePostData from "@/hooks/usePostData";
 import { useParams } from "next/navigation";
+import { userStore } from "@/store/user";
+import useAxiosPost from "@/hooks/useAxiosPost";
 
 const Container = ({ children }) => (
   <div className="p-4 border rounded-lg flex flex-col gap-2 bg-whitey">
@@ -31,7 +33,7 @@ const TextAreaContainer = ({ label, register, name, errors }) => (
 );
 
 const ArticleForm = ({ register }) => (
-  <div className="grid grid-cols-[1fr_200px_1fr] gap-4 h-[50px] relative">
+  <div className="grid grid-cols-[300px_200px_1fr] gap-4 h-[50px] relative">
     {/* first input */}
     <div className="w-full h-full border border-blue-700 rounded-2xl">
       <label
@@ -41,10 +43,10 @@ const ArticleForm = ({ register }) => (
         <input
           type="file"
           id="imgFile"
-          className="hidden"
+          // className="hidden"
           {...register("image")}
         />
-        <span className="text-xs font-light text-black">Upload An Image</span>
+        {/* <span className="text-xs font-light text-black">Upload An Image</span> */}
         <span>
           <PiImageThin size={20} />
         </span>
@@ -75,20 +77,68 @@ const AddNewsForm = ({ closeBtn }) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
   const params = useParams();
 
-  const { mutations } = usePostData({
-    url: `https://api-prestigecalendar.olotusquare.co/api/v1/admin/assets/for/${params.id}`,
+  const [upload, setUpload] = useState(false);
+  const [errMsg, setErrMsg] = useState("Network Error");
+
+  const { handleRequest, isError, isLoading, isSuccess } = useAxiosPost({
+    url: `https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/${params.id}/news`,
+    queryName: "client_news_info",
+    fn: () =>
+      reset({
+        image: "",
+        title: "",
+        subtext: "",
+        body: "",
+      }),
   });
 
-  const onSubmit = (values) => {
-    mutations.mutate(values.image);
-    if (mutations.isSuccess) {
-      // console.log(mutations.data.data);
+  const token_id = userStore((state) => state.token_id);
+
+  const onSubmit = async (values) => {
+    console.log(values.image);
+    // Create a FormData object
+    const formData = new FormData();
+    formData.append("asset", values.image[0]);
+
+    // Log FormData content for debugging
+    for (let pair of formData.entries()) {
+      console.log(pair[0] + ": " + pair[1]);
     }
+
+    try {
+      setUpload(true);
+      const response = await axios.post(
+        `https://api-prestigecalendar.olotusquare.co/api/v1/admin/assets/for/${params.id}`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token_id}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      // console.log(response.status);
+      if (response.status === 201) {
+        setUpload(false);
+        // console.log(response.data.entity.url);
+        const data = {
+          title: values.title,
+          subtext: values.subtext,
+          coverImageUrl: response.data.entity.url,
+        };
+        handleRequest(data);
+      }
+    } catch (error) {
+      setErrMsg("Image Not Uploaded");
+      // console.log("Error msg: " + error.message);
+    }
+
     // submit the file to s3 bucket and then get the url
     // after successfully getting the url then we proceed to sending the remaining data with the url gotten from s3 bucket
     // handle errors!
@@ -96,10 +146,21 @@ const AddNewsForm = ({ closeBtn }) => {
 
   return (
     <div className="space-y-3">
+      {isError ||
+        (errMsg !== "Network Error" && (
+          <p className="text-red-600 bg-red-300 py-3 text-center w-full text-sm">
+            {errMsg}
+          </p>
+        ))}
+      {isSuccess && (
+        <p className="text-green-600 bg-green-300 py-3 text-center w-full text-sm">
+          Success
+        </p>
+      )}
       <Container>
         <TextAreaContainer
           errors={errors}
-          label={"Body"}
+          label={"Main Body"}
           name={"body"}
           register={register}
         />
@@ -109,15 +170,20 @@ const AddNewsForm = ({ closeBtn }) => {
       <div className="flex justify-end gap-5">
         <button
           onClick={handleSubmit(onSubmit)}
-          className="py-3 w-[150px] text-center text-sm text-white bg-[#24249C]  flex justify-center items-center gap-2 rounded-lg btn-animate"
+          className={`py-3 w-[150px] text-center text-sm text-white bg-[#24249C]  flex justify-center items-center gap-2 rounded-lg ${
+            isLoading || isSuccess || upload ? "" : "btn-animate"
+          }`}
+          disabled={isLoading || isSuccess || upload}
         >
           <IoSaveSharp size={20} />
-          <span>Save</span>
+          {isLoading && "...saving"}
+          {isSuccess && "Done!!!"}
+          {upload && "Uploading..."}
         </button>
-        <button className="py-3  w-[150px] text-center text-sm text-gray-400 bg-white border flex justify-center items-center gap-2 rounded-lg btn-animate">
+        {/* <button className="py-3  w-[150px] text-center text-sm text-gray-400 bg-white border flex justify-center items-center gap-2 rounded-lg btn-animate">
           <IoMdClose size={20} />
           <span>Cancel</span>
-        </button>
+        </button> */}
       </div>
     </div>
   );

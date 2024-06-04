@@ -3,6 +3,7 @@ import DeviceDetailsModal from "../../Client_Details/DeviceDetailsModal";
 import TemplateDevice from "../TemplateDetails";
 import { MdOutlineMoreVert } from "react-icons/md";
 import ActionMenu from "@/components/ActionMenu";
+import TemplateModal from "../TemplateModal";
 
 // {
 //   "id": 20,
@@ -12,60 +13,3437 @@ import ActionMenu from "@/components/ActionMenu";
 //   "templateName":"Total Energies 1"
 // }
 
+// {
+//   "id": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//   "clientId": "5c04e022-dae4-4852-ae71-61a8e2f0e046",
+//   "screenSize": "10",
+//   "name": "Simply Divine",
+//   "delay": "24 hours",
+//   "order": "shuffle",
+//   "fileSize": "34 mb",
+//   "deletedAt": null,
+//   "createdAt": "2024-06-03T14:46:02.568Z",
+//   "updatedAt": "2024-06-03T14:46:02.568Z",
+//   "quotes": [
+//       {
+//           "id": "d396b868-511a-408d-853a-6e0785f89540",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "New Year Day, Dream it. Believe it. Build it",
+//           "date": "2024-01-01",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "cb6b35ff-bc34-4f94-bf0f-02547bc89a5d",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The quality of your investment determines your returns.",
+//           "date": "2024-01-02",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "5fbfd367-5633-4d4e-98d1-76c956fca1d8",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "You are only as strong as what you eat.",
+//           "date": "2024-01-03",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "141db6eb-4340-4750-9bd0-e14967dd523e",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "A promise is as good as the character of the one who made it.",
+//           "date": "2024-01-04",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "4f6e507e-3b4d-4b7a-ae0f-68a2075c829a",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Success is impacting your world with the investment of your personality.",
+//           "date": "2024-01-05",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "ff915061-e62f-4daf-8e1e-a78e597d25f0",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "What you have is determined by what you say.",
+//           "date": "2024-01-06",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "42ef82b3-5e05-4391-b338-12d1843173dd",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "It is your personal response ability that defines your destiny.",
+//           "date": "2024-01-07",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "b860bf2c-d2b6-4f8b-8764-19d4fe6cf615",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "You cannot command practical results without engaging your mind.",
+//           "date": "2024-01-08",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "78db46ef-9efa-414c-aef9-7f6f4fd29b45",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Men don’t follow titles, they follow courage and vision.",
+//           "date": "2024-01-09",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "84f72e45-d7fc-43b6-8df9-09f7bbd42ad1",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "In the school of success, direction is crucial.",
+//           "date": "2024-01-10",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "1807b702-af9b-4ebd-b02c-881026c909ff",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Every step you take is either leading you forward or taking you backward.",
+//           "date": "2024-01-11",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "ccb24445-ba31-4e4b-8679-56e7c4f2aaf4",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Your spiritual well-being determines your material well-being.",
+//           "date": "2024-01-12",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "4a3f702b-cbc3-427a-a5ad-ecf8e8e56647",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "You cannot follow greatness sincerely and not be great.",
+//           "date": "2024-01-13",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "0d25136c-84f4-40ef-9104-94b5d9ebd616",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "If you can see the invisible, you can do the impossible.",
+//           "date": "2024-01-14",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "3821b647-0cdb-4196-b4ea-166f465570fb",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Your success is traceable to the person you choose to honor and if you fail, it is traceable to the person you choose to dishonor.",
+//           "date": "2024-01-15",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "b36ba6de-c34d-4ac7-a4cb-af3435f11e3b",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Mentorship is the impartation of knowledge and information.",
+//           "date": "2024-01-16",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "0b966731-0f68-4959-a152-83f764e197a2",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "You are not truly living until your life impacts other lives for good.",
+//           "date": "2024-01-17",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "aff7d61a-13ee-4210-bd32-38aa81410efa",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Giving in to discouragement creates one of the most powerful tools for hindrance.",
+//           "date": "2024-01-18",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "0410ddfa-e7a3-455a-a197-da1a14d63c06",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Every greatness has a beginning.",
+//           "date": "2024-01-19",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "9dbe7edf-6f04-48f1-a3b2-8d55f67aa4c2",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Problems gravitate towards their solution.",
+//           "date": "2024-01-20",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "7ebff474-7d76-4c85-a6d1-9f057bea1ea7",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The secret of your future is hidden in your daily routine.",
+//           "date": "2024-01-21",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "12475851-2851-4a78-a5f8-2c9a198d4e4e",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "You’ll always attract what you respect and admire.",
+//           "date": "2024-01-22",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "31b286d2-7bf4-4d90-84d8-12414a49ef89",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Success in life is determined by the kind of problem you are willing to solve for others.",
+//           "date": "2024-01-23",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "785dc82a-cd4b-4fa9-860d-b0243c3021d2",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The law of sowing and reaping is compulsory and you must sow before you reap.",
+//           "date": "2024-01-24",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "9d852e78-735b-4288-803a-b71959a3b1cc",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "It is possible to attain a goal and still be miserable if it wasn’t connected to a profound purpose.",
+//           "date": "2024-01-25",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "8a2001b0-c2bb-47c3-944d-f5ae1e49d7bf",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Success never happens by chance, it is not a mistake nor an accident; it is deliberate and an expected outcome of concrete plans.",
+//           "date": "2024-01-26",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "ab114f39-5178-48b8-93ce-7009880eabaf",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Purpose without pursuit is powerless, and pursuit without strategy is foolishness.",
+//           "date": "2024-01-27",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "1969cd5b-def5-4861-8e76-4dc021af50aa",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Doing things the same way will not bring a different set of results.",
+//           "date": "2024-01-28",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "491505d8-0f56-4f00-a81c-72bd148bf77c",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Growth is not mysterious, it is applying revealed principles and means towards an expected outcome.",
+//           "date": "2024-01-29",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "4675f243-5832-41dd-b9ec-580a75ddc381",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "In the school of success, information is the greatest asset.",
+//           "date": "2024-01-30",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "960576f3-368b-4bd1-9049-e8d9761cdedc",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Weapons makes us fit for war, but knowledge makes us fit for triumph.",
+//           "date": "2024-01-31",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "51b75257-9bfd-4f10-a030-622112a66e55",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The womb delivers by labor but the mind delivers by study.",
+//           "date": "2024-02-01",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "c3bc95fb-6863-4ca7-9ca7-422a2e9bd9a5",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Exercise can only shape our body, but learning and reading will shape our life.",
+//           "date": "2024-02-02",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "f2d258ed-eb6f-4351-8ae9-af213a30f7b6",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The producer will always be ahead of the consumer.",
+//           "date": "2024-02-03",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "a1dc01d7-418c-4436-aeed-998eca5b9a67",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Invest in your mind; what you know is better than who you know.",
+//           "date": "2024-02-04",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "a830ab6e-74dc-49d5-b81a-41a99fade8fa",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The man who reads lives a thousand lives before he dies, the man who doesn’t, lives only one life.",
+//           "date": "2024-02-05",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "311ce300-41c1-49fa-a91c-cf9fc2cbdca7",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "There is nothing more confusing than a person who gives good advice with a bad example.",
+//           "date": "2024-02-06",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "358bb361-2bad-4ae5-ac46-3e37524256fb",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Responsibility is the price for greatness.",
+//           "date": "2024-02-07",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "46844ff6-d569-4707-8610-89efbc9fecb5",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The best of life is not lived doing what you like but the best of life is lived doing what is right.",
+//           "date": "2024-02-08",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "88e6e896-3b59-4e03-94c3-b3e7dce71cce",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Action without planning is the cause of every failure.",
+//           "date": "2024-02-09",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "46d3583f-8588-4be8-b312-d33763ad326d",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Before everything else, getting ready is the secret of success.",
+//           "date": "2024-02-10",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "2ca1b491-a190-4dec-8abe-8a7490e030fb",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The best way to secure the future is to invest in your children.",
+//           "date": "2024-02-11",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "6805a76f-b25f-4474-ada7-6bca2bba9fb1",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "There is a risk in not taking a risk.",
+//           "date": "2024-02-12",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "e4407d1c-9861-485a-ae5f-d55d41b77a52",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Character will not reach its peak until it is controlled, harnessed, and disciplined.",
+//           "date": "2024-02-13",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "8f54f4df-7802-4164-b68c-d00125fc68b4",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Valentine’s Day, Love is to life what a scent is to a rose.",
+//           "date": "2024-02-14",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "e80cd020-ae2d-422a-860e-5c5295b2f5e1",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "If a man hasn’t discovered something that he will die for, he isn’t fit to live.",
+//           "date": "2024-02-15",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "cb4e1b09-9269-4bf0-a6b3-1c21419df1ee",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Those who win are those who believe they can.",
+//           "date": "2024-02-16",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "640f1c63-25fb-4a1e-859f-1dd0499a3fde",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Don’t play God. You cannot be all things to all people, but remain true to yourself.",
+//           "date": "2024-02-17",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "da3f27ee-b407-432f-bc07-ff9c1fcbcc50",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Making a commitment to excellence is a fundamental step in the journey of success.",
+//           "date": "2024-02-18",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "341c91a5-5d25-446a-8cfa-ff6c068876b9",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Quality is never an accident; it is always the result of high intentions, sincere efforts, intelligent direction and skillful execution; it represents the wise choice of many alternatives.",
+//           "date": "2024-02-19",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "dd180b48-ebd6-495a-9c38-0bdf79b76ab5",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Without influence, you will never be able to lead others.",
+//           "date": "2024-02-20",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "6bbc1ccf-0747-4130-bafc-e3f0c2e74bf2",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Reputation is not built on what one plans to do, but on what one has done.",
+//           "date": "2024-02-21",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "6b1baf60-9f44-417e-9b87-f7a4edd77e19",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Perhaps the greatest gift God ever gave man is the gift of limitless imagination.",
+//           "date": "2024-02-22",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "b1b56c43-0802-423d-af9b-0dab37c05cca",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "One of the keys to great success in life is to go the extra mile.",
+//           "date": "2024-02-23",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "2066d2f1-263a-4da6-aed8-9555712f86a1",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "You are only an attitude away from success.",
+//           "date": "2024-02-24",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "d221a9aa-a79c-40d9-ada4-d71f7bd5fca5",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Leadership is the capacity to translate vision into reality.",
+//           "date": "2024-02-25",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "e92361ed-b6f7-437f-874e-70da69b752d6",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Worry is a route that leads from somewhere to nowhere.",
+//           "date": "2024-02-26",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "d4d467d8-faac-4ede-a543-a35c148d55c8",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Happiness always looks small while you hold it in your hands, but let it go, and you learn at once how big and precious it is.",
+//           "date": "2024-02-27",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "5a40d315-9be0-49fb-9fe4-be11a2ef888b",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "How high you rise is largely determined by how high you want to climb.",
+//           "date": "2024-02-28",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "6a678ae0-eabd-496b-be43-f9243d66aa88",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "It's better to train up a child than to repair an adult",
+//           "date": "2024-02-29",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "80d7f3cf-a519-4268-81a5-77c2f46c01ef",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Life is most fulfilling when it is lived for others.",
+//           "date": "2024-03-01",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "d9a43e1e-1aeb-408b-97ec-152fde907a9b",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Great opportunities often disguise themselves in small tasks.",
+//           "date": "2024-03-02",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "524eed86-1173-4705-94c3-fd06063b1913",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "There is no dream that may not come true, if you but learn to use the creative force working through you.",
+//           "date": "2024-03-03",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "ee572c28-b1ab-4c6d-8bf9-855d0f10c3a1",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "What you focus on, whether you want it or not, is manifested.",
+//           "date": "2024-03-04",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "adac6c99-175b-4673-a33c-33d32499251e",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "You are not a failure, until you look for who to blame for it.",
+//           "date": "2024-03-05",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "298874c5-c621-480f-b245-0ea6f33bf92a",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Until something changes within you, nothing changes around you.",
+//           "date": "2024-03-06",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "28b2d9ab-ae00-4f1a-a8c8-69a3262259ad",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Some things do change with time, but time itself changes nothing.",
+//           "date": "2024-03-07",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "a6b2032a-f816-4d15-9f45-d49ad1985fd6",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Women’s Day     If you want something said, ask a man, if you want something done, ask a woman.",
+//           "date": "2024-03-08",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "e1cd2024-150a-4d0e-ba63-ac966c79c8fb",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Until you know how it is applied, it holds no value.",
+//           "date": "2024-03-09",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "b1104670-0178-4b68-9b8f-0ebfb616f358",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Nothing is more valuable than insight in the journey of life.",
+//           "date": "2024-03-10",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "800eb091-6226-4bd6-9ede-867879274eeb",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "If you leave your life to chance, you don’t have a chance.",
+//           "date": "2024-03-11",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "4a8aa693-2015-4978-bac7-f3fd16d7ef4e",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Never walk in denial of facts.",
+//           "date": "2024-03-12",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "c9bdd380-812f-4bda-89ec-e54d6a1ef3e1",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Your degree of commitment to service determines your ultimate height in the race of life.",
+//           "date": "2024-03-13",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "5f777e59-e1af-43f9-8081-f0aa7e7773f2",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Information breeds transformation, misinformation breeds deformation.",
+//           "date": "2024-03-14",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "3e01dde9-a5d7-4b18-a3e2-8551201cb78d",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "At the root of every gain is the use of the brain.",
+//           "date": "2024-03-15",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "489b4e79-fce1-4408-82b5-d0bb5ac25451",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "When you stop thinking, you start sinking.",
+//           "date": "2024-03-16",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "54227a63-b989-453f-a562-6ff982218e92",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Working to learn makes a leader, working to earn makes a slave.",
+//           "date": "2024-03-17",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "14bdb797-975c-4af8-935b-8c98ad93f8f9",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "There are those who watch the news, and there are those who make the news.",
+//           "date": "2024-03-18",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "c4beb67d-70a9-4ad8-8394-4d674c108474",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "There will never be a developed nation without a productive citizenry.",
+//           "date": "2024-03-19",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "586f5025-aa33-489a-955b-0e4b6d95b617",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Living without a definite assignment is like living in an asylum.",
+//           "date": "2024-03-20",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "b8930d2f-898d-4999-a4fa-543797a3840e",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Mothers Day  The strength of motherhood is sometimes greater than natural laws.",
+//           "date": "2024-03-21",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "26da017a-b4f2-4c3b-bfd7-3f98d710ea7b",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "It takes having role models to play your role well.",
+//           "date": "2024-03-22",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "0c9281a4-71d2-4004-a1a5-062fdeb6cf1b",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Every great dreamer ends up a world changer.",
+//           "date": "2024-03-23",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "0690e795-8f56-466f-aac1-e5b4c67f3157",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Wealth is the product of man’s capacity to think.",
+//           "date": "2024-03-24",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "30661b3d-5cd9-45e6-80ec-b276e04c976d",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Those who think on paper think better.",
+//           "date": "2024-03-25",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "63c4209b-d8d9-480a-ab5d-9dcf48f3094f",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Every goal and objective in life can start off from where you are.",
+//           "date": "2024-03-26",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "0e133fe5-fb28-4563-9d53-a72018cef262",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "It is better to train up a child than to repair an adult.",
+//           "date": "2024-03-27",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "d9269210-6bac-4551-91b1-3bcbb03a3451",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Real leaders are happy to zig while others zag.",
+//           "date": "2024-03-28",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "1bc76457-952f-4fbd-8881-ff323840d972",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The only way to stand out from the crowd is to stand out for something special.",
+//           "date": "2024-03-29",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "fcc7ae56-632a-4d66-b829-640be2982e39",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Leaders instill in their people a hope for success and a belief in themselves.",
+//           "date": "2024-03-30",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "4e18fdef-bbac-43d4-a788-1a4d8c3a9acf",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The pessimist complains about the wind. The optimist expects it to change. The leader adjusts the sails.",
+//           "date": "2024-03-31",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "96bbf0bb-63c1-4536-8289-2d9f22c879a6",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Every time you have to speak, you are auditioning for leadership.",
+//           "date": "2024-04-01",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "83455115-37d7-4457-a97b-6fd8c1a4e878",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "An important step in life is to be able to give up in any given moment all that we are for what we can become.",
+//           "date": "2024-04-02",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "939c7e4d-23c0-4a88-ae6a-f358e69fcf26",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Don't follow the crowd, let the crowd follow you.",
+//           "date": "2024-04-03",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "553b22fa-aa35-457a-8e08-8933c8cade15",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "You can keep the tuth in the grave, but it will not stay there.",
+//           "date": "2024-04-04",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "027fc1fe-f051-4fdc-a5ec-0f0c1c1aaf2a",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Work on being and not on having for with what you are, you will have.",
+//           "date": "2024-04-05",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "0ed56bef-c1c9-417a-99dd-c1e176d95e1b",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Treat people as if they were what they ought to be, and you help them become what they are capable of being.",
+//           "date": "2024-04-06",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "c2658f89-1bee-4dda-b480-97cc19e37b8d",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "There are no office hours for leaders.",
+//           "date": "2024-04-07",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "c04800a9-5fdd-497b-8b2a-c62ec43d3010",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "When people talk, listen completely.",
+//           "date": "2024-04-08",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "909df483-c22f-4680-b7f8-d1e0b4e4f9f9",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Think things through--then follow through.",
+//           "date": "2024-04-09",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "dc45cd05-30a0-4f10-a990-3c6b5ed2591a",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "You are not here merely to make a living. You are here to enrich the world, and you impoverish yourself if you forget the errand",
+//           "date": "2024-04-10",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "fdf5e47f-3708-4a43-9c9b-df964231a4bb",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The formula for failure is to try to please everybody.",
+//           "date": "2024-04-11",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "f861fb8e-9285-49c6-9dcd-2427c726180d",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Wisdom is knowing what to do next, skill is knowing how to do it, and virtue is doing it.",
+//           "date": "2024-04-12",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "e6a30213-282f-4dea-9d6a-aff403a78d10",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Management is doing things right; leadership is doing the right thing.",
+//           "date": "2024-04-13",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "1bb1d081-d03d-48a5-b195-8cf7411d5dfb",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Where there is an open mind, there will always be a frontier.",
+//           "date": "2024-04-14",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "c90907b2-2ab5-44c7-9d5d-bfa4e566f220",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "A good leader takes a little more than his share of the blame, a little less than his share of the credit.",
+//           "date": "2024-04-15",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "6d823715-60c9-47ec-97de-d33d17d8e4df",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Anyone can hold the helm when the sea is calm.",
+//           "date": "2024-04-16",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "1ca10011-8917-46ef-ab43-a649c92d6632",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "A great person attracts great people and knows how to hold them together.",
+//           "date": "2024-04-17",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "1ea8167d-8aec-41ef-a511-43bb7b8562c9",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "People buy into the leader before they buy into the vision.",
+//           "date": "2024-04-18",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "b65c6805-a279-4a8b-a29e-e4a8cec739b3",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Leadership is defined by results, not attributes.",
+//           "date": "2024-04-19",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "f7d1b228-2f49-479d-93fc-98da8bd31a11",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Doing what is right isn't the problem. It is knowing what is right.",
+//           "date": "2024-04-20",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "d0f5f1f1-421d-42ea-a926-febc782930f4",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+//           "date": "2024-04-21",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "46c312ac-13fc-4443-9b1b-edc0df7358b0",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The mediocre teacher tells. The good teacher explains. The superior teacher demonstrates. The great teacher inspires.",
+//           "date": "2024-04-22",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "8cce1bf2-d0a8-4b02-b817-58fdfec0aa5e",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "You gain strength, courage and confidence by every experience in which you really stop to look fear in the face. You must do the thing you think you cannot do.",
+//           "date": "2024-04-23",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "d31f86bd-235d-4e32-afa4-1ac6cbdaa6e8",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The role of leadership is to transform the complex situations into small pieces and prioritize them.",
+//           "date": "2024-04-24",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "f44781c8-f01a-48b5-9330-907d03356f98",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Look over your shoulder now and then to be sure someone’s following you.",
+//           "date": "2024-04-25",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "c08dfd92-d062-4eb5-be60-1428a9b3457f",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Leadership is the building of a personality beyond its normal limitations.",
+//           "date": "2024-04-26",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "2db795e4-380e-4db1-bcb5-83db32536d52",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Don't be afraid to give up the good to go for the great.",
+//           "date": "2024-04-27",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "3a1f28ff-8009-4a26-b650-4cfed275bc0f",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Nearly all men can stand adversity, but if you want to test a man's character, give him power.",
+//           "date": "2024-04-28",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "14aedba6-f03e-4d3e-9d97-8e94d879fa67",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Those who let things happen usually lose to those who make things happen.",
+//           "date": "2024-04-29",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "2d1e20bb-e0de-4db0-beb9-70a1e8aaf5e1",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Earn your leadership every day.",
+//           "date": "2024-04-30",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "245c088c-4aca-4a4d-8d16-9c7aae89f923",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Workers Day   We must do our work for its own sake, not for fortune or attention or applause.",
+//           "date": "2024-05-01",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "d9b41713-eec9-444e-b4ee-2102a40330e3",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Power tends to corrupt. It isn't hard to love using it, therefore, you've got to use it with the right attitude otherwise, the power starts using you.",
+//           "date": "2024-05-02",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "239a74f2-7cb1-43f2-b462-1ed9a7a20181",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "If you wish to be out front, then act as if you were behind.",
+//           "date": "2024-05-03",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "bdb7f769-09aa-4b2f-8d03-2d0826485e4f",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "One painful duty fulfilled makes the next plainer and easier.",
+//           "date": "2024-05-04",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "2122c66f-f488-4d00-9572-a90c2a98e3a5",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Do not bite at the bait of pleasure till you know there is no hook beneath it.",
+//           "date": "2024-05-05",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "ed9eb104-121e-4ebe-81de-a0a4624a2894",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Showing a lack of self-control is in the same vein granting authority to others.",
+//           "date": "2024-05-06",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "88f850c3-e197-4b39-87da-d96816918005",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Tough love may be tough to give, but it is a necessity of life and assurance of positive growth.",
+//           "date": "2024-05-07",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "0d5d53f2-00b4-47e1-8987-f274f7777c60",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "You will know as much of God, and only as much of God, as you are willing to put into practice.",
+//           "date": "2024-05-08",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "9afe11d7-154b-4a4e-8aa8-44355be1cd27",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Perhaps the most valuable result of all education is the ability to make yourself do the thing you have to do, when it ought to be done, whether you like it or not.",
+//           "date": "2024-05-09",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "208494c6-30e6-42ee-883f-d222629c7b8b",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Being strong doesn't get you through. Being smart does.",
+//           "date": "2024-05-10",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "1fdfaaf8-1bd3-4510-ab7c-0b412146f953",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "A disciplined mind leads to happiness, and an undisciplined mind leads to suffering.",
+//           "date": "2024-05-11",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "bb8d0f67-3908-4e51-81f4-797beebe2bad",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Good habits are worth being fanatical about.",
+//           "date": "2024-05-12",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "af879aac-1bba-4009-a8c6-df4529bed48f",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Forgiveness takes intelligence, discipline, imagination, and persistence, as well as a special psychological strength, something athletes call mental toughness and warriors call courage..",
+//           "date": "2024-05-13",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "189b9121-1a3d-4298-8314-ca98d6af44af",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The problem with patience and discipline is that it requires both of them to develop each of them.",
+//           "date": "2024-05-14",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "acf43697-98e7-41ad-ae59-6bb22b4ca4f4",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "True freedom cannot be separated from discipline.",
+//           "date": "2024-05-15",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "713af2ad-2906-474e-81b5-1983ded3ba26",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The most powerful control we can ever attain, is to be in control of ourselves.",
+//           "date": "2024-05-16",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "91c7bbc3-541e-4462-8894-8f086fb9ebda",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "We cultivate our feelings the way we cultivate a garden: we can't entirely prevent weeds from coming up, but we can take care to remove them before they do much harm.",
+//           "date": "2024-05-17",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "794d9a59-420d-47a2-8978-f4b4e0098fe5",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "To not say all that can be said is the secret of discipline and economy.",
+//           "date": "2024-05-18",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "5ce045fd-2f3b-470e-bc48-d7756e1e851d",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Being bad is easy, but being good requires sincere commitment, discipline and strength.",
+//           "date": "2024-05-19",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "908b415f-6d9d-4d93-b84b-42a480c77112",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "No matter how sweet it smells, if you know it will give you a discomfort later, don’t even attempt to taste it.",
+//           "date": "2024-05-20",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "3b47b623-5d49-44a7-8239-b8110cb319f6",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "It is altogether fitting and proper that we should enjoy things made for us to enjoy. What is not at all fitting or proper is that we should set our hearts on temporal things..",
+//           "date": "2024-05-21",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "edc3212c-3d97-4283-a4b0-052fc37d2790",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Seize the day, make a difference; never wait for a handout.",
+//           "date": "2024-05-22",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "eb9912f7-d2d5-4f8e-a265-960a5c6d9b90",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Success is a mindset and not a point in time but an inbuilt combination of character, discipline, behaviors and set of principles that make who the person becomes.",
+//           "date": "2024-05-23",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "e75e376e-4586-4eac-8415-95e2cb307d13",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "You’ve got to do the work no one else is willing to do, in order to get the kind of success most people only dream about having.",
+//           "date": "2024-05-24",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "11f66490-9056-4b4b-9163-88b6b094b2f5",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "We must assume responsibility for our own attitudes and actions.",
+//           "date": "2024-05-25",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "30fa59fa-5f75-43cf-bab5-e63053c51c92",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "It's been said that there are only two pains in life, the pain of discipline or the pain of regret, and that discipline weighs ounces while regret weighs tons.",
+//           "date": "2024-05-26",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "ff6f9105-bbf9-4c6e-a9e9-57b65b36850d",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "A happy family is an earlier heaven.",
+//           "date": "2024-08-25",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "d674656f-b0c9-404f-95d7-f28f7c16b0d8",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Children’s Day   A child can always teach an adult three things: to be happy for no reason, to always be busy with something and to know how to demand with all might what you want.",
+//           "date": "2024-05-27",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "f2a2a921-2df6-43e9-972b-cb6d2390a97a",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Starting is not most people’s problem, staying, continuing and finishing is.",
+//           "date": "2024-05-28",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "268f6d38-62ce-487b-928a-bd1bb589fff4",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Learn to tame your thoughts...do not let your thoughts tame you. Learn to tame your emotions...do not let your emotions tame you.",
+//           "date": "2024-05-29",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "afe70166-1504-4969-aeb7-c78550d3f53b",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Learn to tame your thoughts...do not let your thoughts tame you. Learn to tame your emotions...do not let your emotions tame you.",
+//           "date": "2024-05-30",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "6adf10c5-1cfd-4395-9207-e70de10b0ce2",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Stop Creating and Inventing Excuses, No Matter How Reasonable They May Sound...They Still Reduce Your Worth and Value.",
+//           "date": "2024-05-31",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "a96b7d11-2271-4f46-9490-77dcf8aeae70",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "There are two types of people who will tell you that you cannot make a difference in this world: those who are afraid to try and those who are afraid you will succeed.",
+//           "date": "2024-06-01",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "7ad338d9-7c66-4049-aca9-502ebe973c51",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "We must rely upon strategy, discipline, and patience to derive our must yearned desires from this world. Because there are few things we want that others can provide us, and those who can usually don't.",
+//           "date": "2024-06-02",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "44f8d495-1649-4e6c-bb00-b22179a2296a",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "We are what we believe we are.",
+//           "date": "2024-06-03",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "7058512f-3ff9-4161-b894-5452e30d5148",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "You cannot make an omelet without breaking an egg.",
+//           "date": "2024-06-04",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "54f523b3-2701-4f84-9712-65bfda881186",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Don't wish it were easier; wish you were better.",
+//           "date": "2024-06-05",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "bc821e65-285a-4755-a25c-dd197ec7d296",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Try not to become a person of success. Rather become a person of value.",
+//           "date": "2024-06-06",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "bd6a83fd-e25e-4f53-af18-eca1d229ab23",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Never give in except to convictions of honor and good sense.",
+//           "date": "2024-06-07",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "e5aade35-f866-4471-b88b-b28ef2fc2b49",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Stop chasing the money and start chasing the passion.",
+//           "date": "2024-06-08",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "99dae0b8-d583-4ca5-8d93-cd9b01e02d91",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "If you are not willing to risk the usual, you will have to settle for the ordinary.",
+//           "date": "2024-06-09",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "ef129dd4-ca20-4093-b271-de5eaf7290f8",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The ones who are crazy enough to think they can change the world, are the ones that do.",
+//           "date": "2024-06-10",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "db3563dc-9aec-46a4-84e8-b88bd4ab1918",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "All progress takes place outside the comfort zone.",
+//           "date": "2024-06-11",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "d83b3bae-61d9-4acf-a0a2-2eed7b28e845",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "An eye for eye only ends up making the whole world blind.",
+//           "date": "2024-06-12",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "35fc5800-9114-49ac-a5ea-ff403c348984",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Father’s Day    A father is a banker provided by nature.",
+//           "date": "2024-06-13",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "f73ab42b-b5d7-4d85-ab89-1a9b8b07e7c2",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "If you really look closely, most overnight successes took a long time.",
+//           "date": "2024-06-14",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "2ed84f86-decb-4d7a-8e54-0deca5f154e9",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The only limit to our realization of tomorrow will be our doubts of today.",
+//           "date": "2024-06-15",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "2507d3a7-b131-48d3-b917-ec4e98d80dca",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The way to get started is to quit talking and begin doing.",
+//           "date": "2024-06-16",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "8f4db358-cf88-48fa-af30-a9bd78dea7d9",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "If you really want to do something, you'll find a way. If you don't, you'll find an excuse",
+//           "date": "2024-06-17",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "c2abb456-7cea-41eb-a8ad-c09c06eb8d0d",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Some people dream of success while others wake up and work.",
+//           "date": "2024-06-18",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "6c994306-ae86-4cb0-93e7-b77bf119e7b2",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The difference between who you are and who you want to be is what you do",
+//           "date": "2024-06-19",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "453d9f51-db15-495f-89c7-88021e11f60d",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "A successful man is one who can lay a firm foundation with the bricks that other throw at him.",
+//           "date": "2024-06-20",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "0cb143b5-edc6-4b57-96ac-ccf56b1e4d29",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "A successful man is one who can lay a firm foundation with the bricks that other throw at him.",
+//           "date": "2024-06-21",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "d46f71be-d4b8-49f1-89ab-d0dc8414cb86",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Many of life's failures are people who did not realize how close they were to success when they gave up.",
+//           "date": "2024-06-22",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "7f13e6fe-8853-413b-a93b-1592b72ccdb9",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "You know you are on the road to success if you would do your job, and not be paid for it.",
+//           "date": "2024-06-23",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "e096e69b-6757-42d0-87f6-e20b11fb28ce",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "There is a powerful driving force inside every human being that, once unleashed, can make any vision, dream, or desire a reality.",
+//           "date": "2024-06-24",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "1e0604c7-cd7a-43cb-b0cb-58fe98149cbc",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The only place where success comes before work is in the dictionary.",
+//           "date": "2024-06-25",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "9298d84c-e8ff-40c2-98ca-4d5078e73c0f",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Don’t stop when you’re tired. Stop when you’re done.",
+//           "date": "2024-06-26",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "52d86ab1-346b-446d-8290-c6ca63e2cb99",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Little things make big days.",
+//           "date": "2024-06-27",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "0c6805cd-f501-468c-aa06-c6ab4512fc12",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Hard does not mean impossible.",
+//           "date": "2024-06-28",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "7028e399-ab15-4d8d-a124-1da9017842c3",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Sometimes we’re tested not to show our weaknesses, but to discover our strengths.",
+//           "date": "2024-06-29",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "c918ca64-7ee3-411c-9581-a506e971e5f9",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "What you don’t see, you cannot get.",
+//           "date": "2024-06-30",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "9f2ff585-b28a-44ba-b403-b65d72bdd836",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The best years of your life are the ones in which you decide your problems are your own. You do not blame them on your mother, the ecology, or the president. You realize that you control your own destiny.",
+//           "date": "2024-07-01",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "7d0e8a0c-5b41-46e2-ba17-43218501d9fd",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Success is not measured by what you accomplish, but by the opposition you have encountered.",
+//           "date": "2024-07-02",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "8a652f8a-4d29-4850-8c65-ef3cb98b8716",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Whosoever loves much performs much.",
+//           "date": "2024-07-03",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "bcc93c86-68af-418f-bfe9-98bd5f524d92",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Things may come to those who wait, but only the things left by those who hustle.",
+//           "date": "2024-07-04",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "c0246db9-0ec7-4e2b-9866-3e3e643c608f",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Don't let what you cannot do interfere with what you can do.",
+//           "date": "2024-07-05",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "8fb9738c-e232-463d-9e12-cf3e4132199d",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Life isn’t about finding yourself. Life is about creating yourself.",
+//           "date": "2024-07-06",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "bea986b8-a476-4aef-ad3e-c4dc89ab9f21",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Not he who has much is rich, but he who gives much.",
+//           "date": "2024-07-07",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "29885f53-9d4c-4e53-893f-75f8c08de840",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Spend eighty percent of your time focusing on the opportunities of tomorrow rather than the problems of yesterday.",
+//           "date": "2024-07-08",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "90ae2cbe-7abf-43e4-8de9-609fea6c8172",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "If the only tool you have is a hammer, you tend to see every problem as a nail.",
+//           "date": "2024-07-09",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "302ab183-5290-423c-adbb-b9a8a51cbfae",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Keep on going, and the chances are that you will stumble on something, perhaps when you are least expecting it. I never heard of anyone ever stumbling on something sitting down.",
+//           "date": "2024-07-10",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "234ba1b1-1af4-4624-97c9-e07169c2794d",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The secret of success in life is for a man to be ready for his opportunity when it comes.",
+//           "date": "2024-07-11",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "1c1df944-b07a-426e-8145-55b4e3dca8e0",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "After every difficulty, ask yourself two questions: “What did I do right?” and “What would I do differently?”",
+//           "date": "2024-07-12",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "bfef8b39-eb52-41bf-afbc-6909fc964ae5",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Don’t brood. Get on with living and loving. You don’t have forever.",
+//           "date": "2024-07-13",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "8dfe130d-66be-463b-b508-8216f7218a14",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Doing the best at this moment puts you in the best place for the next moment.",
+//           "date": "2024-07-14",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "66505f1b-8abe-401b-b786-7412510bc4d5",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "If you're going through hell, keep going.",
+//           "date": "2024-07-15",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "7a8610c9-3d90-4912-9e8d-f3479837d63b",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Be miserable. Or motivate yourself. Whatever has to be done, it's always your choice.",
+//           "date": "2024-07-16",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "f3aa4d3e-45d1-4bdb-aa39-2630b8a153d5",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The first step toward success is taken when you refuse to be a captive of the environment in which you first find yourself.",
+//           "date": "2024-07-17",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "7c1eb3f1-67a1-4655-b1b3-3bde08fd0bd3",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "In a moment of decision, the best thing you can do is the right thing to do, the next best thing is the wrong thing, and the worst thing you can do is nothing.",
+//           "date": "2024-07-18",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "6668cbc8-ad12-45ad-a243-9e427654f90e",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "In a moment of decision, the best thing you can do is the right thing to do, the next best thing is the wrong thing, and the worst thing you can do is nothing.",
+//           "date": "2024-07-19",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "53ddd187-7e69-42bd-ac81-9306549cf6b9",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Nothing in the world can take the place of perseverance. Talent will not; nothing is more common than unsuccessful people with talent.",
+//           "date": "2024-07-20",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "8b34381e-e443-4de5-81a9-edc27fa54ac1",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Judge your success by what you had to give up in order to get it.",
+//           "date": "2024-07-21",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "62aab1db-50e1-4a5f-9778-db80e4d99b82",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Success is largely a matter of holding on after others have let go.",
+//           "date": "2024-07-22",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "2e30a52e-67d9-491c-9f83-e3893acdc678",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Start where you are. Use what you have. Do what you can.",
+//           "date": "2024-07-23",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "1f989779-b0e2-4fb0-aa6b-3ab7daafd1f1",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Keep away from people who try to belittle your ambitions. Small people always do that.",
+//           "date": "2024-07-24",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "f7e29504-a9cd-43ef-b4a4-dbe9e8b7bd08",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "What seems to us as bitter trials are often blessings in disguise.",
+//           "date": "2024-07-25",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "cbf57b58-30aa-4356-bd41-2de9a05ff197",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Your attitude, not your aptitude, will determine your altitude.",
+//           "date": "2024-07-26",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "b04726cc-fa30-4153-ad33-ffe939648c3f",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "If you don’t value your time, neither will others. Stop giving away your time and talents. Value what you know and start charging for it",
+//           "date": "2024-07-27",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "6c3344c6-cd36-48af-af7b-0e991fa16a30",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Nothing is less productive than to make more efficient what should not be done at all.",
+//           "date": "2024-07-28",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "cf56317f-b451-4e10-9e3e-63819ade7618",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "If people did not do silly things, nothing intelligent would ever get done.",
+//           "date": "2024-07-29",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "dc575b1e-f275-4622-9db0-cd99bba1c776",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The best revenge is massive success.",
+//           "date": "2024-07-30",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "05462885-5be9-4964-9470-36db0c8bb839",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "To laugh often and much; to win the respect of intelligent people, the affection of children and to leave the world a better place… to know even one life has breathed easier because you have lived. This is to have succeeded.",
+//           "date": "2024-07-31",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "484129bb-0bda-4dca-80eb-2a45682c8f6e",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "It is of practical value to learn to like yourself. Since you must spend so much time with yourself you might as well get some satisfaction out of the relationship.",
+//           "date": "2024-08-01",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "0cd565d1-df36-4b4c-b8e1-6aa484de3cea",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Lots of people want to ride with you in the limo, but what you want is someone who will take the bus with you when the limo breaks down.",
+//           "date": "2024-08-02",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "8ab39898-ff7c-41ce-9678-3e81529e8b7e",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "What love we've given, we'll have forever. What love we fail to give, will be lost for all eternity.",
+//           "date": "2024-08-03",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "732f00f2-92d5-4fff-becf-8f5c6b479c37",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "True friendship comes when the silence between two people is comfortable.",
+//           "date": "2024-08-04",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "070efe74-0235-4cff-9b76-55903058de3a",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Life is partly what we make it, and partly what it is made by the friends we choose.",
+//           "date": "2024-08-05",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "4eebf8de-1ae9-47c1-bf14-02f981cde3d4",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Everything that irritates us about others can lead us to an understanding of ourselves.",
+//           "date": "2024-08-06",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "f69faaa2-7351-4c3b-8a0f-0dad042ec181",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "When dealing with people, remember you are not dealing with creatures of logic, but creatures of emotion.",
+//           "date": "2024-08-07",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "1b69be06-a5eb-443e-94b1-d8dd4826ab7a",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Three things in human life are important: the first is to be kind; the second is to be kind; and the third is to be kind.",
+//           "date": "2024-08-08",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "cea2b00f-d510-4b07-86f4-4aa7e7a1af6c",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "An eye for eye only ends up making the whole world blind.",
+//           "date": "2024-08-09",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "d397ee09-cffd-433f-9710-309ec5dc8d61",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "What is uttered from the heart alone, will win the hearts of others to your own.",
+//           "date": "2024-08-10",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "0a89bb60-3695-4421-b5e1-7985a177b5e6",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Since you get more joy out of giving joy to others, you should put a good deal of thought into the happiness that you are able to give.",
+//           "date": "2024-08-11",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "e9208347-802e-4f2e-aff3-aeea49150f39",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Loving people live in a loving world. Hostile people live in a hostile world. Same world.",
+//           "date": "2024-08-12",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "cd7921bd-5066-4b54-a442-ae6691ee4927",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Forgiveness does not change the past, but it does enlarge the future.",
+//           "date": "2024-08-13",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "c45469f6-a878-474a-a34f-bb8407bba45e",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Let us be grateful to the people who make us happy; they are the charming gardeners who make our souls blossom.",
+//           "date": "2024-08-14",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "970d623a-516e-42c6-9b04-ee0a1f6b2dce",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Having someone wonder where you are when you don't come home at night is a very old human need.",
+//           "date": "2024-08-15",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "ee8d5354-ce6d-4be7-851f-a15572e84764",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "At the heart of life lie the relationships we have with other people",
+//           "date": "2024-08-16",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "2262284a-4db2-4e20-8894-3775540db4f7",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "They do not love that do not show their love.",
+//           "date": "2024-08-17",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "ac9095bb-5bba-4fc3-a19e-56b775186898",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "When wealth is lost, nothing is lost; when health is lost, something is lost; when character is lost, all is lost.",
+//           "date": "2024-08-18",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "759e3da8-ad14-4b45-9db6-f904cd71b9d5",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The first wealth is health.",
+//           "date": "2024-08-19",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "f7a2e906-b737-4022-b9ca-acb9868ee308",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Tears shed for self are tears of weakness, but tears shed for others are a sign of strength.",
+//           "date": "2024-08-20",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "b2e96b3f-3288-4d04-871b-f322421e2d40",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Be inspired by your dream of success and not your fear of failure.",
+//           "date": "2024-08-21",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "21faf699-e8da-4748-87a5-a5c4d29b5c86",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "God is more interested in your future and your relationships than you are.",
+//           "date": "2024-08-22",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "d3d151e5-2337-40ba-a72c-89c84dbce817",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The greatest legacy one can pass on to one's children and grandchildren is not money or other material things accumulated in one's life, but rather a legacy of character and faith.",
+//           "date": "2024-08-23",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "c67c8a3c-89c3-47b9-8137-716b03f1f023",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Peace is not merely the absence of war. It is also a state of mind. Lasting peace can come only to peaceful people.",
+//           "date": "2024-08-24",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "caac0f64-c3c3-4495-82ab-fede3c19f197",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "When you're the most successful person in your circle, everybody thinks you're the First National Bank, and you have to figure out for yourself where those boundaries are.",
+//           "date": "2024-08-26",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "0eb382c3-d034-45c7-a207-3f88ff811819",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "If we are peaceful, if we are happy, we can smile, and everyone in our family, our entire society, will benefit from our peace.",
+//           "date": "2024-08-27",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "c4714eeb-f060-436a-8174-3aca004152f6",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "You don't choose your family. They are God's gift to you, as you are to them.",
+//           "date": "2024-08-28",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "b3ceae0d-f9d3-49b5-9776-b2357e208df1",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Keeping our priorities straight, our faith, our family, and values will keep us grounded.",
+//           "date": "2024-08-29",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "77efde77-100e-47fa-a692-8d38e672418a",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Even the simplest wicker basket can become priceless when it is loved and cared for through the generations of a family.",
+//           "date": "2024-08-30",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "560943e6-93b2-47c1-ad12-98a83a430c19",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "We live in a world where the most important thing is daily life: sharing a space with your family, making meals and being with your people.",
+//           "date": "2024-08-31",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "a6f0082a-7175-4820-bc7c-59e25100aebf",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "If you want to find the real competition, just look in the mirror. After awhile you'll see your rivals scrambling for second place.",
+//           "date": "2024-09-01",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "c02fabb6-c6b6-4c5c-a918-27c3357f3653",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "He who conquers himself is the mightiest warrior.",
+//           "date": "2024-09-02",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "d1a4c49c-6531-435a-8f0f-d365bea4ad4f",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Practice is the hardest part of learning, and training is the essence of transformation.",
+//           "date": "2024-09-03",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "9711f496-a210-4d89-87a9-38fe1d5c5bee",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "You fight when the necessity arises—no matter the mood! Mood's a thing for cattle or making love or playing the baliset. It's not for fighting.",
+//           "date": "2024-09-04",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "99ee1338-3999-4689-a623-d1bb91d4ab95",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Pain is your body's way of telling you that you’ve pushed yourself to your limit -- which was exactly where you’re supposed to be.",
+//           "date": "2024-09-05",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "f4a4ece2-dbbb-4df1-9143-ec57208d9c6d",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Champions do not become champions when they win the event, but in the hours, weeks, months and years they spend preparing for it.",
+//           "date": "2024-09-06",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "dc639d6a-f628-4e72-87b6-f949fbdd38e2",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Every beginner possesses a great potential to be an expert in his or her chosen field.",
+//           "date": "2024-09-07",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "c147dace-4be4-4716-ae54-bfe7b6ef25bd",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Train up a child in such a way she or he should go; even when she or he is old she or he will not depart.",
+//           "date": "2024-09-08",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "a7106e51-b9f5-4077-bf30-6181ac3068de",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Just because something isn't a lie does not mean that it isn't deceptive.",
+//           "date": "2024-09-09",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "f55bdc94-8ede-4084-9610-32adf56bb30c",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Few will have the greatness to bend history itself, but each of us can work to change a small portion of events.",
+//           "date": "2024-09-10",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "2a7b37d4-39e4-4930-a8fc-470846009446",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "A strongly marked personality can influence descendants for generations.",
+//           "date": "2024-09-11",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "2db58f93-e7e2-4920-aa76-a7f597926f71",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The most important thing in communication is hearing what isn’t said.",
+//           "date": "2024-09-12",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "8cfdd1f7-3ee6-4af2-a2d2-ac7cbae9c78e",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "We never know which lives we influence, or when, or why.",
+//           "date": "2024-09-13",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "ff62978f-debb-48c7-934a-1c3a18b56ea8",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "No matter how big the lie; repeat it often enough and the masses will regard it as truth.",
+//           "date": "2024-09-14",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "52ddce5c-c7c1-45be-9a87-5387cf756d8e",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Example is not the main thing in influencing others. It is the only thing.",
+//           "date": "2024-09-15",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "6258e856-dcf3-4b14-8700-f647998c0f41",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "A warrior in search of his dream must take his inspiration from what he actually does and not from what he imagines himself doing.",
+//           "date": "2024-09-16",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "6776bf08-1bb0-451a-a0ef-466919b898d4",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "A solid answer to everything is not necessary.",
+//           "date": "2024-09-17",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "1ede8000-6d69-4320-bb77-325103730f8f",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The purpose of influence is to \"speak up for those who have no influence.",
+//           "date": "2024-09-18",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "d33540db-1c56-4b61-96a2-364d38407247",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Wise men speak because they have something to say. Fools because they have to say something.",
+//           "date": "2024-09-19",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "76f566cf-03e5-42f6-8434-5f3fc8bcb954",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Blessed is the influence of one true, loving human soul on another.",
+//           "date": "2024-09-20",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "3013b920-6517-4bda-b30d-a5469bdf1300",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "You cannot antagonize and influence at the same time.",
+//           "date": "2024-09-21",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "6282a8a9-907b-493e-ae4e-fb78d6c89026",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "True leaders bring out your personal best. They ignite your human potential.",
+//           "date": "2024-09-22",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "26914809-d593-4f7f-9261-8da5854b6ab5",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Influence is when you are not the one talking and yet your words fill the room; when you are absent and yet your presence is felt everywhere.",
+//           "date": "2024-09-23",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "ee1332c1-0e51-46a2-8052-38ddf76aa986",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Good training is a continual friend and a solace; it helps you now, and assures you of help in the future.",
+//           "date": "2024-09-24",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "3e03b3ad-78f0-42b7-b7a8-3ab5d40babf3",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Unleash your influence not authority.",
+//           "date": "2024-09-25",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "807a341b-8c95-4e63-b70b-03e81a66ac97",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Write to be understood. Speak to be heard. Read to grow.",
+//           "date": "2024-09-26",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "70be9ffb-31ac-4e25-b1cf-2c1ad8212ea0",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Without a goal, your stamina is useless no matter how you get trained.",
+//           "date": "2024-09-27",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "d6cffb4d-532c-4885-8609-b46e27e36d22",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Those who have been trained by life's trials, knows the treasure hidden in this field.",
+//           "date": "2024-09-28",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "815a0410-8a4e-413d-9cdb-a2d03a52803f",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "In life, you will be struck, and when you are, the force of it must not stagger you, the pain of it must not slow you, the shock of it must not cause you to doubt.",
+//           "date": "2024-09-29",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "36eda309-b0ad-4194-9fce-4b3c0fefdc92",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "A gift will last for a few days, but guidance will last forever.",
+//           "date": "2024-09-30",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "017e8a26-228d-4ff2-a9fc-7b1b13146995",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "If you were born with the ability to change someone’s perspective or emotions, never waste that gift. It is one of the most powerful gifts God can give—the ability to influence.",
+//           "date": "2024-10-01",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "96cebd08-241e-458b-b59a-6946e869ec23",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Once in a while it really hits people that they don't have to experience the world in the way they have been told to.",
+//           "date": "2024-10-02",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "2be72455-95c3-4cc0-b0d0-cb40a5aa954f",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "If you are what you eat, you are what you see and hear.",
+//           "date": "2024-10-03",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "d082d5ed-c642-43c5-9582-400cb5413d5e",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "A lion is made up of all the lambs he's digested.",
+//           "date": "2024-10-04",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "92bae638-c03b-437f-8a3f-59300cb3f64b",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "A teacher affects eternity; he can never tell where his influence stops.",
+//           "date": "2024-10-05",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "871844db-1353-4601-b8f5-16abc378ac12",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "A sign of power in a man is not only when people follow what he suggests, but also when people make a conscious effort to do the exact opposite of what he suggests.",
+//           "date": "2024-10-06",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "adca52cf-00c5-4792-a821-68687de2d2c2",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "One person with a belief is a social power equal to ninety-nine who have only interests.",
+//           "date": "2024-10-07",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "9a68ed5d-cc1b-40f9-a603-dc3cca59453a",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Where we fall are the stepping-stones for our journey.",
+//           "date": "2024-11-28",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "62a8d31e-525e-4555-b4c5-a94e07f28c2e",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "You are here to make a difference, to either improve the world or worsen it. And whether or not you consciously choose to, you will accomplish one or the other.",
+//           "date": "2024-10-08",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "f99651ad-2358-4b8f-8584-ae7d5be9450f",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "No matter how tiny you look, you can lead huge men if you have what the huge men don't have.",
+//           "date": "2024-10-09",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "df279ebf-93ed-4522-a35a-8b1b7e26a5e9",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The past influences everything and dictates nothing.",
+//           "date": "2024-10-10",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "ee70e3bc-fff4-413c-ab57-7a88c237e29a",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The books that influence the world are those that it has not read.",
+//           "date": "2024-10-11",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "0bf4b3de-141a-4f2b-80a6-25e4109ff926",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Never tell a child that something is too hard.",
+//           "date": "2024-10-12",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "de9cfcfe-6298-47eb-8996-6244707fee6c",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Right Practice Makes Man Perfect.",
+//           "date": "2024-10-13",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "38602cc3-9d6e-41a7-a3dc-14bc3267bfa8",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "To become an expert, be ready to ask the dumbest question.",
+//           "date": "2024-10-14",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "dd74f885-f1e4-4d8f-a066-fa0307adee05",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Nothing trains a man better than his own trials.",
+//           "date": "2024-10-15",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "c6194100-83e9-4ad5-bbd1-a4aa19efdac9",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Influence is our inner ability to lift people up to our perspective.",
+//           "date": "2024-10-16",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "dc1982c5-6673-4083-80a0-9a90e5d1dc82",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Most people want so desperately to be an individual yet are so easily shaped by the media.",
+//           "date": "2024-10-17",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "62fb6ede-d984-423a-8677-27eefeae99c6",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "We are at war, and the enemy knows that the subconscious absorbs everything.",
+//           "date": "2024-10-18",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "ced6b73b-c6c1-4920-8fdf-60e2ccf07f0b",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "A sword does not need to be whetted at all hours to keep it sharp.",
+//           "date": "2024-10-19",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "b204d2a4-a28f-4955-b2dd-bcc48f247b0a",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "It is more important to influence people than to impress them.",
+//           "date": "2024-10-20",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "af50b468-0dbe-4425-a546-9efd7acd9d78",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "No amount of training, no rehearsed scenario is going to teach you better than the real thing.",
+//           "date": "2024-10-21",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "74743592-3b2c-496e-8851-25923e7d9a6f",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The activity which seems unthinkable today can become your warm-up in the future!",
+//           "date": "2024-10-22",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "c36f7930-3a82-4767-8d31-db37198fd613",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "You must speak straight so that your words may go as sunlight into our hearts.",
+//           "date": "2024-10-23",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "ef8f7fa4-bf82-46a0-a941-78e608cc097b",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Practice places mind in your muscles.",
+//           "date": "2024-10-24",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "79046a0b-0e00-47c2-a8d5-6188cf035900",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "He who influences the thoughts of his times, and influences all the times that follow has made his impress on eternity.",
+//           "date": "2024-10-25",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "00f8e166-4380-4639-9fa7-7fb4378bcc07",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Ears don’t go deaf from too much communication, but many mouths fall silent due to a lack of communication.",
+//           "date": "2024-10-26",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "bb3442ba-eae0-48f4-a197-bed200b49647",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "More often than you realize it, the world is shaped by two things -- stories told and the memories they leave behind.",
+//           "date": "2024-10-27",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "4d575354-6529-4af7-87b4-8c6c780ccd32",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Leadership is universal and built on trust.",
+//           "date": "2024-10-28",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "94859f56-a87e-4ec5-9668-d831b344788b",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "We’re all somebody’s prospect; we’re all somebody’s customer.",
+//           "date": "2024-10-29",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "41cbdb7d-34d7-4b02-8096-067f18bf2ae7",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Never let haters 'still' your flow. They can only do so with your permission.",
+//           "date": "2024-10-30",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "b15f503e-d3f9-4fcb-bed8-6cabbaf4a5df",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Your circle of influence dictates your path.",
+//           "date": "2024-10-31",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "3cc81c6e-21dc-4292-bda4-c489b6b90abb",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Love all, trust a few, do wrong to none.",
+//           "date": "2024-11-01",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "7570399a-69fa-46c3-9422-46a2e6089226",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "All the world is made of faith, and trust, and pixie dust.",
+//           "date": "2024-11-02",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "ae8b793b-c989-4c67-a656-748033b776e3",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Be careful when a naked person offers you a shirt.",
+//           "date": "2024-11-03",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "27e0f54b-27e9-4518-b22d-d2791326de55",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "High on the mountains and in continuing danger, the most indestructible, strongest,and ideal trees grow.",
+//           "date": "2024-11-04",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "cc6d12a9-59f9-42e6-9e7f-cd50739ba5f3",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Never be afraid to trust an unknown future to a known God.",
+//           "date": "2024-11-05",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "c84bf572-e9bb-406e-9b0a-5303d829ca85",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The beginning of love is the will to let those we love be perfectly themselves.",
+//           "date": "2024-11-06",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "6179a876-57c1-4158-8184-1d1ccbe26615",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "It is only when we are suspended in mid-air with no landing in sight, that we force our wings to unravel and alas begin our flight",
+//           "date": "2024-11-07",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "6af2021b-b3e6-4e78-b14b-f08b39aabfb8",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "None of us knows what might happen even the next minute, yet still we go forward. Because we trust. Because we have Faith.",
+//           "date": "2024-11-08",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "6c725722-270a-41c3-af84-55252460dc83",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Everyone suffers at least one bad betrayal in their lifetime. It’s what unites us.",
+//           "date": "2024-11-09",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "c86a9b5d-a390-4958-8ef6-408b568300d4",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Forgiveness must be immediate, whether or not a person asks for it.",
+//           "date": "2024-11-10",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "883abb2a-ec86-4ff1-babd-f01d5deae47d",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Love is truly timeless.",
+//           "date": "2024-11-11",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "fa2e28a0-e54e-4539-991f-0b9937131930",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Either keep your promises or do not make them.",
+//           "date": "2024-11-12",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "305b95fc-33fa-411a-b667-2d3834ef7688",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Don't you quit. You keep walking. You keep trying. There is help and happiness ahead.",
+//           "date": "2024-11-13",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "468790c9-1115-4e34-ac83-ad635665b2f7",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Don't trust people who tell you other people's secrets.",
+//           "date": "2024-11-14",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "63545d22-f676-4c8c-b39f-7d226fc9de68",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Friends ask you questions; enemies question you.",
+//           "date": "2024-11-15",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "4a32bb06-8473-45b0-b05b-221133ac7d8e",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Be the kind of person others can trust.",
+//           "date": "2024-11-16",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "8e80a649-2d55-4952-aa67-db08b857786a",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The shifts of fortune test the reliability of friends.",
+//           "date": "2024-11-17",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "aebedf4d-eec7-42b8-8bed-cbf834c5c38a",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Peace and trust take years to build and seconds to shatter.",
+//           "date": "2024-11-18",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "c4397226-2d6b-4553-bc87-65cfacf412ed",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The deep roots never doubt spring will come.",
+//           "date": "2024-11-19",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "80490363-e9a9-4763-a04f-d284787be707",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "My books are friends that never fail me.",
+//           "date": "2024-11-20",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "a64fb8fd-0214-4f10-97f5-d38c01823b12",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Some of the most beautiful things we have in life comes from our mistakes.",
+//           "date": "2024-11-21",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "5b68f78d-213a-4d31-a02f-f0e6697c1fc8",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "A person is wise if he listens to millions of advice and doesn't implement any of it.",
+//           "date": "2024-11-22",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "00513f0f-354a-49a7-a425-2bb76c85cbf9",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Rather hear an ugly truth than an obscure lie.",
+//           "date": "2024-11-23",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "855da07e-d3b4-4a2b-a6d9-742f4dc41495",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "When God takes out the trash, don't go digging back through it. Trust Him.",
+//           "date": "2024-11-24",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "04c055c4-f2a8-494d-a985-179f3f268dcd",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "No boundary or barrier surrounds the heart of a person that loves their self and others.",
+//           "date": "2024-11-25",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "c1a5506b-719c-4c02-9ad4-81303f66c786",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Teamwork begins by building trust. And the only way to do that is to overcome our need for invulnerability.",
+//           "date": "2024-11-26",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "f2e8d431-b2b4-4525-9c3f-d6a087195aaf",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Don't be afraid to be who you are because you are the only person who knows you best.",
+//           "date": "2024-11-27",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "61c89827-376f-41a8-8760-01a56709a45f",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Focus on an ocean of positives, not a puddle of negatives",
+//           "date": "2024-11-29",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "7cc639dd-37ad-41fa-82f8-0b302f6d4f3b",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "If you say that you have never lied at all, then you give too much trust on anybody.",
+//           "date": "2024-11-30",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "dec7cb0d-8189-4322-b72b-06b30dcb3f26",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Alone we can do so little; together we can do so much.",
+//           "date": "2024-12-01",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "462079e5-b4e4-498a-a630-abcaaeaee36f",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "It is literally true that you can succeed best and quickest by helping others to succeed.",
+//           "date": "2024-12-02",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "5eec2f40-8845-4a9c-a727-599df463da6a",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "If you want to lift yourself up, lift up someone else.",
+//           "date": "2024-12-03",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "51d3d53d-8bea-4ca8-804e-5d15b040e042",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "No one can whistle a symphony. It takes a whole orchestra to play it.",
+//           "date": "2024-12-04",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "a19967a4-355d-4559-bec8-a68176c823aa",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Coming together is a beginning, staying together is progress, and working together is success.",
+//           "date": "2024-12-05",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "919e4963-71c0-42ca-854b-57a37e4855eb",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "‘Please’ and ‘thank you’ are still magic words.",
+//           "date": "2024-12-06",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "8fadcf06-12c9-4e14-b4e1-8353b2892ebf",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Find a group of people who challenge and inspire you, spend a lot of time with them, and it will change your life",
+//           "date": "2024-12-07",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "b25afd1c-43e6-470b-900b-521124374825",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "There is no such thing as a self-made man. You will reach your goals only with the help of others.",
+//           "date": "2024-12-08",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "dfbf2e03-b64e-407b-93e6-ab45128f9c37",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "The whole is other than the sum of the parts.",
+//           "date": "2024-12-09",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "5417a03d-0021-4ce7-b141-0aa2e8decf9f",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "No matter how brilliant your mind or strategy, if you’re playing a solo game, you’ll always lose out to a team.",
+//           "date": "2024-12-10",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "503817ca-c2fb-4d3f-8546-d2aa77dbf134",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Individually, we are one drop. Together, we are an ocean.",
+//           "date": "2024-12-11",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "8ea33595-194e-4dea-b5aa-971eaba62cf2",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "It is amazing what you can accomplish if you do not care who gets the credit.",
+//           "date": "2024-12-12",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "79482d03-2fc3-4d64-ade7-454808d14114",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "It takes two flints to make a fire.",
+//           "date": "2024-12-13",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "23a0c77b-028d-4ff4-ae74-675704cfe524",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "If you want to go fast, go alone. If you want to go far, go together.",
+//           "date": "2024-12-14",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "fc17913f-454b-410e-917d-4aea82c411f1",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Success is best when it's shared.",
+//           "date": "2024-12-15",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "a23447b5-0eac-4ebc-89ea-93ce52b0e2c2",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Hard work beats talent if talent doesn't work hard.",
+//           "date": "2024-12-16",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "ca93915b-ef54-486e-88d9-d6c9bd8feb81",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "You are either supporting the vision or supporting division.",
+//           "date": "2024-12-17",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "c86bd1e4-38e8-4e12-8ad4-fa4a060cfe14",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Service to humanity is service to God.",
+//           "date": "2024-12-18",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "c9e2d70b-6dcd-437d-b6de-b16e95833f09",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "It is great to do what you love but greater with the great team.",
+//           "date": "2024-12-19",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "c11d1037-6893-4897-b141-c77849953122",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "You build a company by building your people.",
+//           "date": "2024-12-20",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "5fd63e65-121e-4285-89d4-96d9f41a7ab5",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Number does not necessarily guarantee performance.For a team of 8 can outperform a team of 80.",
+//           "date": "2024-12-21",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "fd6752b8-736e-490a-959c-c8e8d6e85015",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Expressing authentic appreciation doesn’t cost you anything and the outcomes are simply wonderful.",
+//           "date": "2024-12-22",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "e1816bbe-5bac-4290-955f-2c4d40198a96",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Santaclaus is anyone who loves another and seeks to make them happy.",
+//           "date": "2024-12-23",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "2af8090c-2019-4487-aab3-ab656bca2273",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Mankind is a great and immense family. This is proved by what we feel in our hearts at Christmas.",
+//           "date": "2024-12-24",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "03178031-dc4d-4571-90a3-0ca878075b43",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Christmas isn’t just a day, it is a frame of mind. For loving, sharing and giving are not put away.",
+//           "date": "2024-12-25",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "3768c0ad-b8ca-404f-b074-a2716a9d0a1d",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Christmas is not as much about opening our presents as opening our hearts.",
+//           "date": "2024-12-26",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "b14a44c6-850f-41de-b852-772cdb9f03d4",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Life is always cyclical, and the year ends as it begins.",
+//           "date": "2024-12-27",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "4c1268e3-73ff-46a9-a404-5358433c7a11",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Never give up on something that you can't go a day without thinking about",
+//           "date": "2024-12-28",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "85c0c6bd-80ae-4d80-b0f5-9fbc3600a1f5",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Every new beginning comes from some other beginning's end.",
+//           "date": "2024-12-29",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "d5471182-c9d7-4b3f-ad2e-9411ad8fb218",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Everybody has difficult years, but a lot of times the difficult years end up being the greatest years of your whole entire life, if you survive them.",
+//           "date": "2024-12-30",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       },
+//       {
+//           "id": "45384646-c907-4c7d-9f9c-81fabfb1a9db",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "quote": "Hope Smiles from the threshold of the year to come, Whispering 'it will be happier'.",
+//           "date": "2024-12-31",
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.925Z",
+//           "updatedAt": "2024-06-03T14:46:03.925Z"
+//       }
+//   ],
+//   "images": [
+//       {
+//           "id": "1acd9dc2-5551-4739-9fb8-136d6202c680",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "url": "https://prestige-calendar-dev.s3.us-east-1.amazonaws.com/logo/c4400328-83b3-4aca-877a-c611cfd8d78e.jpg",
+//           "title": null,
+//           "subtext": null,
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.402Z",
+//           "updatedAt": "2024-06-03T14:46:03.402Z"
+//       },
+//       {
+//           "id": "439fd459-6eaa-4dca-b174-6259df43d3e5",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "url": "https://prestige-calendar-dev.s3.us-east-1.amazonaws.com/logo/64edabd0-6ca5-4a1c-a08d-64c852a1b5f0.jpg",
+//           "title": null,
+//           "subtext": null,
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.402Z",
+//           "updatedAt": "2024-06-03T14:46:03.402Z"
+//       },
+//       {
+//           "id": "47215f4b-b17d-477d-aaa4-806cf2d5c250",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "url": "https://prestige-calendar-dev.s3.us-east-1.amazonaws.com/logo/6976e9f2-6ac2-4938-99c7-8860b0735fa6.jpg",
+//           "title": null,
+//           "subtext": null,
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.402Z",
+//           "updatedAt": "2024-06-03T14:46:03.402Z"
+//       },
+//       {
+//           "id": "4054985a-1e37-481f-b64a-fb2fbf087613",
+//           "templateId": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//           "url": "https://prestige-calendar-dev.s3.us-east-1.amazonaws.com/logo/bfb86842-f8ba-49a0-8efe-4d399f50aec2.jpg",
+//           "title": null,
+//           "subtext": null,
+//           "deletedAt": null,
+//           "createdAt": "2024-06-03T14:46:03.402Z",
+//           "updatedAt": "2024-06-03T14:46:03.402Z"
+//       }
+//   ],
+//   "client": {
+//       "id": "5c04e022-dae4-4852-ae71-61a8e2f0e046",
+//       "name": "Nigeria National Peroleum Corporation",
+//       "location": "Port Harcourt",
+//       "email": "hello@nnpc.com",
+//       "mobile": "+141223344532",
+//       "about": "Total Energies is a multi-energy company that produces and markets fuels, natural gas and electricity. Our 100,000 employees are committed to better energy that is more affordable, more reliable, cleaner and accessible to as many people as possible. Active in more than 130 countries, our ambition is to become the responsible energy major.",
+//       "logoUrl": "https://prestige-calendar-dev.s3.us-east-1.amazonaws.com/logo/e6ee99f6-646d-41ca-b5bc-ea17c65769c2.jpg",
+//       "status": true,
+//       "createdAt": "2024-06-03T13:35:07.204Z",
+//       "updatedAt": "2024-06-03T14:44:38.022Z",
+//       "deletedAt": null
+//   },
+//   "serial": 1
+// }
+
+// "id": "f218ea2a-ba61-455a-901d-c584afb4a13e",
+//   "clientId": "5c04e022-dae4-4852-ae71-61a8e2f0e046",
+//   "screenSize": "10",
+//   "name": "Simply Divine",
+//   "delay": "24 hours",
+//   "order": "shuffle",
+//   "fileSize": "34 mb",
+//   "deletedAt": null,
+//   "createdAt": "2024-06-03T14:46:02.568Z",
+//   "updatedAt": "2024-06-03T14:46:02.568Z",
+//   "quotes": [
+
 export const columnData = [
   {
-    id: "id",
+    id: "serial",
     header: "S/N",
-    accessorKey: "id",
+    accessorKey: "serial",
   },
   {
     id: "client",
     header: "Client",
     accessorKey: "client",
     cell: ({ row }) => (
-      <DeviceDetailsModal
+      <TemplateModal
         data={row.original}
-        header={row.original.client}
+        header={row.original.clientId}
         key={v4()}
         details={<TemplateDevice />}
       />
     ),
   },
   {
-    id: "templateName",
+    id: "name",
     header: "Template Name",
-    accessorKey: "templateName",
-    cell: ({ row }) => (
-      <DeviceDetailsModal
-        data={row.original}
-        header={row.original.templateName}
-        key={v4()}
-        details={<TemplateDevice />}
-      />
-    ),
+    accessorKey: "name",
+    // cell: ({ row }) => (
+    //   <DeviceDetailsModal
+    //     data={row.original}
+    //     header={row.original.templateName}
+    //     key={v4()}
+    //     details={<TemplateDevice />}
+    //   />
+    // ),
   },
   {
-    id: "size",
+    id: "fileSize",
     header: "Size",
-    accessorKey: "size",
+    accessorKey: "fileSize",
   },
   {
-    id: "transistionDelay",
+    id: "delay",
     header: "Transistion Delay",
-    accessorKey: "transistionDelay",
-    cell: ({ row }) => <span>{row.original.transistionDelay}hours</span>,
+    accessorKey: "delay",
+    cell: ({ row }) => <span>{row.original.delay}</span>,
   },
-  {
-    id: "id",
-    header: "Actions",
-    accessorKey: "id",
-    cell: () => (
-      <span>
-        {/* <MdOutlineMoreVert size={20} /> */}
-        <ActionMenu />
-      </span>
-    ),
-  },
+  // {
+  //   id: "id",
+  //   header: "Actions",
+  //   accessorKey: "id",
+  //   cell: () => (
+  //     <span>
+  //       {/* <MdOutlineMoreVert size={20} /> */}
+  //       <ActionMenu />
+  //     </span>
+  //   ),
+  // },
 ];
 
 // {

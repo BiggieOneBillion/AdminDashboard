@@ -23,15 +23,22 @@ export const newClientSchema = z.object({
 });
 
 export const newTemplateSchema = z.object({
-  templateName: z.string().min(1, { message: "Field cannot be empty" }),
+  name: z.string().min(1, { message: "Field cannot be empty" }),
   imeiNumber: z.string().min(10, { message: "Field cannot be empty" }),
   purchaseDate: z.string().date(),
-  size: z.enum(["10inches", "21inches"]),
+  screenSize: z.enum(["10", "21"]),
+  delay: z.enum(["24hours", "12hours"]),
+  order: z.enum(["shuffle", "linear"]),
+  clientId: z.string().min(1, { message: "Field cannot be empty" }),
+  name: z.string().min(1, { message: "Field cannot be empty" }),
+  email: z.string().min(1, { message: "Field cannot be empty" }),
+  location: z.string().min(1, { message: "Field cannot be empty" }),
+  phoneNumber: z.string().min(1, { message: "Field cannot be empty" }),
 });
 
 export const newDeviceSchema = z.object({
   deviceId: z.string().min(1, { message: "Field cannot be empty" }),
-  imei: z.string().min(10, { message: "Field cannot be empty" }),
+  imei: z.string().min(15, { message: "Field cannot be empty" }),
   purchaseDate: z.string().date(),
   size: z.enum(["21", "10"]),
 });

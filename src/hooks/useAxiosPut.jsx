@@ -3,7 +3,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
 
-export default function useAxiosPost({ url, queryName, fn }) {
+export default function useAxiosPut({ url, queryName, fn }) {
   const token_id = userStore((state) => state.token_id);
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -16,14 +16,14 @@ export default function useAxiosPost({ url, queryName, fn }) {
       setIsLoading(true);
       setIsError(false);
       setIsSuccess(false);
-      const response = await axios.post(url, data, {
+      const response = await axios.put(url, data, {
         headers: {
           Authorization: `Bearer ${token_id}`,
           "Content-Type": "application/json",
         },
       });
-      console.log(response);
-      if (response.status === 201) {
+      // console.log(response);
+      if (response.status === 200) {
         setIsLoading(false);
         setIsSuccess(true);
         queryClient.invalidateQueries(queryName);
@@ -33,16 +33,13 @@ export default function useAxiosPost({ url, queryName, fn }) {
       // if(response.status === 500){
       //    setErrorMsg(response)
       // }
-      // console.log("The solid principle" + error.message);
-      if (error.message === "Request failed with status code 500") {
-        setErrorMsg("Device id or Imei id already exist!");
-        setIsError(true);
-        setIsLoading(false);
-        setIsSuccess(false);
-      } else {
-        setIsLoading(false);
-        setIsSuccess(false);
-      }
+        // console.log("The solid principle" + error.message);
+    //   if (error.message === "Request failed with status code 500") {
+    //     setErrorMsg("Device id or Imei id already exist!");
+    //   }
+      setIsError(true);
+      setIsLoading(false);
+      setIsSuccess(false);
     }
   };
 

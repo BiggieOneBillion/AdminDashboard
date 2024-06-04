@@ -45,17 +45,18 @@ const DeviceDetailsModal = ({ data, header, details }) => {
   if (isError || deviceDetails === undefined) {
     // console.log(deviceDetails);
     return (
-      <div className="py-10 flex justify-center gap-3 items-center w-full">
-        <p className="px-2 py-1 border text-black text-sm capitalize">
-          Error while fetching data. Try again
-        </p>
-        <button
-          onClick={() => refetch()}
-          className="border rounded-sm font-medium text-black text-sm px-4 py-2 bg-transparent active:scale-95 transition-transform duration-200 ease-in-out"
-        >
-          ReLoad
-        </button>
-      </div>
+      <p>Re-Fetching...</p>
+      // <div className="py-10 flex justify-center gap-3 items-center w-full">
+      //   <p className="px-2 py-1 border text-black text-sm capitalize">
+      //     Error while fetching data. Try again
+      //   </p>
+      //   <button
+      //     onClick={() => refetch()}
+      //     className="border rounded-sm font-medium text-black text-sm px-4 py-2 bg-transparent active:scale-95 transition-transform duration-200 ease-in-out"
+      //   >
+      //     ReLoad
+      //   </button>
+      // </div>
     );
   }
 
