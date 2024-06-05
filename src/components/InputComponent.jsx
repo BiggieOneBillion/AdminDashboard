@@ -7,7 +7,7 @@ const InputContainer = ({ label, register, name, type = "text", errors, isDisabl
       className="px-4 w-full py-2 text-base border rounded-xl text-black bg-white disabled:bg-[rgba(233,233,249,0.3)] placeholder:text-sm "
       disabled={isDisabled}
       placeholder={placeholder}
-      {...register(name)}
+      {...register(name, { required: "required field*" })}
     />
     <span className="h-4 text-red-600 text-sm">
       {errors[name] && errors[name].message}

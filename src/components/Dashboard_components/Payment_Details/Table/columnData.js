@@ -1,5 +1,6 @@
 import { v4 } from "uuid";
 import PaymentDetailsModal from "../PaymentDetailsModal";
+import EditPaymentModal from "../EditPaymentModal";
 
 // {
 //   "id": "32f77289-5fc4-4d75-9274-9b529dc30cb2",
@@ -62,7 +63,7 @@ export const columnData = [
   },
   {
     id: "isComplete",
-    header: "Transistion Delay",
+    header: "Status",
     accessorKey: "isComplete",
     cell: ({ row }) => (
       <span
@@ -77,4 +78,10 @@ export const columnData = [
       </span>
     ),
   },
+  {
+    id:'serial',
+    header:'Actions',
+    accessorKey:'serial',
+    cell : ({row}) => <EditPaymentModal key={v4()} data={row.original} />
+  }
 ];

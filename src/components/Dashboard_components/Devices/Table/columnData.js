@@ -3,6 +3,7 @@ import DeviceDetailsModal from "../../Client_Details/DeviceDetailsModal";
 import DeviceDetailsCard from "../../Client_Details/DeviceDetailsCard";
 import Image from "next/image";
 import Link from "next/link";
+import EditDeviceModal from "../EditDeviceModal";
 
 // {
 //   "id": "b01c906b-73dc-4254-82cb-4c932b039810",
@@ -116,4 +117,10 @@ export const columnData = [
       </span>
     ),
   },
+  {
+    id:'serial',
+    header:'Actions',
+    accessorKey:'serial',
+    cell : ({row}) => <EditDeviceModal key={v4()} data={row.original} />
+  }
 ];

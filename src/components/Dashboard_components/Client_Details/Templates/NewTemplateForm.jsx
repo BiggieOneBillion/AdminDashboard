@@ -149,7 +149,7 @@ const NewTemplateForm = ({ closeBtn }) => {
       fileSize: "13mb",
     };
 
-    // console.log(input);
+    console.log(input);
 
     handleRequest(input);
     // console.log(value);
@@ -261,12 +261,12 @@ const NewTemplateForm = ({ closeBtn }) => {
             register={register}
             type="date"
           />
-          <InputContainer
+          {/* <InputContainer
             errors={errors}
             label={"IMEI number"}
             name={"imeiNumber"}
             register={register}
-          />
+          /> */}
         </div>
         {/* Image input container */}
         <Container>
