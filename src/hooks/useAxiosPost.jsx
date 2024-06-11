@@ -22,7 +22,7 @@ export default function useAxiosPost({ url, queryName, fn }) {
           "Content-Type": "application/json",
         },
       });
-      console.log(response);
+      // console.log(response);
       if (response.status === 201) {
         setIsLoading(false);
         setIsSuccess(true);

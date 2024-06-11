@@ -25,7 +25,7 @@ const Index = () => {
     isError,
     refetch,
   } = useQuery({
-    queryKey: ["clients_invoice_overall_info"],
+    queryKey: ["clients_invoice_overall_info_table_data"],
     queryFn: async () => {
       const response = await axios.get(
         `https://api-prestigecalendar.olotusquare.co/api/v1/admin/invoices?page=1&limit=10`,
@@ -71,6 +71,11 @@ const Index = () => {
     });
 
   const mData = tableData.entity.rows;
+
+
+  console.log('invoice data: ' + tableData.status)
+
+
   return (
     <main className="flex flex-col gap-5">
       <div className="flex items-center justify-between">

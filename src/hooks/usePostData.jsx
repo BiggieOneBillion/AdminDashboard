@@ -15,7 +15,7 @@ export default function usePostData({ url, queryName,  }) {
       });
     },
     onSuccess: (data) => {
-      console.log(data);
+      // console.log(data);
       // queryClient.invalidateQueries(queryName);
       // if (fn) fn();
     },

@@ -91,7 +91,7 @@ const NewPaymentForm = ({ closeBtn }) => {
     // mutations.mutate(input);
     handleRequest(input);
 
-    console.log(input)
+    // console.log(input)
   };
 
   return (

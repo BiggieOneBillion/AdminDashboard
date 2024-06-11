@@ -22,7 +22,7 @@ export default function useAxiosPost2({ url, queryName, fn }) {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log(response);
+      // console.log(response);
       if (response.status === 201) {
         setIsLoading(false);
         setIsSuccess(true);
@@ -30,6 +30,8 @@ export default function useAxiosPost2({ url, queryName, fn }) {
         if (fn) fn();
       }
     } catch (error) {
+
+      // console.log(error);
       // if(response.status === 500){
       //    setErrorMsg(response)
       // }

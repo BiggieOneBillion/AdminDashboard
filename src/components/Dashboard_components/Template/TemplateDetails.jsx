@@ -9,8 +9,8 @@ import { RiTimerLine } from "react-icons/ri";
 import { RxHamburgerMenu } from "react-icons/rx";
 
 const TemplateDevice = ({ data }) => {
-  console.log(data);
-  console.log(data.images.length)
+  // console.log(data);
+  // console.log(data.images.length)
   //   {
   //     "id": "f218ea2a-ba61-455a-901d-c584afb4a13e",
   //     "clientId": "5c04e022-dae4-4852-ae71-61a8e2f0e046",

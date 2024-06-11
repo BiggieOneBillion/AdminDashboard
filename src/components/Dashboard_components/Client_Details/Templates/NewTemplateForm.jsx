@@ -13,6 +13,7 @@ import { v4 } from "uuid";
 import { clientStore } from "@/store/clients";
 import useAxiosPost2 from "@/hooks/useAxiosPost2";
 import { useParams } from "next/navigation";
+import axios from "axios";
 
 const Container = ({ children }) => (
   <div className="p-4 border rounded-lg flex flex-col gap-2 bg-whitey">
@@ -137,21 +138,47 @@ const NewTemplateForm = ({ closeBtn }) => {
     queryName: "template_data_info_0987654",
   });
 
-  const onSubmit = (value) => {
+  const onSubmit = async (value) => {
+    // console.log(value);
+    const formData = new FormData();
+    formData.append("delay", value.delay);
+    formData.append("fileSize", "13mb");
+    formData.append("screenSize", value.screenSize);
+    formData.append("order", value.order);
+    formData.append("name", value.templateName);
+    formData.append("images", value.image[0]);
+    formData.append("quotes", value.quotes[0]);
+
+    // console.log(formData);
+
+    // try {
+    //   const response = await axios.post("/api/createTemplate", formData);
+    //   console.log(response);
+    // } catch (error) {
+    //   console.log(error);
+    // }
+    // formData.append(
+    //   "images",
+    //   fs.createReadStream("/Users/chukwuchinwendu/Downloads/coolrose.jpg")
+    // );
+    // formData.append(
+    //   "quotes",
+    //   fs.createReadStream("/Users/chukwuchinwendu/Downloads/dev_quotes.xlsx")
+    // );
     // console.log(value);
     const input = {
       name: value.templateName,
       screenSize: value.screenSize,
       delay: value.delay,
       order: value.order,
-      quotes: value.quotes,
-      images: value.image,
+      quotes: value.quotes[0],
+      images: value.image[0],
       fileSize: "13mb",
     };
 
-    console.log(input);
+    // console.log(input);
 
-    handleRequest(input);
+    handleRequest(formData);
     // console.log(value);
     // name:Simply Divine
     // screenSize:10
@@ -169,7 +196,7 @@ const NewTemplateForm = ({ closeBtn }) => {
     <div className="space-y-3">
       {isError && (
         <p className="text-red-600 bg-red-300 py-3 text-center w-full text-sm">
-          Network Error
+          Try Again
         </p>
       )}
       {isSuccess && (
@@ -290,6 +317,11 @@ const NewTemplateForm = ({ closeBtn }) => {
               {...register("quotes")}
             />
           </div>
+          {isError && (
+            <p className="text-sm text-red-800">
+              File Format not correct, upload the correct format
+            </p>
+          )}
           {/* <QuoteContainer /> */}
         </Container>
         {/* delay, order, filesize */}

@@ -72,7 +72,7 @@ const EditForm = ({ closeBtn, data }) => {
   });
 
   const onSubmit = (value) => {
-    console.log({ ...value, ram: `${value.ram}GB`, rom: `${value.rom}GB` });
+    // console.log({ ...value, ram: `${value.ram}GB`, rom: `${value.rom}GB` });
     const input = { ...value, ram: `${value.ram}GB`, rom: `${value.rom}GB` };
     handleRequest(input);
   };

@@ -57,7 +57,7 @@ const InputRadioContainer = ({ label, register, name, errors, id, value }) => (
 // }
 
 const EditPaymentForm = ({ closeBtn, data }) => {
-  console.log(data.deviceName);
+  // console.log(data.deviceName);
   const {
     register,
     handleSubmit,

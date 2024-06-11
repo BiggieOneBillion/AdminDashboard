@@ -97,6 +97,14 @@ const Chart = () => {
     );
   }
 
+  if (!chartData || Object.keys(chartData?.entity).length == 0) {
+    return (
+      <div>
+        <p className="font-bold text-3xl text-[rgba(0,0,0,0.1)]">No Data</p>
+      </div>
+    );
+  }
+
   const thisYear = [
     { name: "JAN", Total: chartData.entity.January },
     { name: "FEB", Total: chartData.entity.February },
@@ -111,6 +119,7 @@ const Chart = () => {
     { name: "NOV", Total: chartData.entity.November },
     { name: "DEC", Total: chartData.entity.December },
   ];
+
   return (
     <div className="chart">
       <div className="w-full flex items-center justify-between">
