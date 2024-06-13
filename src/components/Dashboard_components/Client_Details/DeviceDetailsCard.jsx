@@ -90,7 +90,7 @@ const DeviceDetailsCard = ({ deviceDetails }) => {
               // state={"Active"}
               state={deviceDetails?.entity.status}
               // title={"105KPRW0006234"}
-              title={deviceDetails?.entity.id}
+              title={deviceDetails?.entity.deviceId}
             />
             <MainTile
               icon={<TbCapture size={20} />}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import InputContainer from "@/components/InputComponent";
 import { IoSaveSharp } from "react-icons/io5";
@@ -14,6 +14,7 @@ import { clientStore } from "@/store/clients";
 import useAxiosPost2 from "@/hooks/useAxiosPost2";
 import { useParams } from "next/navigation";
 import axios from "axios";
+import { object } from "zod";
 
 const Container = ({ children }) => (
   <div className="p-4 border rounded-lg flex flex-col gap-2 bg-whitey">
@@ -47,43 +48,42 @@ const InputRadioContainer = ({ label, register, name, errors, id, value }) => (
   </div>
 );
 
-const ArticleForm = ({ register }) => (
-  <div className="grid grid-cols-[300px_200px_1fr] gap-4 h-[50px] relative">
-    {/* first input */}
+const ArticleForm = ({
+  register,
+  imgName,
+  setImgName,
+  toggle,
+  imageRef,
+  imagezipRef,
+}) => (
+  <div className="grid grid-cols-[1fr_1fr] gap-4 h-[50px] relative">
     <div className="w-full h-full border border-blue-700 rounded-2xl">
       <label
         htmlFor="imgFile"
         className=" h-full flex px-5 justify-between items-center w-full"
       >
         <input
+          
           type="file"
           id="imgFile"
-          className="hiddeny text-sm"
-          {...register("image")}
+          className="hidden text-sm"
+          accept={toggle ? "image/*" : ".zip"}
+          multiple
+          {...register("image", {
+            onChange: (e) => {
+              if (e.target.files.length > 1) {
+                setImgName(`${e.target.files.length} images`);
+                return;
+              }
+              setImgName(e.target.files[0].name);
+            },
+          })}
         />
-        {/* <span className="text-xs font-light text-black">Upload An Image</span> */}
+        <span className="text-sm font-normal text-black">{imgName}</span>
         <span>
           <PiImageThin size={20} />
         </span>
       </label>
-    </div>
-    {/* second input */}
-    <div className="w-full h-full border rounded-2xl overflow-hidden">
-      <input
-        type="text"
-        placeholder="Title"
-        className="h-full px-3 py-1 w-full placeholder:text-sm placeholder:font-light rounded-2xl focus-within:outline-none text-sm font-normal"
-        {...register("title")}
-      />
-    </div>
-    {/* third input */}
-    <div className="w-full h-full border rounded-xl overflow-hidden">
-      <input
-        type="text"
-        placeholder="Sub text"
-        className="h-full px-3 py-1 w-full placeholder:text-sm placeholder:font-light rounded-2xl  focus-within:outline-none text-sm font-normal"
-        {...register("subtext")}
-      />
     </div>
   </div>
 );
@@ -111,7 +111,17 @@ const InputContainer2 = ({
 );
 
 const NewTemplateForm = ({ closeBtn }) => {
+  // From Store
   const singleClient = clientStore((state) => state.singleClient);
+
+  // useState
+  const [imgName, setImgName] = useState("Upload An Image");
+  const [isUploaded, setIsUploaded] = useState(false);
+  const [noImage, setNoImage] = useState(false);
+  const [toggle, setToggle] = useState(true);
+  // use ref
+  const imageRef = useRef(null);
+  const imagezipRef = useRef(null);
 
   const params = useParams();
 
@@ -119,6 +129,8 @@ const NewTemplateForm = ({ closeBtn }) => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
+    resetField
   } = useForm({
     // resolver: zodResolver(newTemplateSchema),
     defaultValues: {
@@ -140,6 +152,17 @@ const NewTemplateForm = ({ closeBtn }) => {
 
   const onSubmit = async (value) => {
     // console.log(value);
+
+    setIsUploaded(false);
+
+    if (
+      Object.keys(value.image).length == 0 ||
+      Object.keys(value.quotes).length == 0
+    ) {
+      setIsUploaded(true);
+      return;
+    }
+
     const formData = new FormData();
     formData.append("delay", value.delay);
     formData.append("fileSize", "13mb");
@@ -149,54 +172,28 @@ const NewTemplateForm = ({ closeBtn }) => {
     formData.append("images", value.image[0]);
     formData.append("quotes", value.quotes[0]);
 
-    // console.log(formData);
+    // const input = {
+    //   name: value.templateName,
+    //   screenSize: value.screenSize,
+    //   delay: value.delay,
+    //   order: value.order,
+    //   quotes: value.quotes[0],
+    //   images: value.image[0],
+    //   fileSize: "13mb",
+    // };
 
-    // try {
-    //   const response = await axios.post("/api/createTemplate", formData);
-    //   console.log(response);
-    // } catch (error) {
-    //   console.log(error);
-    // }
-    // formData.append(
-    //   "images",
-    //   fs.createReadStream("/Users/chukwuchinwendu/Downloads/coolrose.jpg")
-    // );
-    // formData.append(
-    //   "quotes",
-    //   fs.createReadStream("/Users/chukwuchinwendu/Downloads/dev_quotes.xlsx")
-    // );
-    // console.log(value);
-    const input = {
-      name: value.templateName,
-      screenSize: value.screenSize,
-      delay: value.delay,
-      order: value.order,
-      quotes: value.quotes[0],
-      images: value.image[0],
-      fileSize: "13mb",
-    };
-
-    // console.log(input);
-
-    handleRequest(formData);
-    // console.log(value);
-    // name:Simply Divine
-    // screenSize:10
-    // delay:24 hours
-    // order: shuffle
-    // fileSize:34 mb
-    // quotes
-    // images
+    handleRequest(formData)
   };
 
-  const delayData = ["12 hours", "24 hours"];
+  useEffect(() => {
+    resetField('image')
+  }, [toggle]);
 
-  const orderData = ["Shuffle", "linear"];
   return (
     <div className="space-y-3">
-      {isError && (
+      {isUploaded && (
         <p className="text-red-600 bg-red-300 py-3 text-center w-full text-sm">
-          Try Again
+          Image or quotes file missing!! Please upload
         </p>
       )}
       {isSuccess && (
@@ -297,9 +294,49 @@ const NewTemplateForm = ({ closeBtn }) => {
         </div>
         {/* Image input container */}
         <Container>
-          <h1 className="font-medium text-lg text-black mb-4">Images</h1>
+          <h1 className="font-medium text-lg text-black mb-4">Image</h1>
+          <p className="text-sm">
+            You can only upload single, multiple or a zip file containing images
+          </p>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => {
+                setImgName("Upload an image");
+                setToggle(true);
+              }}
+              disabled={toggle}
+              className={`px-4 py-1 rounded-lg text-sm cursor-pointer disabled:cursor-none ${
+                toggle
+                  ? "bg-black text-white border border-black"
+                  : "bg-transparent border border-black text-black"
+              }`}
+            >
+              images
+            </button>
+            <button
+              disabled={!toggle}
+              onClick={() => {
+                setImgName("Upload a zip file");
+                setToggle(false);
+              }}
+              className={`px-4 py-1 rounded-lg text-sm cursor-pointer disabled:cursor-none ${
+                toggle
+                  ? "bg-transparent border border-black text-black"
+                  : "bg-black text-white"
+              }`}
+            >
+              zip file
+            </button>
+          </div>
           {/* <ImageFormContainer /> */}
-          <ArticleForm register={register} />
+          <ArticleForm
+            register={register}
+            imgName={imgName}
+            setImgName={setImgName}
+            toggle={toggle}
+            imageRef={imageRef}
+            imagezipRef={imagezipRef}
+          />
         </Container>
         {/* Quotes input container */}
         <Container>
@@ -310,7 +347,7 @@ const NewTemplateForm = ({ closeBtn }) => {
           <div className="py-1 px-2 border rounded-md">
             <input
               type="file"
-              ID="fileSelect"
+              id="fileSelect"
               accept=".xlsx, .xls, .csv"
               className="py-2 px-2"
               placeholder=""
@@ -364,10 +401,10 @@ const NewTemplateForm = ({ closeBtn }) => {
               <InputRadioContainer
                 errors={errors}
                 name={"order"}
-                label={"linear"}
+                label={"sequential"}
                 register={register}
-                id={"linear"}
-                value={"linear"}
+                id={"sequential"}
+                value={"sequential"}
               />
             </div>
           </div>

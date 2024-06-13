@@ -49,3 +49,45 @@
 //         "location": "Doyleport"
 //     }
 // }
+
+
+// const ArticleForm = ({ register }) => (
+//     <div className="grid grid-cols-[300px_200px_1fr] gap-4 h-[50px] relative">
+//       {/* first input */}
+//       <div className="w-full h-full border border-blue-700 rounded-2xl">
+//         <label
+//           htmlFor="imgFile"
+//           className=" h-full flex px-5 justify-between items-center w-full"
+//         >
+//           <input
+//             type="file"
+//             id="imgFile"
+//             className="hiddeny text-sm"
+//             {...register("image")}
+//           />
+//           {/* <span className="text-xs font-light text-black">Upload An Image</span> */}
+//           <span>
+//             <PiImageThin size={20} />
+//           </span>
+//         </label>
+//       </div>
+//       {/* second input */}
+//       <div className="w-full h-full border rounded-2xl overflow-hidden">
+//         <input
+//           type="text"
+//           placeholder="Title"
+//           className="h-full px-3 py-1 w-full placeholder:text-sm placeholder:font-light rounded-2xl focus-within:outline-none text-sm font-normal"
+//           {...register("title")}
+//         />
+//       </div>
+//       {/* third input */}
+//       <div className="w-full h-full border rounded-xl overflow-hidden">
+//         <input
+//           type="text"
+//           placeholder="Sub text"
+//           className="h-full px-3 py-1 w-full placeholder:text-sm placeholder:font-light rounded-2xl  focus-within:outline-none text-sm font-normal"
+//           {...register("subtext")}
+//         />
+//       </div>
+//     </div>
+//   );

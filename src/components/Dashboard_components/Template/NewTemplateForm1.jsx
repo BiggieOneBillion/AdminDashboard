@@ -281,7 +281,7 @@ const NewTemplateForm1 = ({ closeBtn }) => {
           <div className="py-1 px-2 border rounded-md">
             <input
               type="file"
-              ID="fileSelect"
+              id="fileSelect"
               accept=".xlsx, .xls, .csv"
               className="py-2 px-2"
               placeholder=""
