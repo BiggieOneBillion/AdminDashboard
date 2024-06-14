@@ -73,7 +73,7 @@ const ArticleForm = ({ register }) => (
   </div>
 );
 
-const AddNewsForm = ({ closeBtn }) => {
+const AddNewsForm = ({ closeBtn, closeFn }) => {
   const {
     register,
     handleSubmit,
@@ -132,7 +132,7 @@ const AddNewsForm = ({ closeBtn }) => {
           subtext: values.subtext,
           coverImageUrl: response.data.entity.url,
         };
-        handleRequest(data);
+        handleRequest(data, closeFn);
       }
     } catch (error) {
       setErrMsg("Image Not Uploaded");

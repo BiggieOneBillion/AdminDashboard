@@ -43,7 +43,7 @@ const InputRadioContainer = ({ label, register, name, errors, id, value }) => (
   </div>
 );
 
-const NewDeviceForm = ({ closeBtn }) => {
+const NewDeviceForm = ({ closeBtn, closeFn }) => {
   const queryClient = useQueryClient();
   //  get single client values from clientStore.
   const singleClient = clientStore((state) => state.singleClient);
@@ -88,7 +88,7 @@ const NewDeviceForm = ({ closeBtn }) => {
     console.log(value);
     // mutations.mutate({ ...value });
 
-    handleRequest(value);
+    handleRequest(value, closeFn);
     // mutations.isSuccess &&
     //   queryClient.invalidateQueries({
     //     queryKey: ["main_dashboard_clients_info"],
