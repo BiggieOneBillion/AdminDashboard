@@ -11,7 +11,7 @@ export default function useAxiosPost2({ url, queryName, fn }) {
   const [errorMsg, setErrorMsg] = useState("");
   const queryClient = useQueryClient();
 
-  const handleRequest = async (data) => {
+  const handleRequest = async (data, fn) => {
     try {
       setIsLoading(true);
       setIsError(false);
@@ -30,8 +30,13 @@ export default function useAxiosPost2({ url, queryName, fn }) {
         if (fn) fn();
       }
     } catch (error) {
-
-      // console.log(error);
+       if (error.message === 'Network Error') {
+          setErrorMsg('Network Error')
+       }
+      //  if () {
+        
+      //  }
+      
       // if(response.status === 500){
       //    setErrorMsg(response)
       // }

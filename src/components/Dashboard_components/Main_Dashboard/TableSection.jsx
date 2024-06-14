@@ -10,10 +10,15 @@ import Table from "./Main_Table/Tables/Table";
 import { userStore } from "@/store/user";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { clientStore } from "@/store/clients";
 
 const TableSection = () => {
   // const [data, setData] = useState([]);
   const [filtering, setFiltering] = useState("");
+
+  const updateAllClientDetails = clientStore(
+    (state) => state.updateAllClientDetails
+  );
 
   const filterState = {
     filtering,
@@ -63,6 +68,8 @@ const TableSection = () => {
       </div>
     );
   }
+
+  data?.entity?.data && updateAllClientDetails(data?.entity?.data);
 
   // // console.log(data?.entity.data);
 

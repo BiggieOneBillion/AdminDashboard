@@ -65,7 +65,7 @@ const TableContainer = ({ children }) => {
 
   const mData = tableData.entity.rows;
 
-  console.log(mData);
+  // console.log(mData);
 
   // Map through children and clone each element with additional props
   const childrenWithProps = React.Children.map(children, (child) => {

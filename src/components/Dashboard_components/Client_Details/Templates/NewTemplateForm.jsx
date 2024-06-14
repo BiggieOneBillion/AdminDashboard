@@ -63,7 +63,6 @@ const ArticleForm = ({
         className=" h-full flex px-5 justify-between items-center w-full"
       >
         <input
-          
           type="file"
           id="imgFile"
           className="hidden text-sm"
@@ -110,13 +109,14 @@ const InputContainer2 = ({
   </div>
 );
 
-const NewTemplateForm = ({ closeBtn }) => {
+const NewTemplateForm = ({ closeBtn, closeFn }) => {
   // From Store
   const singleClient = clientStore((state) => state.singleClient);
 
   // useState
   const [imgName, setImgName] = useState("Upload An Image");
-  const [isUploaded, setIsUploaded] = useState(false);
+  const [isImgUploaded, setIsImgUploaded] = useState(false);
+  const [isQuoteUploaded, setIsQuoteUploaded] = useState(false);
   const [noImage, setNoImage] = useState(false);
   const [toggle, setToggle] = useState(true);
   // use ref
@@ -130,7 +130,7 @@ const NewTemplateForm = ({ closeBtn }) => {
     handleSubmit,
     formState: { errors },
     reset,
-    resetField
+    resetField,
   } = useForm({
     // resolver: zodResolver(newTemplateSchema),
     defaultValues: {
@@ -145,27 +145,55 @@ const NewTemplateForm = ({ closeBtn }) => {
     },
   });
 
-  const { handleRequest, isError, isLoading, isSuccess } = useAxiosPost2({
-    url: `https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/${params.id}/templates`,
-    queryName: "template_data_info_0987654",
-  });
+  const { handleRequest, isError, isLoading, isSuccess, errorMsg } =
+    useAxiosPost2({
+      url: `https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/${params.id}/templates`,
+      queryName: "template_data_info_0987654",
+    });
 
   const onSubmit = async (value) => {
-    // console.log(value);
+    setIsImgUploaded(false);
+    setIsQuoteUploaded(false);
 
-    setIsUploaded(false);
-
-    if (
-      Object.keys(value.image).length == 0 ||
-      Object.keys(value.quotes).length == 0
-    ) {
-      setIsUploaded(true);
+    if (value.image == undefined || value.image.length == 0) {
+      setIsImgUploaded(true);
       return;
     }
 
+    if (value.quotes === undefined || value.quotes.length == 0) {
+      setIsQuoteUploaded(true);
+      return;
+    }
+
+    // if (
+    //   value.image == undefined ||
+    //   value.quotes === undefined ||
+    //   value.image.length == 0 ||
+    //   value.quotes.length == 0
+    // ) {
+    //   setIsUploaded(true);
+    //   return;
+    // }
+
+    function calculateSize(value) {
+      let result = 0;
+      if (value.image.length === 1) {
+        result = value.image[0].size + value.quotes[0].size;
+      }
+      if (value.image.length > 1) {
+        for (let i = 0; i < value.image.length; i++) {
+          result = result + value.image[i].size;
+        }
+        result = result + value.quotes[0].size;
+      }
+      return (Number(result) / 1000000).toFixed(3);
+    }
+
+    // console.log(calculateSize(value));
+
     const formData = new FormData();
     formData.append("delay", value.delay);
-    formData.append("fileSize", "13mb");
+    formData.append("fileSize", `${calculateSize(value)}mb`);
     formData.append("screenSize", value.screenSize);
     formData.append("order", value.order);
     formData.append("name", value.templateName);
@@ -182,18 +210,23 @@ const NewTemplateForm = ({ closeBtn }) => {
     //   fileSize: "13mb",
     // };
 
-    handleRequest(formData)
+    handleRequest(formData, closeFn);
   };
 
   useEffect(() => {
-    resetField('image')
+    resetField("image");
   }, [toggle]);
 
   return (
     <div className="space-y-3">
-      {isUploaded && (
+      {/* {isUploaded && (
         <p className="text-red-600 bg-red-300 py-3 text-center w-full text-sm">
           Image or quotes file missing!! Please upload
+        </p>
+      )} */}
+      {errorMsg !== "" && (
+        <p className="text-red-600 bg-red-300 py-3 text-center w-full text-sm">
+          {errorMsg}
         </p>
       )}
       {isSuccess && (
@@ -337,6 +370,9 @@ const NewTemplateForm = ({ closeBtn }) => {
             imageRef={imageRef}
             imagezipRef={imagezipRef}
           />
+          {isImgUploaded && (
+            <p className="text-sm text-red-800">Please Upload Image</p>
+          )}
         </Container>
         {/* Quotes input container */}
         <Container>
@@ -354,10 +390,8 @@ const NewTemplateForm = ({ closeBtn }) => {
               {...register("quotes")}
             />
           </div>
-          {isError && (
-            <p className="text-sm text-red-800">
-              File Format not correct, upload the correct format
-            </p>
+          {isQuoteUploaded && (
+            <p className="text-sm text-red-800">Please Upload File</p>
           )}
           {/* <QuoteContainer /> */}
         </Container>

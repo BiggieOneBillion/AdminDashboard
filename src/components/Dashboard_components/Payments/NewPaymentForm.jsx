@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import InputContainer from "@/components/InputComponent";
 import { IoSaveSharp } from "react-icons/io5";
@@ -7,6 +7,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { paymentSchema } from "@/validation/PaymentSectionValidation";
 import usePostData from "@/hooks/usePostData";
 import useAxiosPost from "@/hooks/useAxiosPost";
+import { clientStore } from "@/store/clients";
+import SelectDropDown from "../Template/SelectDropDown";
+import DeviceDropDown from "./DeviceDropDown";
 
 const Container = ({ children }) => (
   <div className="py-4 bordery rounded-lg flex flex-col gap-2 bg-whitey">
@@ -40,7 +43,7 @@ const InputRadioContainer = ({ label, register, name, errors, id, value }) => (
   </div>
 );
 
-const NewPaymentForm = ({ closeBtn }) => {
+const NewPaymentForm = ({ closeBtn, closeFn }) => {
   const {
     register,
     handleSubmit,
@@ -53,6 +56,17 @@ const NewPaymentForm = ({ closeBtn }) => {
       deviceSize: "10 inches",
     },
   });
+
+  const allClient = clientStore((state) => state.allClient);
+  const execute = clientStore((state) => state.execute);
+
+  const [selectChange, setSelectChange] = useState("");
+
+  const [getDeviceId, setGetDeviceId] = useState("");
+
+  const [clientData, setClientData] = useState("");
+
+  // console.log(clientData);
 
   // const { mutations } = usePostData({
   //   url: "https://api-prestigecalendar.olotusquare.co/api/v1/admin/payments",
@@ -69,33 +83,51 @@ const NewPaymentForm = ({ closeBtn }) => {
           deviceSize: "",
           date: "",
           deviceId: "",
-          deviceName: "",
+          // deviceName: "",
           amount: "",
         });
       },
     });
 
   const onSubmit = (value) => {
-    
+    // console.log(value);
+    if (getDeviceId == "") return;
+
     const input = {
-      clientId: value.clientId,
+      clientId: clientData.id,
       transactionId: value.transactionId,
       date: value.date,
-      deviceName: value.deviceName,
+      deviceName: "TM09VS",
       deviceSize: value.deviceSize,
-      deviceId: value.deviceId,
+      deviceId: getDeviceId,
       amount: value.amountPaid,
-      isComplete: value.paymentStatus == "incomplete" ? true : false,
+      isComplete: value.paymentStatus !== "incomplete" ? true : false,
     };
 
+    // console.log(input);
+
     // mutations.mutate(input);
-    handleRequest(input);
+    handleRequest(input, closeFn);
 
     // console.log(input)
   };
 
+  useEffect(() => {
+    if (selectChange !== "") {
+      const result = allClient.filter((element) => element.id === selectChange);
+      console.log("Result: ", result);
+      setClientData(result[0]);
+    }
+  }, [selectChange]);
+
+  useEffect(() => {
+    if (allClient.length === 0) {
+      execute();
+    }
+  }, []);
+
   return (
-    <div className="space-y-3 ">
+    <div className="space-y-3">
       {isError && (
         <p className="text-red-600 bg-red-300 py-3 text-center w-full text-sm">
           Credential must be unique!
@@ -115,12 +147,19 @@ const NewPaymentForm = ({ closeBtn }) => {
             name={"transactionId"}
             register={register}
           />
-          <InputContainer
+          {/* <InputContainer
             errors={errors}
             label={"Client ID"}
             name={"clientId"}
             register={register}
-          />
+          /> */}
+          <div className="flex flex-col items-stretch gap-2 mb-3">
+            <p className="text-sm font-light">Client Name List</p>
+            <SelectDropDown
+              data={allClient}
+              setSelectChange={setSelectChange}
+            />
+          </div>
         </div>
         {/* clients name */}
         {/* <InputContainer
@@ -168,19 +207,24 @@ const NewPaymentForm = ({ closeBtn }) => {
           </div>
         </div>
         {/* Device Id and Device name */}
-        <div className="grid grid-cols-2 gap-5">
-          <InputContainer
-            errors={errors}
-            label={"Device Id"}
-            name={"deviceId"}
-            register={register}
-          />
-          <InputContainer
+        <div className="grid grid-cols-2y gap-5">
+          {clientData === "" ? (
+            <InputContainer
+              errors={errors}
+              label={"Device Id"}
+              name={"deviceId"}
+              register={register}
+              isDisabled={true}
+            />
+          ) : (
+            <DeviceDropDown data={clientData.id} getDevice={setGetDeviceId} />
+          )}
+          {/* <InputContainer
             errors={errors}
             label={"Device name"}
             name={"deviceName"}
             register={register}
-          />
+          /> */}
         </div>
         {/* Amount Paid */}
         <InputContainer

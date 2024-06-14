@@ -72,8 +72,10 @@ const EditForm = ({ closeBtn, data }) => {
   });
 
   const onSubmit = (value) => {
+    console.log(value);
     // console.log({ ...value, ram: `${value.ram}GB`, rom: `${value.rom}GB` });
-    const input = { ...value, ram: `${value.ram}GB`, rom: `${value.rom}GB` };
+    // const input = { ...value, ram: `${value.ram}GB`, rom: `${value.rom}GB` };
+    const input = { ...value };
     handleRequest(input);
   };
   return (
@@ -117,35 +119,13 @@ const EditForm = ({ closeBtn, data }) => {
         </div>
 
         <div className="grid grid-cols-2 gap-5">
-          {/* Radio buttons--status */}
-          <div className="space-y-3 ">
-            <p className="text-sm text-[rgba(0,0,0,0.7)]">Status</p>
-            <div className="flex items-center justify-start gap-5">
-              <InputRadioContainer
-                errors={errors}
-                name={"status"}
-                label={"Active"}
-                register={register}
-                id={"active"}
-                value={"active"}
-              />
-              <InputRadioContainer
-                errors={errors}
-                name={"status"}
-                label={"Inactive"}
-                register={register}
-                id={"inactive"}
-                value={"inactive"}
-              />
-            </div>
-          </div>
           {/* platform */}
-          <InputContainer
+          {/* <InputContainer
             errors={errors}
             label={"Platform"}
             name={"platform"}
             register={register}
-          />
+          /> */}
         </div>
 
         {/* Purchase Date and IMEI Number Input */}
@@ -165,8 +145,30 @@ const EditForm = ({ closeBtn, data }) => {
             register={register}
           />
         </div>
+        {/* Radio buttons--status */}
+        <div className="space-y-3 ">
+          <p className="text-sm text-[rgba(0,0,0,0.7)]">Status</p>
+          <div className="flex items-center justify-start gap-5">
+            <InputRadioContainer
+              errors={errors}
+              name={"status"}
+              label={"Active"}
+              register={register}
+              id={"active"}
+              value={"active"}
+            />
+            <InputRadioContainer
+              errors={errors}
+              name={"status"}
+              label={"Inactive"}
+              register={register}
+              id={"inactive"}
+              value={"inactive"}
+            />
+          </div>
+        </div>
         {/* ram and rom */}
-        <div className="grid grid-cols-2 gap-5">
+        {/* <div className="grid grid-cols-2 gap-5">
           <InputContainer
             errors={errors}
             label={"Ram"}
@@ -181,7 +183,7 @@ const EditForm = ({ closeBtn, data }) => {
             register={register}
             type="number"
           />
-        </div>
+        </div> */}
       </Container>
       {/* btn container */}
       <div className="grid grid-cols-5 gap-5">
@@ -195,7 +197,7 @@ const EditForm = ({ closeBtn, data }) => {
           <IoSaveSharp size={20} />
           {isLoading && "...saving"}
           {isSuccess && "Done!!!"}
-          {isError && 'Try Again'}
+          {isError && "Try Again"}
         </button>
         {closeBtn}
       </div>

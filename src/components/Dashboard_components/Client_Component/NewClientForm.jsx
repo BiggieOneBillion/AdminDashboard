@@ -10,7 +10,7 @@ import usePostData from "@/hooks/usePostData";
 import { PiImageThin } from "react-icons/pi";
 import useAxiosPost from "@/hooks/useAxiosPost";
 
-const NewClientForm = ({ closeBtn }) => {
+const NewClientForm = ({ closeBtn, closeFn }) => {
   // const { mutations } = usePostData({
   //   url: "https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients",
   //   queryName: "clients_info",
@@ -40,7 +40,7 @@ const NewClientForm = ({ closeBtn }) => {
     // // console.log(value);
     // once you get the values you make a request using the mutations.mutate({})
     // mutations.mutate(value);
-    handleRequest(value);
+    handleRequest(value, closeFn);
     // pass the values to the mutate function
     // if successful then change submit btn text to successful
     // clear the input fields

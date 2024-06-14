@@ -8,9 +8,15 @@ import NewClientModal from "./NewClientModal";
 import { useQuery } from "@tanstack/react-query";
 import { userStore } from "@/store/user";
 import axios from "axios";
+import { clientStore } from "@/store/clients";
+import Modal from "@/components/Modal";
 
 const Index = () => {
   const token_id = userStore((state) => state.token_id);
+  const updateAllClientDetails = clientStore(
+    (state) => state.updateAllClientDetails
+  );
+
   const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ["clients_info"],
     queryFn: async () => {
@@ -54,6 +60,7 @@ const Index = () => {
   }
 
   // console.log(data?.entity);
+  data?.entity?.data && updateAllClientDetails(data?.entity?.data);
 
   return (
     <main className="flex flex-col gap-5">

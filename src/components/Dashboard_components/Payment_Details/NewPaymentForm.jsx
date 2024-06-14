@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import InputContainer from "@/components/InputComponent";
 import { IoSaveSharp } from "react-icons/io5";
@@ -6,6 +6,7 @@ import { IoMdClose } from "react-icons/io";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { paymentSchema } from "@/validation/PaymentSectionValidation";
 import useAxiosPost from "@/hooks/useAxiosPost";
+import DeviceDropDown from "../Payments/DeviceDropDown";
 
 const Container = ({ children }) => (
   <div className="py-4 bordery rounded-lg flex flex-col gap-2 bg-whitey">
@@ -39,14 +40,18 @@ const InputRadioContainer = ({ label, register, name, errors, id, value }) => (
   </div>
 );
 
-const NewPaymentForm = ({ closeBtn, data }) => {
+const NewPaymentForm = ({ closeBtn, data, closeFn }) => {
+  const [getDeviceId, setGetDeviceId] = useState("");
+
+  const [errorId, setErrorId] = useState(false);
   // console.log(data);
+  // console.log(closeBtn);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(paymentSchema),
+    // resolver: zodResolver(paymentSchema),
     defaultValues: {
       isComplete: "incomplete",
       clientId: data.id,
@@ -71,18 +76,42 @@ const NewPaymentForm = ({ closeBtn, data }) => {
     });
 
   const onSubmit = (value) => {
-    // console.log({
+    // Before checking if the user selected a device, clear the deviceId error message.
+    setErrorId(false);
+    // Check if the user selected a device id
+    if (getDeviceId === "") {
+      // If not then show error message
+      setErrorId(true);
+      return;
+    }
+
+    console.log({
+      ...value,
+      isComplete: value.isComplete === "incomplete" ? false : true,
+      deviceId: getDeviceId,
+    });
+
+    handleRequest(
+      {
+        ...value,
+        isComplete: value.isComplete === "incomplete" ? false : true,
+        deviceId: getDeviceId,
+      },
+      closeFn
+    );
+    // handleRequest({
     //   ...value,
     //   isComplete: value.isComplete === "incomplete" ? false : true,
     // });
-    handleRequest({
-      ...value,
-      isComplete: value.isComplete === "incomplete" ? false : true,
-    });
   };
 
   return (
     <div className="space-y-3 ">
+      {errorId && (
+        <p className="text-red-600 bg-red-300 py-3 text-center w-full text-sm">
+          Please select a device
+        </p>
+      )}
       {isError && (
         <p className="text-red-600 bg-red-300 py-3 text-center w-full text-sm">
           Credential must be unique!
@@ -138,12 +167,13 @@ const NewPaymentForm = ({ closeBtn, data }) => {
         </div>
         {/* Device Id and Device name */}
         <div className="grid grid-cols-2 gap-5">
-          <InputContainer
+          {/* <InputContainer
             errors={errors}
             label={"Device Id"}
             name={"deviceId"}
             register={register}
-          />
+          /> */}
+          <DeviceDropDown data={data.id} getDevice={setGetDeviceId} />
           <InputContainer
             errors={errors}
             label={"Device name"}

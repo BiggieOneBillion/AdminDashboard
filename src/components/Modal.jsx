@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { IoMdClose } from "react-icons/io";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
@@ -21,9 +21,25 @@ const Modal = ({
   modalBg = "bg-white",
   replace = true,
 }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleOpen = () => setIsOpen(true);
+  const handleClose = () => setIsOpen(false);
+
+  const CloseBtn = () => (
+    <Dialog.Close onClick={handleClose} className="col-span-2">
+      <span className="py-3 text-center text-sm w-full text-gray-400 bg-white border flex justify-center items-center gap-2 rounded-lg btn-animate">
+        <IoMdClose size={20} />
+        <span>Cancel</span>
+      </span>
+    </Dialog.Close>
+  );
+
   return (
-    <Dialog.Root>
-      <Dialog.Trigger className="block w-fit">{trigger}</Dialog.Trigger>
+    <Dialog.Root open={isOpen}>
+      <Dialog.Trigger onClick={handleOpen} className="block w-fit">
+        {trigger}
+      </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay
           className={`bg-[rgba(0,0,0,0.5)] data-[state=open]:animate-overlayShow fixed inset-0`}
@@ -47,18 +63,23 @@ const Modal = ({
                     <h3 className="text-base font-medium">{title}</h3>
                   </div>
                   {/* more icon */}
-                  <Dialog.Close className="p-0 m-0">
+                  <Dialog.Close onClick={handleClose} className="p-0 m-0">
                     <IoMdClose size={20} />
                   </Dialog.Close>
                 </div>
                 {/* New Client Form */}
-                <ModalContainer closeBtn={<CloseBtn />}>
+                <ModalContainer closeBtn={<CloseBtn />} closeFn={handleClose}>
                   {content}
                 </ModalContainer>
               </div>
             </div>
           ) : (
-            <ModalContainer closeBtn={<CloseBtn />}>{content}</ModalContainer>
+            <ModalContainer
+              closeBtn={<CloseBtn />}
+              closeFn={handleClose}
+            >
+              {content}
+            </ModalContainer>
           )}
         </Dialog.Content>
       </Dialog.Portal>

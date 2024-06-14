@@ -11,7 +11,7 @@ export default function useAxiosPut({ url, queryName, fn }) {
   const [errorMsg, setErrorMsg] = useState("");
   const queryClient = useQueryClient();
 
-  const handleRequest = async (data) => {
+  const handleRequest = async (data, fn) => {
     try {
       setIsLoading(true);
       setIsError(false);

@@ -14,6 +14,8 @@ import { analyticsStore } from "@/store/clients";
 const Main = () => {
   const token_id = userStore((state) => state.token_id);
 
+  
+
   const updateAnalyticsData = analyticsStore(
     (state) => state.updateAnalyticsData
   );
@@ -61,6 +63,7 @@ const Main = () => {
       activeDeviceCount: data?.entity.activeDeviceCount,
     });
   // data && // console.log(data.entity);
+ 
 
   // console.log(data.entity);
 
