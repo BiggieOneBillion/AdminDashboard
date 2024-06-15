@@ -56,6 +56,7 @@ const NewPaymentForm = ({ closeBtn, data, closeFn }) => {
       isComplete: "incomplete",
       clientId: data.id,
       name: data.name,
+      deviceSize: "10 inches",
     },
   });
 
@@ -157,13 +158,37 @@ const NewPaymentForm = ({ closeBtn, data, closeFn }) => {
             register={register}
             type="date"
           />
-          <InputContainer
+          {/* <InputContainer
             errors={errors}
             label={"Size"}
             name={"deviceSize"}
             register={register}
             type="number"
-          />
+          /> */}
+          {/* size radio button */}
+          <div className="space-y-5 mt-1">
+            <p className="font-light text-xs text-[rgba(0,0,0,0.6)]">
+              Device Size
+            </p>
+            <div className="flex items-center justify-start gap-5">
+              <InputRadioContainer
+                errors={errors}
+                name={"deviceSize"}
+                label={"10 inches"}
+                register={register}
+                id={"10 inches"}
+                value={"10 inches"}
+              />
+              <InputRadioContainer
+                errors={errors}
+                name={"deviceSize"}
+                label={"21 inches"}
+                register={register}
+                id={"21 inches"}
+                value={"21 inches"}
+              />
+            </div>
+          </div>
         </div>
         {/* Device Id and Device name */}
         <div className="grid grid-cols-2 gap-5">

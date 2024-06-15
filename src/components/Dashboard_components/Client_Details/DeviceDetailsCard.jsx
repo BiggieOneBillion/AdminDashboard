@@ -20,7 +20,13 @@ const TopTile = ({ icon, title, state }) => (
       <p className="font-medium text-black">{title}</p>
     </div>
     {/* isActive state: active | inactive */}
-    <span className="text-green-600 bg-green-200 text-sm py-1 px-3 rounded-md">
+    <span
+      className={`${
+        state === "active"
+          ? "text-green-600 bg-green-200"
+          : "text-red-600 bg-red-200"
+      } text-sm py-1 px-3 rounded-md`}
+    >
       {state}
     </span>
   </div>
@@ -63,7 +69,6 @@ const TopTile2 = ({ title, subtitle, logoUrl }) => (
 );
 
 const DeviceDetailsCard = ({ deviceDetails }) => {
-
   return (
     <div className="w-[600px] h-fit space-y-10">
       {/* close btn, title, question  */}

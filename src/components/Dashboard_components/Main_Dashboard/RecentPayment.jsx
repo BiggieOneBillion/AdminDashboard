@@ -12,9 +12,9 @@ const Header = () => (
 );
 
 const PaymentList = ({ data }) => (
-  <ul className=" flex flex-col gap-4 flex-1 overflow-y-auto">
+  <ul className="flex flex-col gap-4 flex-1 overflow-y-scroll">
     {data?.map((paydata) => (
-      <li key={v4()} className="p-2 bg-[#FBFBFB]">
+      <li key={v4()} className="p-2 bg-[#FBFBFB] h-[200px]">
         <div className="flex items-center justify-between w-full">
           <div className="flex items-center gap-2">
             <Image
@@ -41,7 +41,7 @@ const RecentPayment = ({ info }) => {
   // console.log(info);
   return (
     <>
-      <div className="bg-white w-1/3  p-[14px] rounded-xl flex flex-col  shadow-xl h-[450px]">
+      <div className="bg-white w-1/3  p-[14px] rounded-xl flex flex-col  shadow-xl h-[450px] overflow-hidden">
         <Header />
         {info?.length <= 0 ? (
           <p className="w-full text-center text-3xl font-bold text-[rgba(0,0,0,0.2)]">
