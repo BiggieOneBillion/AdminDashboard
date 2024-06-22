@@ -17,6 +17,8 @@ const ResetCodeForm = ({ setIndex, userInfo }) => {
 
   const [errorMessage, setErrorMessage] = useState("");
 
+  const [disableInput, setDisableInput] = useState(false);
+
   const {
     register,
     reset,
@@ -39,11 +41,18 @@ const ResetCodeForm = ({ setIndex, userInfo }) => {
       setIndex(3);
     } catch (error) {
       // // console.log(error.response.data.message);
-      // if (error.response.status === 422) {
-      setErrorMessage(error.response.data.message);
-      setBtnState({ ...btnState, status: false, text: "Try Again" });
-      setInCorrect(true);
-      // }
+      if (error.response.status === 403) {
+        setErrorMessage(error.response.data.message);
+        setBtnState({ ...btnState, status: false, text: "Try Again" });
+        setInCorrect(true);
+      }
+
+      if (
+        error.response.data.message ===
+        "Otp usage finished, request a new OTP, or contact service providers for help."
+      ) {
+        setDisableInput(true);
+      }
     }
     // setTimeout(() => {
     //   setIndex(3);
@@ -76,6 +85,7 @@ const ResetCodeForm = ({ setIndex, userInfo }) => {
             register={register}
             errors={errors}
             type="number"
+            isDisabled={disableInput}
           />
         </div>
         <div>
@@ -83,7 +93,7 @@ const ResetCodeForm = ({ setIndex, userInfo }) => {
             type="submit"
             className="w-full text-center text-white bg-[#24249c] rounded-md py-3 disabled:bg-[rgba(36,36,156,0.4)]"
             onClick={handleSubmit(onSubmit)}
-            disabled={btnState.status}
+            disabled={btnState.status || disableInput}
           >
             {btnState.text}
           </button>

@@ -23,7 +23,7 @@ const ForgetPasswordForm = ({ setIndex, userInfo, setUserInfo }) => {
   } = useForm({ resolver: zodResolver(recoverEmailSchema) });
 
   const onSubmit = async (values) => {
-    // console.log(values);
+    setInCorrect(false)
     setBtnState({ ...btnState, status: true, text: "...Loading" });
     try {
       const response = await axios.post(
@@ -60,7 +60,7 @@ const ForgetPasswordForm = ({ setIndex, userInfo, setUserInfo }) => {
         <div className="grid gap-[8px]">
           {inCorrect && (
             <span className="block w-full py-2 px-3 rounded-lg bg-red-200 text-red-700 text-sm">
-              Incorrect Email
+              Incorrect Credentials
             </span>
           )}
           <InputContainer

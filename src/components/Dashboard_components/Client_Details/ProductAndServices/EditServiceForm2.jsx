@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import InputContainer from "@/components/InputComponent";
 import { IoSaveSharp } from "react-icons/io5";
@@ -29,7 +29,7 @@ const TextAreaContainer = ({ label, register, name, errors }) => (
   </div>
 );
 
-const EditServiceForm = ({ closeBtn, closeFn }) => {
+const EditServiceForm2 = ({ closeBtn, closeFn, data }) => {
   const [images, setImages] = useState([]);
 
   const params = useParams();
@@ -38,7 +38,11 @@ const EditServiceForm = ({ closeBtn, closeFn }) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      description: data.description,
+    },
+  });
 
   const { handleRequest, isError, isLoading, isSuccess } = useAxiosPut({
     url: `https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/${params.id}/services`,
@@ -58,9 +62,13 @@ const EditServiceForm = ({ closeBtn, closeFn }) => {
     handleRequest(inputValue, closeFn);
   };
 
+  useEffect(() => {
+    setImages(data.images);
+  }, []);
+
   return (
     <div className="flex flex-col gap-5">
-       {isSuccess && (
+      {isSuccess && (
         <p className="text-green-600 bg-green-300 py-3 text-center w-full text-sm">
           Success
         </p>
@@ -104,4 +112,4 @@ const EditServiceForm = ({ closeBtn, closeFn }) => {
   );
 };
 
-export default EditServiceForm;
+export default EditServiceForm2;

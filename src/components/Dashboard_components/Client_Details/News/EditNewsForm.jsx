@@ -16,15 +16,15 @@ const Container = ({ children }) => (
   </div>
 );
 
-const TextAreaContainer = ({ label, register, name }) => (
+const TextAreaContainer = ({ label, register, name, rows = 10 }) => (
   <div className="flex flex-col gap-2 text-black">
     <label className="capitalize text-[13px] font-light text-[#585865]">
       {label}
     </label>
     <textarea
       className="px-4 w-full py-2 text-base border rounded-xl text-black bg-white disabled:bg-[rgba(233,233,249,0.3)]"
-      rows={10}
-      {...register(name)}
+      rows={rows}
+      {...register(name, { required: "This field is required" })}
     ></textarea>
     {/* <span className="h-4 text-red-600 text-sm">
       {errors[name] && errors[name].message}
@@ -66,10 +66,15 @@ const ArticleForm = ({ register }) => (
       {/* <input
         type="text"
         placeholder="Sub text"
-        className="h-full px-3 py-1 w-full placeholder:text-sm placeholder:font-light rounded-2xl  focus-within:outline-none text-sm font-normal"
+        className="h-full px-3 py-1 border w-full placeholder:text-sm placeholder:font-light rounded-2xl  focus-within:outline-none text-sm font-normal"
         {...register("subtext", { required: "This field is required" })}
       /> */}
-      <TextAreaContainer label={""} name={"subtext"} register={register} />
+      <TextAreaContainer
+        label={""}
+        name={"subtext"}
+        register={register}
+        rows={2}
+      />
     </div>
   </div>
 );
@@ -123,7 +128,7 @@ const EditNewsForm = ({ closeBtn, info }) => {
   const onSubmit = async (value) => {
     // console.log(value);
     // console.log(typeof value.image === 'string')
-    if (typeof value.image !== 'string') {
+    if (typeof value.image !== "string") {
       const formData = new FormData();
       formData.append("asset", value.image[0]);
       try {

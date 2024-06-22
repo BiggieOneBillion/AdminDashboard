@@ -1010,7 +1010,7 @@ const TemplateCard = ({ data }) => {
         <h2 className="text-sm font-semibold text-black">{data.name}</h2>
         {/* more icon */}
         <span className="ml-auto">
-          <MyDropdownMenu id={data.id} />
+          <MyDropdownMenu id={data.id} data={data} />
         </span>
       </div>
       {/* DETAILS */}

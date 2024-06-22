@@ -2,11 +2,7 @@
 import "./globals.css";
 import "@radix-ui/themes/styles.css";
 import { Theme } from "@radix-ui/themes";
-import DesktopView from "@/components/DesktopView";
 import { ReactQueryProvider } from "./ReactQueryProvider";
-import Layout from "@/components/Dashboard_components/Layout";
-
-// const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Create Next App",
@@ -18,11 +14,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <Theme>
-          <ReactQueryProvider>
-            {/* <DesktopView> */}
-            <Layout>{children}</Layout>
-            {/* </DesktopView> */}
-          </ReactQueryProvider>
+          <ReactQueryProvider>{children}</ReactQueryProvider>
         </Theme>
       </body>
     </html>

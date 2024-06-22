@@ -192,12 +192,14 @@ const NewTemplateForm = ({ closeBtn, closeFn }) => {
     // console.log(calculateSize(value));
 
     const formData = new FormData();
+    Object.keys(value.image).forEach((file) => {
+      formData.append("images", value.image[file]);
+    });
     formData.append("delay", value.delay);
     formData.append("fileSize", `${calculateSize(value)}mb`);
     formData.append("screenSize", value.screenSize);
     formData.append("order", value.order);
     formData.append("name", value.templateName);
-    formData.append("images", value.image[0]);
     formData.append("quotes", value.quotes[0]);
 
     // const input = {
@@ -206,9 +208,11 @@ const NewTemplateForm = ({ closeBtn, closeFn }) => {
     //   delay: value.delay,
     //   order: value.order,
     //   quotes: value.quotes[0],
-    //   images: value.image[0],
+    //   images: value.image,
     //   fileSize: "13mb",
     // };
+
+    // console.log(input);
 
     handleRequest(formData, closeFn);
   };

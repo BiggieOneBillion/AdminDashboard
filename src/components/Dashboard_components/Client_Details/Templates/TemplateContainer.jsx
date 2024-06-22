@@ -56,7 +56,6 @@ const TemplateContainer = () => {
   // templateData && // console.log(templateData.entity.rows);
   templateData.entity.rows.length === 0  ? updateIsTemplate(true) : updateIsTemplate(false)
 
-  // console.log(templateData);
 
   return (
     <>
