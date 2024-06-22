@@ -30,9 +30,11 @@ export default function useAxiosPost2({ url, queryName, fn }) {
         if (fn) fn();
       }
     } catch (error) {
-       if (error.message === 'Network Error') {
-          setErrorMsg('Network Error')
-       }
+      //  if (error.message === 'Network Error') {
+      //     setErrorMsg('Network Error')
+      //  }
+
+       console.log(error);
       //  if () {
         
       //  }

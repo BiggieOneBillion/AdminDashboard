@@ -36,6 +36,8 @@ const Index = () => {
     },
   ];
 
+  
+
   const route = useRouter();
 
   const handleGoBack = () => route.back();
@@ -57,7 +59,7 @@ const Index = () => {
         />
         {/* {index == 3 && <NewProduct />} */}
       </div>
-      <TopBoard />
+      {/* <TopBoard /> */}
       <TableSection />
     </main>
   );

@@ -4,11 +4,11 @@ import { clientBoardData } from "./data";
 import TableSection from "./TableSection";
 import Modal from "@/components/Modal";
 import { HiPlus } from "react-icons/hi";
-import NewPaymentForm from "./NewPaymentForm";
 import Board from "./Board";
 import { userStore } from "@/store/user";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import NewInvoiceForm from "./NewInvoiceForm";
 
 const Trigger = () => (
   <div className="flex items-center gap-3 py-3 px-4 text-white font-medium bg-[#24249C] rounded-lg">
@@ -73,7 +73,9 @@ const Index = () => {
   const mData = tableData.entity.rows;
 
 
-  console.log('invoice data: ' + tableData.status)
+  // console.log('invoice data: ' + tableData.status)
+
+  // console.log('Invoice Data: ', tableData.entity.rows)
 
 
   return (
@@ -83,12 +85,12 @@ const Index = () => {
           <h1 className="font-bold">Invoice</h1>
         </div>
         {/* add new client */}
-        {/* <Modal
-          content={<NewPaymentForm />}
+        <Modal
+          content={<NewInvoiceForm />}
           title={"New Invoice"}
           trigger={<Trigger />}
           width="w-[600px]"
-        /> */}
+        />
       </div>
       {/* <Board boardData={clientBoardData} /> */}
       {mData.length > 0 ? (

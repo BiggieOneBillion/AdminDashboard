@@ -6,11 +6,14 @@ import React from "react";
 import TemplateCard from "./TemplateCard";
 import axios from "axios";
 import { v4 } from "uuid";
+import { clientStore } from "@/store/clients";
 
 const TemplateContainer = () => {
   const params = useParams();
 
   const token_id = userStore((state) => state.token_id);
+  const updateIsTemplate = clientStore((state) => state.updateIsTemplate)
+
   const {
     data: templateData,
     isLoading,
@@ -51,6 +54,10 @@ const TemplateContainer = () => {
   }
 
   // templateData && // console.log(templateData.entity.rows);
+  templateData.entity.rows.length === 0  ? updateIsTemplate(true) : updateIsTemplate(false)
+
+  // console.log(templateData);
+
   return (
     <>
       {templateData.entity.rows.length > 0 ? (

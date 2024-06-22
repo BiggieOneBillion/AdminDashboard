@@ -6,9 +6,11 @@ import { userStore } from "./user";
 
 export const clientStore = create((set) => ({
   singleClient: [],
+  isTemplate: true,
+  allClient: [],
+  updateIsTemplate: (value) => set((state) => ({ isTemplate: value })),
   updateSingleClientDetails: (clientDetails) =>
     set((state) => ({ singleClient: clientDetails })),
-  allClient: [],
   updateAllClientDetails: (clientDetails) =>
     set((state) => ({ allClient: clientDetails })),
   execute: async () => {
@@ -36,5 +38,3 @@ export const analyticsStore = create((set) => ({
   updateAnalyticsData: (analytics) =>
     set((state) => ({ analyticsData: analytics })),
 }));
-
-

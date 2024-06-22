@@ -1,6 +1,6 @@
 import { v4 } from "uuid";
-import DeviceDetailsModal from "../../Client_Details/DeviceDetailsModal";
 import Link from "next/link";
+import InvoiceDetailsModal from "../../Invoice_Details/InvoiceDetailsModal";
 
 // {
 //   "id": 1,
@@ -38,6 +38,35 @@ import Link from "next/link";
 //   }
 // }
 
+// {
+//   "id": "a6b5046b-d695-4a0f-8735-1be8678f84bf",
+//   "clientId": "1f791535-3316-4b74-aea7-6b037ddde504",
+//   "invoiceId": "INV055",
+//   "notes": "Let us do my thing",
+//   "issuedAt": "2024-06-21T00:00:00.000Z",
+//   "dueAt": "2024-06-22T00:00:00.000Z",
+//   "details": [
+//       {
+//           "size": "21",
+//           "amount": 40000,
+//           "quantity": 15,
+//           "description": "device payment"
+//       }
+//   ],
+//   "status": "incomplete",
+//   "deletedAt": null,
+//   "createdAt": "2024-06-20T12:14:08.837Z",
+//   "updatedAt": "2024-06-20T12:14:08.837Z",
+//   "client": {
+//       "name": "Blessing Anyebe",
+//       "mobile": "admin@mail.com",
+//       "email": "blessinganyebe25@gmail.com",
+//       "logoUrl": null,
+//       "location": "Benue State"
+//   },
+//   "serial": 1
+// }
+
 export const columnData = [
   {
     id: "serial",
@@ -49,14 +78,15 @@ export const columnData = [
     header: "Client",
     accessorKey: "clientId",
     cell: ({ row }) => (
-      <Link href={`/invoices/${row.original.id}`}>{row.original.clientId}</Link>
+      // <Link href={`/invoices/${row.original.id}`}>{row.original.id}</Link>
+      <InvoiceDetailsModal data={row.original} header={row.original.client.name}/> 
     ),
   },
   {
     id: "deviceOwned",
     header: "Device Owned",
     accessorKey: "deviceOwned",
-    cell: ({ row }) => <span>{row.original.details.quantity}</span>,
+    cell: ({ row }) => <span>{row.original.details[0].quantity}</span>,
   },
   {
     id: "issuedAt",
@@ -70,7 +100,7 @@ export const columnData = [
     id: "serial",
     header: "Amount Paid",
     accessorKey: "serial",
-    cell: ({ row }) => <span>{row.original.details.amount}</span>,
+    cell: ({ row }) => <span>{row.original.details[0].amount}</span>,
   },
   {
     id: "status",

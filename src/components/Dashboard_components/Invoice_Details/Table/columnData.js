@@ -1,5 +1,5 @@
 import { v4 } from "uuid";
-import PaymentDetailsModal from "../PaymentDetailsModal";
+import PaymentDetailsModal from "../InvoiceDetailsModal";
 
 // {
 //   "id": 20,

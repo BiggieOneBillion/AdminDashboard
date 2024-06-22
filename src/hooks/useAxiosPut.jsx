@@ -27,16 +27,16 @@ export default function useAxiosPut({ url, queryName, fn }) {
         setIsLoading(false);
         setIsSuccess(true);
         queryClient.invalidateQueries(queryName);
-        if (fn) fn();
+        if (fn) return setTimeout(() => fn(), 2000);
       }
     } catch (error) {
       // if(response.status === 500){
       //    setErrorMsg(response)
       // }
-        // console.log("The solid principle" + error.message);
-    //   if (error.message === "Request failed with status code 500") {
-    //     setErrorMsg("Device id or Imei id already exist!");
-    //   }
+      // console.log("The solid principle" + error.message);
+      //   if (error.message === "Request failed with status code 500") {
+      //     setErrorMsg("Device id or Imei id already exist!");
+      //   }
       setIsError(true);
       setIsLoading(false);
       setIsSuccess(false);

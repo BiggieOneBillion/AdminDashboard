@@ -11,6 +11,7 @@ import { userStore } from "@/store/user";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import TopBoard from "./TopBoard";
+import { clientStore } from "@/store/clients";
 
 const Index = () => {
   const [index, setIndex] = useState(0);
@@ -24,6 +25,9 @@ const Index = () => {
   const handleGoBack = () => router.back();
 
   const token_id = userStore((state) => state.token_id);
+
+  const isTemplate = clientStore((state) => state.isTemplate)
+
 
   // const { data:clientData, isLoading, isError } = useQuery({
   //   queryKey: ["dashboard_info"],
@@ -73,7 +77,7 @@ const Index = () => {
         </div>
         {/* add new client */}
         {index == 0 && <NewClientModal />}
-        {index == 1 && <NewTemplateModal />}
+        {index == 1 && isTemplate && <NewTemplateModal />}
         {/* {index == 3 && <NewProduct />} */}
       </div>
       <TopBoard id={params.id} />

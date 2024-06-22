@@ -5,9 +5,9 @@ import { CiFilter } from "react-icons/ci";
 import { IoIosMore } from "react-icons/io";
 import { RiPencilLine } from "react-icons/ri";
 import { RiDeleteBinLine } from "react-icons/ri";
+import DeleteTemplateModal from "./DeleteTemplateModal";
 
-const MyDropdownMenu = () => {
-
+const MyDropdownMenu = ({ id }) => {
   const menuData = [
     {
       name: "Edit",
@@ -34,7 +34,22 @@ const MyDropdownMenu = () => {
       </DropdownMenu.Trigger>
       <DropdownMenu.Content alignOffset={100}>
         <menu className="bg-white px-2 w-[150px] border py-1 space-y-2 rounded-md mr-10 mt-5">
-          {menuData.map((menu, i) => (
+          <li
+            key={v4()}
+            className={`flex items-center gap-1 px-4 py-2 rounded-md cursor-pointer transition-colors duration-300 ease-in-out btn-animate`}
+          >
+            <span className="font-normal text-sm">{menuData[0].Icon}</span>
+            <span className="font-normal text-sm">{menuData[0].name}</span>
+          </li>
+          {/* <li
+            key={v4()}
+            className={`flex items-center gap-1 bg-red-300 text-red-500 px-4 py-2 rounded-md cursor-pointer transition-colors duration-300 ease-in-out btn-animate`}
+          > */}
+          <li className="bg-red-50 text-red-900 rounded-lg border">
+            <DeleteTemplateModal id={id}/>
+          </li>
+          {/* </li> */}
+          {/* {menuData.map((menu, i) => (
             <li
               key={v4()}
               className={`flex items-center gap-1  ${
@@ -44,7 +59,7 @@ const MyDropdownMenu = () => {
               <span className="font-normal text-sm">{menu.Icon}</span>
               <span className="font-normal text-sm">{menu.name}</span>
             </li>
-          ))}
+          ))} */}
         </menu>
       </DropdownMenu.Content>
     </DropdownMenu.Root>
