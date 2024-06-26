@@ -15,13 +15,13 @@ import Image from "next/image";
 import Table from "./CardTable";
 import { LuPrinter } from "react-icons/lu";
 
-const TopTile = ({ state = "Incomplete" }) => (
+const TopTile = ({ state = "Incomplete", invoiceId }) => (
   <div className="rounded-md p-3 flex items-center justify-between w-full">
     {/* icon and title */}
     <div className="flex flex-col gap-3">
       <p className="font-medium text-sm text-black">Invoice ID</p>
       <div className="text-[#909090]">
-        <span className="text-xs">0987654321</span>
+        <span className="text-xs">{invoiceId}</span>
       </div>
     </div>
     {/* isActive state: active | inactive */}
@@ -183,12 +183,12 @@ const InvoiceDetailsCard = ({ info }) => {
         </div>
         {/* New Client Form */}
         <section className="space-y-5">
-          <TopTile />
+          <TopTile invoiceId={info.invoiceId} />
           <div className="space-y-4 border-b pb-5">
             {/* company details */}
             <Container>
               <div className="space-y-4">
-                <TopTile2 title={"Total Energies"} />
+                <TopTile2 title={"Prestige Calendar"} />
                 <div className="space-y-2">
                   <p className="text-xs text-gray-500 font-light">
                     email@gmail.com
@@ -205,16 +205,16 @@ const InvoiceDetailsCard = ({ info }) => {
             {/* client details */}
             <Container>
               <div className="space-y-4">
-                <TopTile2 title={"Total Energies"} subtitle={"PC001"} />
+                <TopTile2 title={info.client.name} subtitle={info.clientId} />
                 <div className="space-y-2">
                   <p className="text-xs text-gray-500 font-light">
-                    email@gmail.com
+                    {info.client.email}
                   </p>
                   <p className="text-xs text-gray-500 font-light">
-                    +234 567 890
+                    {info.client.mobile}
                   </p>
                   <p className="text-xs text-gray-500 font-light">
-                    Port Harcourt
+                    {info.client.location}
                   </p>
                 </div>
               </div>
@@ -236,7 +236,9 @@ const InvoiceDetailsCard = ({ info }) => {
           <p className="border rounded-xl text-xs text-[rgba(0,0,0,0.3)] py-2 px-2 ">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti
             architecto, possimus voluptates commodi doloribus explicabo error
-            sit odio obcaecati deleniti! Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta ad obcaecati eum quibusdam, neque voluptate consequuntur blanditiis cum ex reprehenderit.
+            sit odio obcaecati deleniti! Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Soluta ad obcaecati eum quibusdam, neque voluptate
+            consequuntur blanditiis cum ex reprehenderit.
           </p>
         </div>
       </div>

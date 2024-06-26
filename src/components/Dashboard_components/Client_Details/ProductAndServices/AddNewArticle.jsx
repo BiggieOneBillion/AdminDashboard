@@ -8,6 +8,7 @@ import { useParams } from "next/navigation";
 import { userStore } from "@/store/user";
 import axios from "axios";
 import { BiTrash } from "react-icons/bi";
+import Image from "next/image";
 
 const ArticleForm = ({ setImage, images }) => {
   const token_id = userStore((state) => state.token_id);
@@ -140,27 +141,31 @@ const AddNewArticle = ({ register, images, setImages }) => {
   return (
     <div className="space-y-6 mb-10">
       <div className="space-y-3">
-        <div className="space-y-2">
+        <div className=" grid grid-cols-2 gap-5">
           {images.map((el, i) => (
             <div
               key={v4()}
-              className="grid grid-cols-3 bg-slate-200 py-2 px-2 rounded-xl relative"
+              // className="grid grid-cols-3 bg-slate-200 py-2 px-2 rounded-xl relative"
+              className="space-y-2 bg-slate-100 py-2 px-2 rounded-xl relative"
             >
-              <p className="text-sm text-slate-500 flex items-center gap-1">
+              {/* <p className="text-sm text-slate-500 flex items-center gap-1">
                 <span>url:</span>
                 <span>{el.url.slice(0, 20)}....</span>
+              </p> */}
+              <div className="h-[100px] w-full overflow-hidden">
+                 <Image src={el.url} height={100} width={100} className="object-cover w-full h-full" />
+              </div>
+              <p className="text-sm text-slate-500 flex items-center gap-1">
+                <span className="font-medium">Title:</span>
+                <span>{el.title.slice(0, 40)}...</span>
               </p>
               <p className="text-sm text-slate-500 flex items-center gap-1">
-                <span>title:</span>
-                <span>{el.title.slice(0, 20)}...</span>
-              </p>
-              <p className="text-sm text-slate-500 flex items-center gap-1">
-                <span>Subtext:</span>
-                <span>{el.subtext.slice(0, 20)}....</span>
+                <span className="font-medium">Subtext:</span>
+                <span>{el.subtext.slice(0, 40)}....</span>
               </p>
               <button
                 onClick={() => removeImage(i)}
-                className="absolute z-10 top-0 translate-x-[50%] translate-y-[-50%] transition-transform duration-200 active:scale-[0.95] right-0 text-red-600 bg-whitey p-2y rounded-full cursor-pointer"
+                className="absolute z-10 top-0 translate-x-[50%] translate-y-[-100%] transition-transform duration-200 active:scale-[0.95] right-0 text-red-600 bg-whitey p-2y rounded-full cursor-pointer"
               >
                 <BiTrash size={16} />
               </button>

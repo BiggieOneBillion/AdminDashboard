@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import InputContainer from "@/components/InputComponent";
 import { IoSaveSharp } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { paymentSchema } from "@/validation/PaymentSectionValidation";
+import { clientStore } from "@/store/clients";
+import useAxiosPost2 from "@/hooks/useAxiosPost2";
+import useAxiosPost from "@/hooks/useAxiosPostPay";
+import { useParams } from "next/navigation";
 
 const Container = ({ children }) => (
   <div className="py-4 bordery rounded-lg flex flex-col gap-2 bg-whitey">
@@ -38,105 +42,149 @@ const InputRadioContainer = ({ label, register, name, errors, id, value }) => (
   </div>
 );
 
-const NewPaymentForm = ({ closeBtn }) => {
+const NewInvoiceForm = ({ closeBtn, closeFn }) => {
+
+  const params = useParams()
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(paymentSchema),
+    // resolver: zodResolver(paymentSchema),
     defaultValues: {
-      paymentStatus: "incomplete",
+      size: "11",
+      clientId: params.id
     },
   });
 
-  const onSubmit = (value) =>{ 
-    // console.log(value);
-  }
+
+  const { handleRequest, isLoading, isSuccess, isError, errorMsg } =
+    useAxiosPost({
+      url: "https://api-prestigecalendar.olotusquare.co/api/v1/admin/invoices",
+      queryName: "client_invoice_info",
+    });
+
+  const onSubmit = (value) => {
+    const inputValue = {
+      clientId: value.clientId,
+      invoiceId: value.invoiceId,
+      notes: value.notes,
+      issuedAt: value.issuedAt,
+      dueAt: value.dueAt,
+      details: [
+        {
+          amount: value.amount,
+          description: value.description,
+          quantity: value.quantity,
+          size: value.size,
+        },
+      ],
+    };
+
+    // inputValue.details[0].description[0][1]
+
+
+
+    console.log(inputValue);
+
+    handleRequest(inputValue, closeFn);
+  };
+
 
   return (
-    <div className="space-y-3 ">
+    <div className="space-y-3">
+      {isError && (
+        <p className="text-red-600 bg-red-300 py-3 text-center w-full text-sm">
+          Invoice number must be unique!
+        </p>
+      )}
+      {isSuccess && (
+        <p className="text-green-600 bg-green-300 py-3 text-center w-full text-sm">
+          Success
+        </p>
+      )}
       <Container>
         {/* client and tansaction Id  */}
         <div className="grid grid-cols-2 gap-5">
           <InputContainer
             errors={errors}
-            label={"Transaction ID"}
-            name={"transactionId"}
+            label={"Invoice ID"}
+            name={"invoiceId"}
             register={register}
-            isDisabled={true}
           />
           <InputContainer
             errors={errors}
             label={"Client ID"}
             name={"clientId"}
             register={register}
+            isDisabled
           />
         </div>
-        {/* clients name */}
+        {/* Notes */}
         <InputContainer
           errors={errors}
-          label={"Client name"}
-          name={"name"}
+          label={"Note"}
+          name={"notes"}
           register={register}
-          isDisabled={true}
         />
-        {/* Date and size Input */}
+        {/* Issue Date and Due Date */}
         <div className="grid grid-cols-2 gap-5">
           <InputContainer
             errors={errors}
-            label={"Date"}
-            name={"date"}
+            label={"Issue Date"}
+            name={"issuedAt"}
             register={register}
-            type="'date"
+            type="date"
           />
           <InputContainer
             errors={errors}
-            label={"Size"}
-            name={"size"}
+            label={"Due At"}
+            name={"dueAt"}
+            register={register}
+            type="date"
+          />
+        </div>
+        {/* Device Id and Device name */}
+        <InputContainer
+          errors={errors}
+          label={"Description"}
+          name={"description"}
+          register={register}
+        />
+        {/* Amount Paid And Quantity */}
+        <div className="grid grid-cols-2 gap-5">
+          <InputContainer
+            errors={errors}
+            label={"Amount"}
+            name={"amount"}
+            register={register}
+          />
+          <InputContainer
+            errors={errors}
+            label={"Quantity"}
+            name={"quantity"}
             register={register}
             type="number"
           />
         </div>
-        {/* Device Id and Device name */}
-        <div className="grid grid-cols-2 gap-5">
-          <InputContainer
-            errors={errors}
-            label={"Device Id"}
-            name={"deviceId"}
-            register={register}
-          />
-          <InputContainer
-            errors={errors}
-            label={"Device name"}
-            name={"deviceName"}
-            register={register}
-          />
-        </div>
-        {/* Amount Paid */}
-        <InputContainer
-          errors={errors}
-          label={"Amount paid"}
-          name={"amountPaid"}
-          register={register}
-        />
         {/* Radio buttons */}
         <div className="flex items-center justify-start gap-5">
           <InputRadioContainer
             errors={errors}
-            name={"paymentStatus"}
-            label={"Complete"}
+            name={"size"}
+            label={"21 inches"}
             register={register}
-            id={"Complete"}
-            value={"complete"}
+            id={"21"}
+            value={"21"}
           />
           <InputRadioContainer
             errors={errors}
-            name={"paymentStatus"}
-            label={"Incomplete"}
+            name={"size"}
+            label={"11 inches"}
             register={register}
-            id={"Incomplete"}
-            value={"incomplete"}
+            id={"11"}
+            value={"11"}
           />
         </div>
       </Container>
@@ -144,10 +192,15 @@ const NewPaymentForm = ({ closeBtn }) => {
       <div className="grid grid-cols-5 gap-5">
         <button
           onClick={handleSubmit(onSubmit)}
-          className="py-3 col-span-3 text-center text-sm w-full text-white bg-[#24249C]  flex justify-center items-center gap-2 rounded-lg btn-animate"
+          // className="py-3 col-span-3 text-center text-sm w-full text-white bg-[#24249C]  flex justify-center items-center gap-2 rounded-lg btn-animate"
+          className={`py-3 col-span-3 text-center text-sm w-full text-white bg-[#24249C]  flex justify-center items-center gap-2 rounded-lg ${
+            isLoading || isSuccess ? "" : "btn-animate"
+          }`}
+          disabled={isLoading || isSuccess}
         >
           <IoSaveSharp size={20} />
-          <span>Save</span>
+          {isLoading && "...saving"}
+          {isSuccess && "Done!!!"}
         </button>
         {closeBtn}
       </div>
@@ -155,4 +208,4 @@ const NewPaymentForm = ({ closeBtn }) => {
   );
 };
 
-export default NewPaymentForm;
+export default NewInvoiceForm;

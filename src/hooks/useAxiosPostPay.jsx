@@ -27,7 +27,7 @@ export default function useAxiosPost({ url, queryName, fn }) {
         setIsLoading(false);
         setIsSuccess(true);
         queryClient.invalidateQueries(queryName);
-        if (fn) fn();
+        if (fn) setTimeout(() => fn(), 2000);
       }
     } catch (error) {
       // console.log("The solid principle" + error.message);

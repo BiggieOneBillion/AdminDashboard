@@ -78,8 +78,8 @@ export const columnData = [
     header: "Client",
     accessorKey: "clientId",
     cell: ({ row }) => (
-      // <Link href={`/invoices/${row.original.id}`}>{row.original.id}</Link>
-      <InvoiceDetailsModal data={row.original} header={row.original.client.name}/> 
+      <Link href={`/invoices/${row.original.clientId}`}>{row.original.client.name}</Link>
+      // <InvoiceDetailsModal data={row.original} header={row.original.client.name}/> 
     ),
   },
   {

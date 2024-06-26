@@ -33,7 +33,7 @@ const Index = () => {
     isError,
     refetch,
   } = useQuery({
-    queryKey: ["client_invoice_info", `${params.id}`],
+    queryKey: ["client_payment_info", `${params.id}`],
     queryFn: async () => {
       const response = await axios.get(
         `https://api-prestigecalendar.olotusquare.co/api/v1/admin/payments/from/${params.id}?page=1&limit=3`,

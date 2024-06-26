@@ -1,3 +1,4 @@
+"use client"
 import Index from "@/components/Dashboard_components/Invoice/Index";
 
 

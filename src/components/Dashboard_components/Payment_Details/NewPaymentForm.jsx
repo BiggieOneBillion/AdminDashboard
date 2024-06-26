@@ -63,7 +63,7 @@ const NewPaymentForm = ({ closeBtn, data, closeFn }) => {
   const { handleRequest, isError, isLoading, isSuccess, errorMsg } =
     useAxiosPost({
       url: "https://api-prestigecalendar.olotusquare.co/api/v1/admin/payments",
-      queryName: "client_device_info",
+      queryName: "client_payment_info",
       fn: () => {
         reset({
           transactionId: "",
