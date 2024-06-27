@@ -49,12 +49,12 @@ const ArticleForm = ({ setImage, images }) => {
             },
           }
         );
-        // console.log(response.status);
+        console.log(response.status);
         if (response.status === 201) {
           setUpload(false);
-          setUploadMsg("...done");
+          setUploadMsg("done!!!");
           setTimeout(() => setUploadMsg("Add"), 3000);
-          // console.log(response.data.entity.url);
+          console.log(response.data.entity.url);
           let newEntry = {
             url: response.data.entity.url,
             title: titleRef.current.value,
@@ -69,7 +69,7 @@ const ArticleForm = ({ setImage, images }) => {
       }
     }
   };
-  
+
   return (
     <div className="space-y-2">
       {errMsg && (
@@ -121,7 +121,7 @@ const ArticleForm = ({ setImage, images }) => {
         <button
           onClick={handleAddForm}
           className="flex items-center gap-2 py-2 px-4 rounded-lg text-blue-900 bg-blue-50 btn-animate"
-          disabled={upload}
+          // disabled={upload}
         >
           {/* <span><FiPlus size={20} /></span> */}
           <span className="font-normal text-sm">{uploadMsg}</span>
@@ -131,7 +131,9 @@ const ArticleForm = ({ setImage, images }) => {
   );
 };
 
-const AddNewArticle = ({ register, images, setImages }) => {
+const AddNewArticle = ({ register, images = [], setImages }) => {
+  console.log(images);
+
   const removeImage = (id) => {
     const result = images.filter((el, i) => i !== id);
     setImages(result);
@@ -153,7 +155,13 @@ const AddNewArticle = ({ register, images, setImages }) => {
                 <span>{el.url.slice(0, 20)}....</span>
               </p> */}
               <div className="h-[100px] w-full overflow-hidden">
-                 <Image src={el.url} height={100} width={100} className="object-cover w-full h-full" />
+                <Image
+                  src={el.url}
+                  height={100}
+                  width={100}
+                  className="object-cover w-full h-full"
+                  alt="product/service image"
+                />
               </div>
               <p className="text-sm text-slate-500 flex items-center gap-1">
                 <span className="font-medium">Title:</span>
@@ -172,7 +180,6 @@ const AddNewArticle = ({ register, images, setImages }) => {
             </div>
           ))}
         </div>
-
         <ArticleForm key={v4()} setImage={setImages} images={images} />
       </div>
       {/* <div className="btn-add-container grid place-content-center">

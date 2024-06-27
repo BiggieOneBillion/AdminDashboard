@@ -74,8 +74,8 @@ const Service = () => {
   //     }
   //   }
 
-  console.log(serviceData);
-  console.log(serviceData.entity.description);
+  // console.log(serviceData);
+  // console.log(serviceData.entity.description);
   return (
     <div className="space-y-5">
       {/* title and edit icon */}

@@ -51,7 +51,7 @@ const EditServiceForm2 = ({ closeBtn, closeFn, data }) => {
 
   const onSubmit = (values) => {
     console.log(values);
-    if (images.length == 0) return;
+    if (images?.length == 0) return;
     console.log(images);
 
     const inputValue = {
@@ -63,7 +63,9 @@ const EditServiceForm2 = ({ closeBtn, closeFn, data }) => {
   };
 
   useEffect(() => {
-    setImages(data.images);
+    if (data.images) {
+      setImages(data.images);
+    }
   }, []);
 
   return (

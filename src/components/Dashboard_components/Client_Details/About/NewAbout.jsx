@@ -12,7 +12,7 @@ const Container = ({ children }) => (
   </div>
 );
 
-const TextAreaContainer = ({ label, register, name, errors }) => (
+const TextAreaContainer = ({ label, register, name, errors,  }) => (
   <div className="flex flex-col gap-2 text-black">
     <label className="capitalize text-[13px] font-light text-[#585865]">
       {label}
@@ -21,6 +21,7 @@ const TextAreaContainer = ({ label, register, name, errors }) => (
       className="px-4 w-full py-2 text-base border rounded-xl text-black bg-white disabled:bg-[rgba(233,233,249,0.3)]"
       rows={20}
       {...register(name)}
+      // disabled={isDisabled}
     ></textarea>
     <span className="h-4 text-red-600 text-sm">
       {errors[name] && errors[name].message}
@@ -47,6 +48,7 @@ const NewAboutForm = ({ closeBtn }) => {
         label={"Description"}
         name={"description"}
         register={register}
+        // isDisabled={isLoading || isSuccess}
       />
 
       {/* btn container */}
