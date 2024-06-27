@@ -46,7 +46,7 @@ const MyDropdownMenu = ({ id, data }) => {
       <DropdownMenu.Content alignOffset={-100}>
         <menu className="bg-white px-2 min-w-[150px] border py-1 space-y-2 rounded-md ml-20 mt-0">
           <li className="bg-red-50y text-black rounded-lg border">
-             <MarkAsCompletedModal />
+             <MarkAsCompletedModal id={id} />
           </li>
           <li className="bg-red-50 text-red-900 rounded-lg border">
             <DeleteInvoiceModal id={id}/>

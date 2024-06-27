@@ -55,7 +55,7 @@ const InvoiceDetailsModal = ({ data, header }) => {
     );
   }
 
-  console.log(tableData);
+  // console.log(tableData);
 
 
 

@@ -142,7 +142,7 @@ const NewTemplateForm1 = ({ closeBtn, closeFn }) => {
     },
   });
 
-  const { handleRequest, isError, isLoading, isSuccess } = useAxiosPost2({
+  const { handleRequest, isError, isLoading, isSuccess, errorMsg } = useAxiosPost2({
     url: `https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/${clientData?.id}/templates`,
     queryName: "template_data_info_0987654",
   });
@@ -177,14 +177,31 @@ const NewTemplateForm1 = ({ closeBtn, closeFn }) => {
     //   fileSize: "13mb",
     // };
 
+    function calculateSize(value) {
+      let result = 0;
+      if (value.image.length === 1) {
+        result = value.image[0].size + value.quotes[0].size;
+      }
+      if (value.image.length > 1) {
+        for (let i = 0; i < value.image.length; i++) {
+          result = result + value.image[i].size;
+        }
+        result = result + value.quotes[0].size;
+      }
+      return (Number(result) / 1000000).toFixed(3);
+    }
+
     const formData = new FormData();
+    Object.keys(value.image).forEach((file) => {
+      formData.append("images", value.image[file]);
+    });
 
     formData.append("delay", value.delay);
-    formData.append("fileSize", "13mb");
+    formData.append("fileSize", `${calculateSize(value)}mb`);
     formData.append("screenSize", value.screenSize);
     formData.append("order", value.order);
     formData.append("name", value.templateName);
-    formData.append("images", value.image[0]);
+    // formData.append("images", value.image[0]);
     formData.append("quotes", value.quotes[0]);
 
     // console.log(input);
@@ -192,10 +209,12 @@ const NewTemplateForm1 = ({ closeBtn, closeFn }) => {
     handleRequest(formData, closeFn);
   };
 
+  // console.log(errorMsg.response.data.message);
+
   useEffect(() => {
     if (selectChange !== "") {
       const result = allClient.filter((element) => element.id === selectChange);
-      console.log("Result: ", result);
+      // console.log("Result: ", result);
       setClientData(result[0]);
     }
   }, [selectChange]);
@@ -210,7 +229,7 @@ const NewTemplateForm1 = ({ closeBtn, closeFn }) => {
     <div className="space-y-3">
       {isError && (
         <p className="text-red-600 bg-red-300 py-3 text-center w-full text-sm">
-          Network Error
+         { errorMsg.response.data.message ? errorMsg.response.data.message : 'Network Error'}
         </p>
       )}
       {isSuccess && (

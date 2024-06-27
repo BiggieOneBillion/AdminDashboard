@@ -44,6 +44,8 @@ const InputRadioContainer = ({ label, register, name, errors, id, value }) => (
 
 const NewInvoiceForm = ({ closeBtn, closeFn }) => {
 
+  // alert('hi')
+
   const params = useParams()
 
   const {

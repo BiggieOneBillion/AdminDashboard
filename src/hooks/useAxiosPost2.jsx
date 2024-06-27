@@ -34,7 +34,8 @@ export default function useAxiosPost2({ url, queryName, fn }) {
       //     setErrorMsg('Network Error')
       //  }
 
-       console.log(error);
+      //  console.log(error);
+       setErrorMsg(error)
       //  if () {
         
       //  }
