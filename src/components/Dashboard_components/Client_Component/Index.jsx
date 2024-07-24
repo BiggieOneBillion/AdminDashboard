@@ -10,6 +10,7 @@ import { userStore } from "@/store/user";
 import axios from "axios";
 import { clientStore } from "@/store/clients";
 import Modal from "@/components/Modal";
+import api from "@/libs/api_settings";
 
 const Index = () => {
   const token_id = userStore((state) => state.token_id);
@@ -20,15 +21,7 @@ const Index = () => {
   const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ["clients_info"],
     queryFn: async () => {
-      const response = await axios.get(
-        "https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients?page=1&limit=15",
-        {
-          headers: {
-            Authorization: `Bearer ${token_id}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await api.get('admin/clients?page=1&limit=15')
       return response.data;
     },
     staleTime: 5 * 1000,

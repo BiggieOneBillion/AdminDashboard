@@ -7,15 +7,17 @@ import TableSection from "./TableSection";
 import { useParams, useRouter } from "next/navigation";
 import { v4 } from "uuid";
 import NewPaymentForm from "./NewInvoiceForm";
-import TopBoard from "./TopBoard";
+// import TopBoard from "./TopBoard";
 import { useQuery } from "@tanstack/react-query";
 import { userStore } from "@/store/user";
 import axios from "axios";
+import api from "@/libs/api_settings";
+import TopBoard from "../Client_Details/TopBoard";
 
 const Trigger = () => (
   <div className="flex items-center gap-3 py-3 px-4 text-white font-medium bg-[#24249C] rounded-lg">
     <HiPlus size={20} />
-    <span>New Payment</span>
+    <span>New Invoice</span>
   </div>
 );
 
@@ -56,15 +58,7 @@ const Index = () => {
   } = useQuery({
     queryKey: ["client_invoice_info", `${params.id}`],
     queryFn: async () => {
-      const response = await axios.get(
-        `https://api-prestigecalendar.olotusquare.co/api/v1/admin/invoices/for/${params.id}?page=1&limit=10`,
-        {
-          headers: {
-            Authorization: `Bearer ${token_id}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await api.get(`admin/invoices/for/${params.id}?page=1&limit=10`)
       return response.data;
     },
     staleTime: 5 * 1000,
@@ -113,13 +107,13 @@ const Index = () => {
         {/* add new payment */}
         <Modal
           content={<NewPaymentForm />}
-          title={"New Payment"}
+          title={"New Invoice"}
           trigger={<Trigger />}
           width="w-[600px]"
         />
         {/* {index == 3 && <NewProduct />} */}
       </div>
-      {/* <TopBoard /> */}
+      <TopBoard id={params.id} />
       {tableData.entity.rows.length > 0 ? <TableSection data={tableData?.entity?.rows}/> : (
         <p className="text-center text-3xl font-extrabold text-[rgba(0,0,0,0.1)] py-10">
           No Invoice Details Avaliable

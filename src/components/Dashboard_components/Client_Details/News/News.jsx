@@ -6,6 +6,7 @@ import { userStore } from "@/store/user";
 import { useParams } from "next/navigation";
 import axios from "axios";
 import AddNewsModal from "./AddNews";
+import api from "@/libs/api_settings";
 
 const News = () => {
   // const count = [1, 2, 3, 4, 5, 6, 7];
@@ -17,15 +18,7 @@ const News = () => {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["client_news_info"],
     queryFn: async () => {
-      const response = await axios.get(
-        `https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/${params.id}/news?page=1&limit=2`,
-        {
-          headers: {
-            Authorization: `Bearer ${token_id}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await api.get(`admin/clients/${params.id}/news?page=1&limit=2`)
       return response.data;
     },
     staleTime: 5 * 1000,

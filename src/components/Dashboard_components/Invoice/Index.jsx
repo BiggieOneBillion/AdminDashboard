@@ -4,11 +4,14 @@ import { clientBoardData } from "./data";
 import TableSection from "./TableSection";
 import Modal from "@/components/Modal";
 import { HiPlus } from "react-icons/hi";
-import Board from "./Board";
+// import Board from "./Board";
 import { userStore } from "@/store/user";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import NewInvoiceForm from "./NewInvoiceForm";
+import api from "@/libs/api_settings";
+import Board from "../Devices/Board";
+import BoardContainer from "@/components/BoardContainer";
 
 const Trigger = () => (
   <div className="flex items-center gap-3 py-3 px-4 text-white font-medium bg-[#24249C] rounded-lg">
@@ -27,15 +30,7 @@ const Index = () => {
   } = useQuery({
     queryKey: ["clients_invoice_overall_info_table_data"],
     queryFn: async () => {
-      const response = await axios.get(
-        `https://api-prestigecalendar.olotusquare.co/api/v1/admin/invoices?page=1&limit=10`,
-        {
-          headers: {
-            Authorization: `Bearer ${token_id}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await api.get("admin/invoices?page=1&limit=10");
       return response.data;
     },
     staleTime: 5 * 1000,
@@ -66,17 +61,15 @@ const Index = () => {
   }
 
   // tableData && // console.log(tableData);
-    tableData.entity.rows.forEach((row, index) => {
-      row.serial = index + 1;
-    });
+  tableData.entity.rows.forEach((row, index) => {
+    row.serial = index + 1;
+  });
 
   const mData = tableData.entity.rows;
 
-
   // console.log('invoice data: ' + tableData.status)
 
-  // console.log('Invoice Data: ', tableData.entity.rows)
-
+  console.log("Invoice Data: ", tableData.entity);
 
   return (
     <main className="flex flex-col gap-5">
@@ -92,7 +85,9 @@ const Index = () => {
           width="w-[600px]"
         />
       </div>
-      {/* <Board boardData={clientBoardData} /> */}
+      <BoardContainer>
+        <Board />
+      </BoardContainer>
       {mData.length > 0 ? (
         <TableSection data={mData} />
       ) : (

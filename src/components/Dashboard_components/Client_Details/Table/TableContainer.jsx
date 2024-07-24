@@ -1,4 +1,5 @@
 "use client";
+import api from "@/libs/api_settings";
 import { userStore } from "@/store/user";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -21,15 +22,7 @@ const TableContainer = ({ children }) => {
   } = useQuery({
     queryKey: ["client_device_info"],
     queryFn: async () => {
-      const response = await axios.get(
-        `https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/${params.id}/devices`,
-        {
-          headers: {
-            Authorization: `Bearer ${token_id}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await api.get(`admin/clients/${params.id}/devices`)
       return response.data;
     },
     staleTime: 5 * 1000,

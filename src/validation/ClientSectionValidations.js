@@ -38,7 +38,10 @@ export const newTemplateSchema = z.object({
 
 export const newDeviceSchema = z.object({
   deviceId: z.string().min(1, { message: "Field cannot be empty" }),
-  imei: z.string().min(15, { message: "Must be 15 digits" }),
+  imei: z
+    .string()
+    .min(15, { message: "Must be 15 digits" })
+    .max(15, { message: "Cannot be more than 15 digits" }),
   purchaseDate: z.string().date(),
   size: z.enum(["21", "10"]),
 });

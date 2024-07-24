@@ -15,7 +15,7 @@ import Image from "next/image";
 import Table from "./CardTable";
 import { LuPrinter } from "react-icons/lu";
 
-const TopTile = ({ state = "Incomplete", invoiceId }) => (
+const TopTile = ({ state = "incomplete", invoiceId }) => (
   <div className="rounded-md p-3 flex items-center justify-between w-full">
     {/* icon and title */}
     <div className="flex flex-col gap-3">
@@ -29,7 +29,7 @@ const TopTile = ({ state = "Incomplete", invoiceId }) => (
       <p className="font-medium text-sm text-black">Invoice Status</p>
       <span
         className={`px-1 py-1 rounded-xl text-xs block text-center ${
-          state === "Incomplete"
+          state === "incomplete"
             ? "text-red-500 bg-red-200"
             : "text-green-500 bg-green-200"
         }`}
@@ -183,7 +183,7 @@ const InvoiceDetailsCard = ({ info }) => {
         </div>
         {/* New Client Form */}
         <section className="space-y-5">
-          <TopTile invoiceId={info.invoiceId} />
+          <TopTile invoiceId={info.invoiceId} state={info.status} />
           <div className="space-y-4 border-b pb-5">
             {/* company details */}
             <Container>

@@ -6,6 +6,7 @@ import { userStore } from "@/store/user";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Card from "./Card";
+import api from "@/libs/api_settings";
 
 const Service = () => {
   const params = useParams();
@@ -21,15 +22,7 @@ const Service = () => {
   } = useQuery({
     queryKey: ["service_data_info", params.id],
     queryFn: async () => {
-      const response = await axios.get(
-        `https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/${params.id}/services`,
-        {
-          headers: {
-            Authorization: `Bearer ${token_id}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await api.get(`admin/clients/${params.id}/services`)
       return response.data;
     },
     staleTime: 5 * 1000,

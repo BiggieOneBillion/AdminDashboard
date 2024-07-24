@@ -37,44 +37,7 @@ const NotificationDialog = () => {
               <MyDropdownMenu />
             </div>
             {/* Notification List */}
-            <div className="py-4 px-2 border rounded-md flex items-center justify-between bg-[#FBFBFB]">
-              {/* container for the image and information */}
-              <div className="flex justify-start items-start gap-2">
-                {/* image */}
-                <div className="w-[50px] h-[50px] rounded-full overflow-hidden">
-                  <Image
-                    src={"/images/blog1.png"}
-                    width={80}
-                    height={120}
-                    alt="notification image"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                {/* notification short description container */}
-                <div className="flex flex-col gap-4">
-                  {/* title and short description container */}
-                  <div className="space-y-1">
-                    {/* title */}
-                    <h4 className="font-medium text-sm text-[#3D3D4A]">
-                      Inactive Device
-                    </h4>
-                    {/* short-description */}
-                    <p className="font-normal text-sm text-[#79797B]">
-                      Device has been inactive for 2 weeks
-                    </p>
-                  </div>
-                  {/* date-time-container */}
-                  <div className="flex text-xs items-center gap-4 text-[#D8D8DB]">
-                    <p>23 Jun, 2023</p>
-                    <p>11:34pm</p>
-                  </div>
-                </div>
-              </div>
-              {/* read more icon */}
-              <div>
-                <MdOutlineKeyboardArrowRight size={20} />
-              </div>
-            </div>
+            <p className="text-center text-2xl font-semibold text-[rgba(0,0,0,0.1)]">No Notification</p>
           </section>
           {/* <Dialog.Close asChild>
           <button
@@ -92,3 +55,43 @@ const NotificationDialog = () => {
 };
 
 export default NotificationDialog;
+
+
+// <div className="py-4 px-2 border rounded-md flex items-center justify-between bg-[#FBFBFB]">
+//               {/* container for the image and information */}
+//               <div className="flex justify-start items-start gap-2">
+//                 {/* image */}
+//                 <div className="w-[50px] h-[50px] rounded-full overflow-hidden">
+//                   <Image
+//                     src={"/images/blog1.png"}
+//                     width={80}
+//                     height={120}
+//                     alt="notification image"
+//                     className="w-full h-full object-cover"
+//                   />
+//                 </div>
+//                 {/* notification short description container */}
+//                 <div className="flex flex-col gap-4">
+//                   {/* title and short description container */}
+//                   <div className="space-y-1">
+//                     {/* title */}
+//                     <h4 className="font-medium text-sm text-[#3D3D4A]">
+//                       Inactive Device
+//                     </h4>
+//                     {/* short-description */}
+//                     <p className="font-normal text-sm text-[#79797B]">
+//                       Device has been inactive for 2 weeks
+//                     </p>
+//                   </div>
+//                   {/* date-time-container */}
+//                   <div className="flex text-xs items-center gap-4 text-[#D8D8DB]">
+//                     <p>23 Jun, 2023</p>
+//                     <p>11:34pm</p>
+//                   </div>
+//                 </div>
+//               </div>
+//               {/* read more icon */}
+//               <div>
+//                 <MdOutlineKeyboardArrowRight size={20} />
+//               </div>
+//             </div>

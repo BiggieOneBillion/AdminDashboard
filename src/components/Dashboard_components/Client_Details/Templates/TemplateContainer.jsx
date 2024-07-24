@@ -7,6 +7,7 @@ import TemplateCard from "./TemplateCard";
 import axios from "axios";
 import { v4 } from "uuid";
 import { clientStore } from "@/store/clients";
+import api from "@/libs/api_settings";
 
 const TemplateContainer = () => {
   const params = useParams();
@@ -21,15 +22,7 @@ const TemplateContainer = () => {
   } = useQuery({
     queryKey: ["template_data_info_0987654", params.id],
     queryFn: async () => {
-      const response = await axios.get(
-        `https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/${params.id}/templates`,
-        {
-          headers: {
-            Authorization: `Bearer ${token_id}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await api.get(`admin/clients/${params.id}/templates`)
       return response.data;
     },
     staleTime: 5 * 1000,

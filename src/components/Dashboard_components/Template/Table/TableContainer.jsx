@@ -1,4 +1,5 @@
 "use client";
+import api from "@/libs/api_settings";
 import { userStore } from "@/store/user";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -16,15 +17,16 @@ const TableContainer = ({ children }) => {
   } = useQuery({
     queryKey: ["clients_template_overall_info"],
     queryFn: async () => {
-      const response = await axios.get(
-        `https://api-prestigecalendar.olotusquare.co/api/v1/admin/templates?page=1&limit=25`,
-        {
-          headers: {
-            Authorization: `Bearer ${token_id}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      // const response = await axios.get(
+      //   `https://api-prestigecalendar.olotusquare.co/api/v1/admin/templates?page=1&limit=25`,
+      //   {
+      //     headers: {
+      //       Authorization: `Bearer ${token_id}`,
+      //       "Content-Type": "application/json",
+      //     },
+      //   }
+      // );
+      const response = await api.get(`admin/templates?page=1&limit=25`)
       return response.data;
     },
     staleTime: 5 * 1000,

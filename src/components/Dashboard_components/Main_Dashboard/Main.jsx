@@ -10,6 +10,7 @@ import { userStore } from "@/store/user";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { analyticsStore } from "@/store/clients";
+import api from "@/libs/api_settings";
 
 const Main = () => {
   const token_id = userStore((state) => state.token_id);
@@ -21,15 +22,7 @@ const Main = () => {
   const { data, isLoading, isError } = useQuery({
     queryKey: ["dashboard_info"],
     queryFn: async () => {
-      const response = await axios.get(
-        "https://api-prestigecalendar.olotusquare.co/api/v1/admin/dashboard",
-        {
-          headers: {
-            Authorization: `Bearer ${token_id}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await api.get('admin/dashboard')
       return response.data;
     },
     staleTime: 5 * 1000,

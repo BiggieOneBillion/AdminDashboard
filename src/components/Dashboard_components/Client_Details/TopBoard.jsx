@@ -1,10 +1,11 @@
 import { userStore } from "@/store/user";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import React from "react";
 import { v4 } from "uuid";
 import Image from "next/image";
 import { clientStore } from "@/store/clients";
+import api from "@/libs/api_settings";
+import Logo from "./Logo";
 
 const data = [
   {
@@ -26,6 +27,7 @@ const data = [
 ];
 
 const TopBoard = ({ id }) => {
+ 
   // // console.log(id);
   const token_id = userStore((state) => state.token_id);
   const updateSingleClientDetails = clientStore(
@@ -40,15 +42,7 @@ const TopBoard = ({ id }) => {
   } = useQuery({
     queryKey: ["clients_info"],
     queryFn: async () => {
-      const response = await axios.get(
-        "https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients?page=1&limit=15",
-        {
-          headers: {
-            Authorization: `Bearer ${token_id}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await api.get("admin/clients?page=1&limit=15");
       return response.data;
     },
     staleTime: 5 * 1000,
@@ -115,18 +109,21 @@ const TopBoard = ({ id }) => {
           {/* first container for image, company name, email */}
           <div className="rounded-xl border-4 border-white py-5 px-5 2xl:px-2 flex items-center 2xl:justify-center gap-5 bg-[#f8f8ff]">
             {/* image container */}
-            <div className="image-container lg:h-[60px] lg:w-[60px] xl:h-[80px] xl:w-[80px] rounded-full border overflow-hidden">
-              <Image
-                alt="company logo"
-                src={
-                  result[0].logoUrl === null
-                    ? "/images/no-image-2.png"
-                    : result[0].logoUrl
-                }
-                height={80}
-                width={80}
-                className="object-cover h-[80px] w-[80px]"
-              />
+            <div className="relative">
+              <div className="image-container lg:h-[60px] lg:w-[60px] xl:h-[80px] xl:w-[80px] rounded-full border overflow-hidden">
+                <Image
+                  alt="company logo"
+                  src={
+                    result[0].logoUrl === null
+                      ? "/images/no-image-2.png"
+                      : result[0].logoUrl
+                  }
+                  height={80}
+                  width={80}
+                  className="object-cover h-[80px] w-[80px]"
+                />
+              </div>
+             <Logo />
             </div>
             {/* company name and email */}
             <div className="space-y-2">

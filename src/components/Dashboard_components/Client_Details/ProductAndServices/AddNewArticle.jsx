@@ -88,6 +88,7 @@ const ArticleForm = ({ setImage, images }) => {
               type="file"
               id="imgFile"
               className="hidden"
+              accept="image/*"
               onChange={(e) => setImageVal(e.target.files[0])}
             />
             <span className="text-xs font-light text-black">

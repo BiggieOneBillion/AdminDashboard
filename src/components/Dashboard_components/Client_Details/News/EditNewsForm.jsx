@@ -33,15 +33,16 @@ const TextAreaContainer = ({ label, register, name, rows = 10 }) => (
 );
 
 const ArticleForm = ({ register }) => (
-  <div className="grid grid-cols-[1fr_1fr] gap-4 h-[50px]y h-fit relative">
+  <div className="grid grid-cols-[1fr_1fr] gap-4 h-[50px]y h-fit relative items-end">
     {/* first input */}
-    <div className="w-full h-full border border-blue-700 rounded-2xl">
+    <div className="w-full h-fit py-3 border border-blue-700 rounded-2xl">
       <label
         htmlFor="imgFile"
         className=" h-full flex px-5 justify-between items-center w-full "
       >
         <input
           type="file"
+          accept="image/*"
           id="imgFile"
           className="hiddeny"
           {...register("image")}
@@ -52,14 +53,17 @@ const ArticleForm = ({ register }) => (
         </span>
       </label>
     </div>
-    {/* second input */}
-    <div className="w-full h-full border rounded-2xl overflow-hidden">
-      <input
-        type="text"
-        placeholder="Title"
-        className="h-full px-3 py-5 w-[300px]  placeholder:text-sm placeholder:font-light rounded-2xl focus-within:outline-none text-sm font-normal"
-        {...register("title", { required: "This field is required" })}
-      />
+    <div className="flex flex-col gap-1">
+      <label className="text-sm text-gray-500 font-light">Title </label>
+      {/* second input */}
+      <div className="w-full h-full border rounded-2xl overflow-hidden ">
+        <input
+          type="text"
+          placeholder="Title"
+          className="h-full px-3 py-5 w-[300px]  placeholder:text-sm placeholder:font-light rounded-2xl focus-within:outline-none text-sm font-normal"
+          {...register("title", { required: "This field is required" })}
+        />
+      </div>
     </div>
     {/* third input */}
     <div className="w-full col-span-2 h-full bordery rounded-xl overflow-hidden">
@@ -70,7 +74,7 @@ const ArticleForm = ({ register }) => (
         {...register("subtext", { required: "This field is required" })}
       /> */}
       <TextAreaContainer
-        label={""}
+        label={"Sub-Title"}
         name={"subtext"}
         register={register}
         rows={2}

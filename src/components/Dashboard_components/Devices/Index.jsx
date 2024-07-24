@@ -3,6 +3,7 @@ import TableSection from "./TableSection";
 import { clientBoardData } from "./data";
 import NewDeviceModal from "./NewDeviceModal";
 import Board from "./Board";
+import BoardContainer from "@/components/BoardContainer";
 
 const Index = () => {
   return (
@@ -14,7 +15,9 @@ const Index = () => {
         {/* add new client */}
         {/* <NewDeviceModal /> */}
       </div>
-      <Board boardData={clientBoardData} />
+      <BoardContainer>
+        <Board boardData={clientBoardData} />
+      </BoardContainer>
       <TableSection />
     </main>
   );

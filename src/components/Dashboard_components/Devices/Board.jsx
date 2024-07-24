@@ -4,23 +4,22 @@ import { BsCheckLg } from "react-icons/bs";
 import { PiUsersLight } from "react-icons/pi";
 import { v4 } from "uuid";
 
-const Board = () => {
-  const analyticsData = analyticsStore((state) => state.analyticsData);
+const Board = ({data}) => {
 
   const boardData = [
     {
       title: "clients",
-      number: analyticsData.clientCount,
+      number: data.entity.clientCount,
       icon: <PiUsersLight size={35} className="mr-4" />,
     },
     {
       title: "devices",
-      number: analyticsData.allDeviceCount,
+      number: data.entity.allDeviceCount,
       icon: <BiDevices size={35} className="mr-4" />,
     },
     {
       title: "Active Devices",
-      number: analyticsData.activeDeviceCount,
+      number: data.entity.activeDeviceCount,
       icon: <BsCheckLg size={35} className="mr-4" />,
     },
   ];
@@ -28,7 +27,7 @@ const Board = () => {
   return (
     <div className="grid grid-cols-1  md:grid-cols-2 md:gap-6 xl:grid-cols-3 2xl:gap-0 bg-[#FDF6DE] border-4 border-white rounded-2xl">
       {boardData.map((datum, i) => (
-        <div key={v4()} className=" flex  justify-between items-center py-4">
+        <div key={v4()} className=" flex justify-between items-center py-4">
           <div
             className={`w-24y h-18 flex flex-col pl-3 ${
               i !== 0 && "border-l border-[#181619]"

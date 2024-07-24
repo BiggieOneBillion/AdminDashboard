@@ -11,6 +11,7 @@ import { userStore } from "@/store/user";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import TopBoard from "./TopBoard";
+import api from "@/libs/api_settings";
 
 const Trigger = () => (
   <div className="flex items-center gap-3 py-3 px-4 text-white font-medium bg-[#24249C] rounded-lg">
@@ -35,15 +36,7 @@ const Index = () => {
   } = useQuery({
     queryKey: ["client_payment_info", `${params.id}`],
     queryFn: async () => {
-      const response = await axios.get(
-        `https://api-prestigecalendar.olotusquare.co/api/v1/admin/payments/from/${params.id}?page=1&limit=3`,
-        {
-          headers: {
-            Authorization: `Bearer ${token_id}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await api.get(`admin/payments/from/${params.id}?page=1&limit=3`)
       return response.data;
     },
     staleTime: 5 * 1000,

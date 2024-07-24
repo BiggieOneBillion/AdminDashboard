@@ -14,7 +14,9 @@ const Layout = ({ children }) => {
     <div className="h-screen w-screen grid grid-cols-[250px_1fr] bg-white">
       <SideMenu />
       <MainSection>
-        <main className="flex-1 p-10 overflow-y-scroll">{children}</main>
+        <main className="flex-1 p-10 overflow-y-scroll">
+          {children}
+        </main>
       </MainSection>
     </div>
   );

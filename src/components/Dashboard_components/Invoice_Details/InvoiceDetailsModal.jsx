@@ -4,6 +4,7 @@ import axios from "axios";
 import InvoiceDetailsCard from "./InvoiceDetails";
 import { userStore } from "@/store/user";
 import { useQuery } from "@tanstack/react-query";
+import api from "@/libs/api_settings";
 
 const InvoiceDetailsModal = ({ data, header }) => {
   // remmember to fetch the data necessay using tanstack query to display the device data
@@ -17,15 +18,7 @@ const InvoiceDetailsModal = ({ data, header }) => {
   } = useQuery({
     queryKey: ["clients_single_invoice_info", `${data.id}`],
     queryFn: async () => {
-      const response = await axios.get(
-        `https://api-prestigecalendar.olotusquare.co/api/v1/admin/invoices/${data.id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token_id}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await api.get(`admin/invoices/${data.id}`);
       return response.data;
     },
     staleTime: 5 * 1000,
@@ -57,8 +50,6 @@ const InvoiceDetailsModal = ({ data, header }) => {
 
   // console.log(tableData);
 
-
-
   return (
     <Dialog.Root>
       <Dialog.Trigger className="block w-fit">
@@ -69,7 +60,7 @@ const InvoiceDetailsModal = ({ data, header }) => {
           className={`bg-[rgba(0,0,0,0.5)] data-[state=open]:animate-overlayShow fixed inset-0`}
         />
         <Dialog.Content className="data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[500px]y  max-w-fit translate-x-[-50%] translate-y-[-50%]  bg-white p-4 shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
-          <InvoiceDetailsCard info={tableData.entity}/>
+          <InvoiceDetailsCard info={tableData.entity} />
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>

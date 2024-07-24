@@ -14,10 +14,10 @@ const ForgetPassword = () => {
   });
   return (
     <div className="h-screen overflow-hidden flex justify-center items-center bg-[#f1f1f1] border border-red-950 ">
-      <div className="container mx-auto ">
+      <div className="container mx-auto">
         <div className="mx-auto overflow-hidden  flex items-center justify-center gap-2 ">
-          <div className="w-1/4 py-10  grid place-items-center   ">
-            <div className="relative  w-full">
+          <div className="w-1/4 py-10 grid place-items-center">
+            <div className="relative w-full">
               <Image
                 width="231"
                 className="rounded-md"

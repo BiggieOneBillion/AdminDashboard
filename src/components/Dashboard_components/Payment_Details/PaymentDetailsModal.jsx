@@ -5,29 +5,25 @@ import { useQuery } from "@tanstack/react-query";
 import { userStore } from "@/store/user";
 import { useParams } from "next/navigation";
 import axios from "axios";
+import api from "@/libs/api_settings";
 
 const PaymentDetailsModal = ({ data, header }) => {
   // remmember to fetch the data necessay using tanstack query to display the device data
 
   const token_id = userStore((state) => state.token_id);
 
+  // console.log(data);
+
   const {
     data: tableData,
     isLoading,
     isError,
     refetch,
+    error
   } = useQuery({
     queryKey: ["clients_single_payment_info", `${data.id}`],
     queryFn: async () => {
-      const response = await axios.get(
-        `https://api-prestigecalendar.olotusquare.co/api/v1/admin/payments/${data.id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token_id}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await api.get(`admin/payments/${data.id}`);
       return response.data;
     },
     staleTime: 5 * 1000,
@@ -42,6 +38,7 @@ const PaymentDetailsModal = ({ data, header }) => {
   }
 
   if (isError || tableData === undefined) {
+    
     return (
       <div className="py-10 flex justify-center gap-3 items-center w-full">
         <p className="px-2 py-1 border text-black text-sm capitalize">
@@ -57,7 +54,7 @@ const PaymentDetailsModal = ({ data, header }) => {
     );
   }
 
-  // tableData && // console.log(tableData);
+  // tableData &&  console.log(tableData);-
 
   return (
     <Dialog.Root>

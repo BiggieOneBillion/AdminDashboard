@@ -23,7 +23,7 @@ export default function useAxiosPost2({ url, queryName, fn }) {
         },
       });
       // console.log(response);
-      if (response.status === 201) {
+      if (response.status === 201 || response.status === 200) {
         setIsLoading(false);
         setIsSuccess(true);
         queryClient.invalidateQueries(queryName);

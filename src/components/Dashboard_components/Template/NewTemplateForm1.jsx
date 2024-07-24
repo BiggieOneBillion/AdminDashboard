@@ -142,10 +142,11 @@ const NewTemplateForm1 = ({ closeBtn, closeFn }) => {
     },
   });
 
-  const { handleRequest, isError, isLoading, isSuccess, errorMsg } = useAxiosPost2({
-    url: `https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/${clientData?.id}/templates`,
-    queryName: "template_data_info_0987654",
-  });
+  const { handleRequest, isError, isLoading, isSuccess, errorMsg } =
+    useAxiosPost2({
+      url: `https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/${clientData?.id}/templates`,
+      queryName: "template_data_info_0987654",
+    });
 
   const onSubmit = (value) => {
     setIsImgUploaded(false);
@@ -228,8 +229,10 @@ const NewTemplateForm1 = ({ closeBtn, closeFn }) => {
   return (
     <div className="space-y-3">
       {isError && (
-        <p className="text-red-600 bg-red-300 py-3 text-center w-full text-sm">
-         { errorMsg.response.data.message ? errorMsg.response.data.message : 'Network Error'}
+        <p className="text-red-600 bg-red-300 py-3 text-center rounded-md w-full text-sm">
+          {errorMsg.response.data.message
+            ? errorMsg.response.data.message
+            : "Network Error"}
         </p>
       )}
       {isSuccess && (
@@ -430,6 +433,14 @@ const NewTemplateForm1 = ({ closeBtn, closeFn }) => {
           </div>
         </Container> */}
       </Container>
+      {/* Error message */}
+      {isError && (
+        <p className="text-red-600 bg-red-300 py-3 text-center w-full rounded-md text-sm">
+          {errorMsg.response.data.message
+            ? errorMsg.response.data.message
+            : "Network Error"}
+        </p>
+      )}
       {/* btn container */}
       <div className="grid grid-cols-5 gap-5">
         <button

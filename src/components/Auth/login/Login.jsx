@@ -113,7 +113,14 @@ const Login = () => {
           </div>
 
           <div className="w-1/3 grid gap-[60px] py-6 px-12 bg-white ">
-            <h1 className=" text-2xl font-bold text-[#FF971E]">Logo</h1>
+            {/* <h1 className=" text-2xl font-bold text-[#FF971E]">Logo</h1> */}
+            <Image
+              width="40"
+              height="40"
+              src="/images/logo.png"
+              className="rounded-md"
+              alt="Login Image"
+            />
             <div className="">
               <h2 className="font-bold text-[#262633] text-2xl">Log in</h2>
               <p className="text-[#585865]">

@@ -43,6 +43,12 @@ const InputRadioContainer = ({ label, register, name, errors, id, value }) => (
   </div>
 );
 
+function handleError(error, fn) {
+   if (error.response.status === 400) {
+      fn(error.response.data.message)
+   }
+}
+
 const NewDeviceForm = ({ closeBtn, closeFn }) => {
   const queryClient = useQueryClient();
   //  get single client values from clientStore.
@@ -71,21 +77,24 @@ const NewDeviceForm = ({ closeBtn, closeFn }) => {
     },
   });
 
+
+
   const { handleRequest, isError, isLoading, isSuccess, errorMsg } =
     useAxiosPost({
       url: `https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/${singleClient[0]?.id}/devices`,
       queryName: "client_device_info",
-      fn: () => {
-        reset({
-          deviceId: "",
-          imei: "",
-          purchaseDate: "",
-        });
-      },
+      // mainfn: handleError,
+      // fn: () => {
+      //   reset({
+      //     deviceId: "",
+      //     imei: "",
+      //     purchaseDate: "",
+      //   });
+      // },
     });
 
   const onSubmit = (value) => {
-    console.log(value);
+    // console.log(value);
     // mutations.mutate({ ...value });
 
     handleRequest(value, closeFn);
@@ -117,7 +126,7 @@ const NewDeviceForm = ({ closeBtn, closeFn }) => {
     <div className="space-y-3">
       {isError && (
         <p className="text-red-600 bg-red-300 py-3 text-center w-full text-sm">
-          Device id or Imei id already exist!
+         {errorMsg}
         </p>
       )}
       {isSuccess && (

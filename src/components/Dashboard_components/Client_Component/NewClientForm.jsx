@@ -15,7 +15,7 @@ const NewClientForm = ({ closeBtn, closeFn }) => {
   //   url: "https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients",
   //   queryName: "clients_info",
   // });
-  const { handleRequest, isError, isLoading, isSuccess } = useAxiosPost({
+  const { handleRequest, isError, isLoading, isSuccess, errorMsg } = useAxiosPost({
     url: "https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients",
     queryName: "clients_info",
   });
@@ -72,7 +72,8 @@ const NewClientForm = ({ closeBtn, closeFn }) => {
     <div className="space-y-3">
       { isError && (
         <p className="text-red-600 bg-red-300 py-3 text-center w-full text-sm">
-          Credentials already exists
+          {/* Credentials already exists */}
+          {errorMsg}
         </p>
       )}
       {isSuccess && (
