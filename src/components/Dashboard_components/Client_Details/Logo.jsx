@@ -15,7 +15,6 @@ const Logo = () => {
 
   const params = useParams();
 
-  console.log(params);
 
   const { errorMsg, handleRequest, isLoading, isError, isSuccess } =
     useAxiosPost2({
