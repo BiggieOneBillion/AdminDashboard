@@ -72,7 +72,6 @@ const Login = () => {
       router.push("/dashboard");
       setBtnState({ ...btnState, status: true, text: "Successful!!" });
     } catch (error) {
-      // // console.log(error);
       if (error.response?.status === 422) {
         setBtnState({ ...btnState, status: false, text: "Try Again" });
         setInCorrect(true);
@@ -113,7 +112,6 @@ const Login = () => {
           </div>
 
           <div className="w-1/3 grid gap-[60px] py-6 px-12 bg-white ">
-            {/* <h1 className=" text-2xl font-bold text-[#FF971E]">Logo</h1> */}
             <Image
               width="40"
               height="40"
@@ -134,10 +132,6 @@ const Login = () => {
                     Incorrect Credientials
                   </span>
                 )}
-                {/* <div>
-                  <p>User: {user.fullname}</p>
-                  <p>token: {token_id}</p>
-                </div> */}
                 <InputContainer
                   label={"Email"}
                   name={"email"}

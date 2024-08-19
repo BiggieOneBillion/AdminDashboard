@@ -63,9 +63,10 @@ const TopTile2 = ({ title, subtitle = "", imgUrl = "" }) => (
       {imgUrl.endsWith(".png") ||
       imgUrl.endsWith(".jpg") ||
       imgUrl.endsWith(".jpeg") ? (
-        <Image src={imgUrl} width={50} height={50} className="h-full w-full" />
+        <Image src={imgUrl} width={50} height={50} alt="company logo" className="h-full w-full" />
       ) : (
         <Image
+          alt="company logo"
           src={"/images/no-image-2.png"}
           width={50}
           height={50}
@@ -114,44 +115,11 @@ const columnData = [
   },
 ];
 
-//   {
-//     "status": 200,
-//     "title": "Invoice Details",
-//     "message": "Successfully fetched invoice data",
-//     "entity": {
-//         "id": "059c38a8-fceb-49be-8cb7-c8652d54f2df",
-//         "clientId": "1f791535-3316-4b74-aea7-6b037ddde504",
-//         "invoiceId": "INV034",
-//         "notes": "Let us do my thing",
-//         "issuedAt": "2024-06-21T00:00:00.000Z",
-//         "dueAt": "2024-06-22T00:00:00.000Z",
-//         "details": [
-//             {
-//                 "size": "11",
-//                 "amount": 40000,
-//                 "quantity": 10,
-//                 "description": "device payment"
-//             }
-//         ],
-//         "status": "incomplete",
-//         "deletedAt": null,
-//         "createdAt": "2024-06-20T12:11:13.772Z",
-//         "updatedAt": "2024-06-20T12:11:13.772Z",
-//         "client": {
-//             "name": "Blessing Anyebe",
-//             "mobile": "admin@mail.com",
-//             "email": "blessinganyebe25@gmail.com",
-//             "logoUrl": null,
-//             "location": "Benue State"
-//         }
-//     }
-// }
 
 const InvoiceDetailsCard = ({ info }) => {
   const totalAmount = info.details
     .map((el) => el.amount)
     .reduce((prev, cur) => prev + cur, 0);
-  console.log(totalAmount);
 
   // include serial number in the data set.
   info.details.forEach((row, index) => {
@@ -173,9 +141,9 @@ const InvoiceDetailsCard = ({ info }) => {
           </div>
           {/* more icon */}
           <div className="flex justify-start items-center gap-5">
-            <button className="border-none">
+            {/* <button className="border-none">
               <LuPrinter size={20} />
-            </button>
+            </button> */}
             <Dialog.Close className="p-0 m-0">
               <IoMdClose size={20} />
             </Dialog.Close>
@@ -231,7 +199,7 @@ const InvoiceDetailsCard = ({ info }) => {
           </section>
         </section>
         {/* Note Warning */}
-        <div className="space-y-1 mt-5 mb-5">
+        {/* <div className="space-y-1 mt-5 mb-5">
           <p className=" font-medium">Note</p>
           <p className="border rounded-xl text-xs text-[rgba(0,0,0,0.3)] py-2 px-2 ">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti
@@ -240,7 +208,7 @@ const InvoiceDetailsCard = ({ info }) => {
             adipisicing elit. Soluta ad obcaecati eum quibusdam, neque voluptate
             consequuntur blanditiis cum ex reprehenderit.
           </p>
-        </div>
+        </div> */}
       </div>
     </div>
   );

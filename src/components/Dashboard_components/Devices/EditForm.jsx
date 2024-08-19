@@ -2,11 +2,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import InputContainer from "@/components/InputComponent";
 import { IoSaveSharp } from "react-icons/io5";
-import useAxiosPost from "@/hooks/useAxiosPost";
 import useAxiosPut from "@/hooks/useAxiosPut";
-// import { IoMdClose } from "react-icons/io";
-// import { zodResolver } from "@hookform/resolvers/zod";
-// import { newDeviceSchema } from "@/validation/ClientSectionValidations";
+
 
 const Container = ({ children }) => (
   <div className="p-4 border rounded-lg flex flex-col gap-2 bg-whitey">
@@ -72,9 +69,6 @@ const EditForm = ({ closeBtn, data }) => {
   });
 
   const onSubmit = (value) => {
-    console.log(value);
-    // console.log({ ...value, ram: `${value.ram}GB`, rom: `${value.rom}GB` });
-    // const input = { ...value, ram: `${value.ram}GB`, rom: `${value.rom}GB` };
     const input = { ...value };
     handleRequest(input);
   };

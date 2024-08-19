@@ -30,29 +30,18 @@ export default function useAxiosPost({ url, queryName, mainfn }) {
         if (fn) fn();
       }
     } catch (error) {
-      // console.log(error);
-      // if(response.status === 500){
-      //    setErrorMsg(response)
-      // }
-      // console.log("The solid principle" + error.message);
-      // if (error.message === "Request failed with status code 500") {
-      //   setErrorMsg("Device id or Imei id already exist!");
-      //   setIsError(true);
-      //   setIsLoading(false);
-      //   setIsSuccess(false);
-      // } else {
-      //   setIsLoading(false);
-      //   setIsSuccess(false);
-      // }
       if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
-        // console.log(error.response.status);
         setIsError(true);
         if (mainfn) {
           mainfn(error, setErrorMsg);
         } else {
-          setErrorMsg(error.response.data.message ? error.response.data.message : 'Try again') ;
+          setErrorMsg(
+            error.response.data.message
+              ? error.response.data.message
+              : "Try again"
+          );
         }
       } else if (error.request) {
         // The request was made but no response was received
@@ -60,8 +49,7 @@ export default function useAxiosPost({ url, queryName, mainfn }) {
         setIsError(true);
       } else {
         // Something happened in setting up the request that triggered an Error
-        // console.log('Error', error.message);
-        setErrorMsg("My fault abeg no vex");
+        setErrorMsg("Contact Admin");
         setIsError(true);
       }
       setIsLoading(false);

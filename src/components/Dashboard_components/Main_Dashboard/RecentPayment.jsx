@@ -7,7 +7,7 @@ import { v4 } from "uuid";
 const Header = () => (
   <div className="flex items-center justify-between border-b mb-[24px]">
     <h2 className="font-bold  pb-2 pt-4 text-[#262633]">Recent Payments</h2>
-    <BsArrowRightShort size={30} />
+    {/* <BsArrowRightShort size={30} /> */}
   </div>
 );
 
@@ -57,31 +57,3 @@ const RecentPayment = ({ info }) => {
 
 export default RecentPayment;
 
-// sample data
-// {
-//   "id": "6d03e91f-c26a-4c48-9c81-51199247ea5a",
-//   "clientId": "b73601cc-795d-45cb-9ea0-1c09f1012923",
-//   "invoiceId": "INV003",
-//   "notes": "Invoice must be paid on or before the dawn of due date",
-//   "issuedAt": "2023-10-22T23:00:00.000Z",
-//   "dueAt": "2023-12-21T23:00:00.000Z",
-//   "details": [
-//     {
-//       "size": "11",
-//       "amount": 20000,
-//       "quantity": 6,
-//       "description": "Subscription for 6 months"
-//     }
-//   ],
-//   "status": "complete",
-//   "deletedAt": null,
-//   "createdAt": "2023-11-04T15:39:11.420Z",
-//   "updatedAt": "2023-11-04T16:34:50.345Z",
-//   "client": {
-//     "name": "Nigeria National Peroleum Corporation",
-//     "mobile": "+141223344532",
-//     "email": "hello@nnpc.com",
-//     "logoUrl": "https://s3",
-//     "location": "Port Harcourt"
-//   }
-// }

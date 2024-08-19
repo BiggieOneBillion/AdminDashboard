@@ -22,7 +22,6 @@ export default function useAxiosPut2({ url, queryName, fn }) {
           "Content-Type": "multipart/form-data",
         },
       });
-    //   console.log(response);
       if (response.status === 200) {
         setIsLoading(false);
         setIsSuccess(true);
@@ -30,22 +29,6 @@ export default function useAxiosPut2({ url, queryName, fn }) {
         if (fn) setTimeout(() => fn(), 1500);
       }
     } catch (error) {
-      //  if (error.message === 'Network Error') {
-      //     setErrorMsg('Network Error')
-      //  }
-
-      console.log(error);
-      //  if () {
-
-      //  }
-
-      // if(response.status === 500){
-      //    setErrorMsg(response)
-      // }
-      // console.log("The solid principle" + error.message);
-      //   if (error.message === "Request failed with status code 500") {
-      //     setErrorMsg("Device id or Imei id already exist!");
-      //   }
       setIsError(true);
       setIsLoading(false);
       setIsSuccess(false);

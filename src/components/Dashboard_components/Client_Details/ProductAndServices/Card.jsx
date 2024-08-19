@@ -6,7 +6,6 @@ import { RiDeleteBinLine, RiPencilLine } from "react-icons/ri";
 // import EditNewsModal from "./News/EditNews";
 // import DeleteNewsModal from "./News/DeleteNewsModal";
 import { useParams } from "next/navigation";
-import usePostData from "@/hooks/usePostData";
 
 const Card = ({ datum }) => {
   return (

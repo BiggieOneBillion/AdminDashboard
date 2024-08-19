@@ -11,13 +11,7 @@ export const userStore = create(
       token_id: "",
       updateUser: (newUser) => set(() => ({ user: newUser })),
       setToken: (token) => set(() => ({ token_id: token })),
-      reset: () => {
-       
-        // set({
-        //   user: 0,
-        //   token_id: "",
-        // });
-      },
+      reset: () => {},
     }),
     {
       name: "user-storage", // name of the item in the storage (must be unique)
@@ -45,13 +39,10 @@ export const newTemplateStore = create((set) => ({
       };
     }),
   updateQuotes: (newQuote) => set((state) => ({ quotes: [...newQuote] })),
-  // verifyFormData : () => {
-
-  // }
 }));
 
 export const resetAll = (set) => ({
   resetAll: () => {
-    userStore(set).reset()
+    userStore(set).reset();
   },
-})
+});

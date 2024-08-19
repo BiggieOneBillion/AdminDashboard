@@ -21,7 +21,6 @@ const Trigger = () => (
 );
 
 const Index = () => {
-  const token_id = userStore((state) => state.token_id);
   const {
     data: tableData,
     isLoading,
@@ -60,16 +59,11 @@ const Index = () => {
     );
   }
 
-  // tableData && // console.log(tableData);
   tableData.entity.rows.forEach((row, index) => {
     row.serial = index + 1;
   });
 
   const mData = tableData.entity.rows;
-
-  // console.log('invoice data: ' + tableData.status)
-
-  console.log("Invoice Data: ", tableData.entity);
 
   return (
     <main className="flex flex-col gap-5">

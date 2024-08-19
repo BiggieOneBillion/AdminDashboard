@@ -21,7 +21,6 @@ const ArticleForm = ({ setImage, images }) => {
   const [errMsg, setErrMsg] = useState("");
   const [uploadMsg, setUploadMsg] = useState("Add");
   const handleAddForm = async () => {
-    // console.log(imageVal);
     if (
       imageVal !== null &&
       subtextRef.current.value !== "" &&
@@ -30,11 +29,6 @@ const ArticleForm = ({ setImage, images }) => {
       // creating formdata
       const formData = new FormData();
       formData.append("asset", imageVal);
-
-      // Log FormData content for debugging
-      for (let pair of formData.entries()) {
-        console.log(pair[0] + ": " + pair[1]);
-      }
 
       try {
         setUpload(true);
@@ -49,12 +43,10 @@ const ArticleForm = ({ setImage, images }) => {
             },
           }
         );
-        console.log(response.status);
         if (response.status === 201) {
           setUpload(false);
           setUploadMsg("done!!!");
           setTimeout(() => setUploadMsg("Add"), 3000);
-          console.log(response.data.entity.url);
           let newEntry = {
             url: response.data.entity.url,
             title: titleRef.current.value,
@@ -65,7 +57,6 @@ const ArticleForm = ({ setImage, images }) => {
       } catch (error) {
         setErrMsg("Image Not Uploaded");
         setUpload("Try again!!");
-        // console.log("Error msg: " + error.message);
       }
     }
   };
@@ -133,7 +124,6 @@ const ArticleForm = ({ setImage, images }) => {
 };
 
 const AddNewArticle = ({ register, images = [], setImages }) => {
-  console.log(images);
 
   const removeImage = (id) => {
     const result = images.filter((el, i) => i !== id);

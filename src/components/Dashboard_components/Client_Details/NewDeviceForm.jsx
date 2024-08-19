@@ -6,7 +6,6 @@ import { IoMdClose } from "react-icons/io";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { newDeviceSchema } from "@/validation/ClientSectionValidations";
 import { clientStore } from "@/store/clients";
-import usePostData from "@/hooks/usePostData";
 import { useQueryClient } from "@tanstack/react-query";
 import useAxiosPost from "@/hooks/useAxiosPost";
 // import { QueryClient } from "@tanstack/react-query";

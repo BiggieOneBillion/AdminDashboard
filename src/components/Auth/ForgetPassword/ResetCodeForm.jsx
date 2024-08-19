@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { recoverCodeSchema } from "@/validation/loginValidations";
 import axios from "axios";
+import Image from "next/image";
 
 const ResetCodeForm = ({ setIndex, userInfo }) => {
   // This state handles the btn text and btn disabled state.

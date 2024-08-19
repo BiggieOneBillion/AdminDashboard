@@ -30,7 +30,6 @@ export default function useAxiosPost({ url, queryName, fn }) {
         if (fn) setTimeout(() => fn(), 2000);
       }
     } catch (error) {
-      // console.log("The solid principle" + error.message);
       if (error.message === "Request failed with status code 500") {
         setErrorMsg("Device id or Imei id already exist!");
         setIsError(true);

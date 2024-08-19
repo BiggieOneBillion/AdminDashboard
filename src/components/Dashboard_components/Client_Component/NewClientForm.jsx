@@ -2,27 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import InputContainer from "@/components/InputComponent";
 import { IoSaveSharp } from "react-icons/io5";
-import { IoMdClose } from "react-icons/io";
 import { newClientSchema } from "@/validation/ClientSectionValidations";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { userStore } from "@/store/user";
-import usePostData from "@/hooks/usePostData";
-import { PiImageThin } from "react-icons/pi";
+
 import useAxiosPost from "@/hooks/useAxiosPost";
 
 const NewClientForm = ({ closeBtn, closeFn }) => {
-  // const { mutations } = usePostData({
-  //   url: "https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients",
-  //   queryName: "clients_info",
-  // });
   const { handleRequest, isError, isLoading, isSuccess, errorMsg } = useAxiosPost({
     url: "https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients",
     queryName: "clients_info",
   });
 
-  const [btnState, setBtnState] = useState({
-    text: "save",
-  });
 
   const {
     register,
@@ -31,31 +21,10 @@ const NewClientForm = ({ closeBtn, closeFn }) => {
     reset,
   } = useForm({
     resolver: zodResolver(newClientSchema),
-    // defaultValues: {
-    //   cliendId: "45678903211234",
-    // },
   });
 
   const onSubmit = (value) => {
-    // // console.log(value);
-    // once you get the values you make a request using the mutations.mutate({})
-    // mutations.mutate(value);
     handleRequest(value, closeFn);
-    // pass the values to the mutate function
-    // if successful then change submit btn text to successful
-    // clear the input fields
-    // mutations.isSuccess &&
-    //   setTimeout(() => {
-    //     reset({
-    //       email: "",
-    //       name: "",
-    //       location: "",
-    //       mobile: "",
-    //       password: "",
-    //     });
-    //   }, 1000);
-    // setBtnState({ text: "...saving" });
-    // mutations.mutate({});
   };
 
   useEffect(() => {

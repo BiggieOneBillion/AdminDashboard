@@ -13,8 +13,7 @@ import { BiCaretDown, BiCaretUp } from "react-icons/bi";
 
 export default function Table({
   columnData,
-  //   viewType,
-  size = 20,
+  size = 10,
   filterState,
   mData,
 }) {
@@ -22,7 +21,6 @@ export default function Table({
   const columns = useMemo(() => columnData, [columnData]);
   const [sorting, setSorting] = useState();
 
-  // // console.log(mData);
 
   const table = useReactTable({
     data,
@@ -39,7 +37,6 @@ export default function Table({
     onGlobalFilterChange: filterState.setFiltering,
     defaultColumn: {
       minSize: 50,
-      // size: Number.MAX_SAFE_INTEGER,
       size: 70,
       maxSize: Number.MAX_SAFE_INTEGER,
     },

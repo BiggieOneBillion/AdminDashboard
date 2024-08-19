@@ -6,6 +6,7 @@ import Image from "next/image";
 import { clientStore } from "@/store/clients";
 import api from "@/libs/api_settings";
 import Logo from "./Logo";
+import { useParams } from "next/navigation";
 
 const data = [
   {
@@ -26,10 +27,9 @@ const data = [
   },
 ];
 
-const TopBoard = ({ id }) => {
- 
-  // // console.log(id);
-  const token_id = userStore((state) => state.token_id);
+const TopBoard = () => {
+  const params = useParams();
+
   const updateSingleClientDetails = clientStore(
     (state) => state.updateSingleClientDetails
   );
@@ -37,7 +37,6 @@ const TopBoard = ({ id }) => {
     data: clientInfo,
     isLoading,
     isError,
-    isSuccess,
     refetch,
   } = useQuery({
     queryKey: ["clients_info"],
@@ -72,28 +71,8 @@ const TopBoard = ({ id }) => {
     );
   }
 
-  //   {
-  //     "id": "888fe7dc-f762-479b-b301-83bc10f8a971",
-  //     "name": "Pagac Inc",
-  //     "location": "Doyleport",
-  //     "email": "Diego83@gmail.com",
-  //     "mobile": "936.330.5003 x940",
-  //     "about": "Tepidus cursim cur demo bibo suscipit comparo. Thesaurus summopere ulciscor vesica acies. Theca ulciscor tracto tener.\nThorax solum tamdiu molestias. Utrum degenero dedico casso spargo. Supra crastinus nesciunt certe spes amor desparatus tamdiu ulterius adeptio.",
-  //     "logoUrl": "https://loremflickr.com/640/480?lock=8361745978490880",
-  //     "status": true,
-  //     "createdAt": "2024-04-07T11:27:54.933Z",
-  //     "updatedAt": "2023-10-25T10:51:20.267Z",
-  //     "deletedAt": null,
-  //     "devicesCount": 10,
-  //     "devicesOwned": 10,
-  //     "activeDevices": 10,
-  //     "totalAmountPaid": 0
-  // }
-
-  //   // console.log(data?.entity);
   if (clientInfo?.entity?.data.length > 0) {
-    // // console.log(clientInfo?.entity?.data);
-    const result = clientInfo?.entity?.data.filter((el) => el.id == id);
+    const result = clientInfo?.entity?.data.filter((el) => el.id == params.id);
     // update single client store
     updateSingleClientDetails(result);
     // // console.log(result);
@@ -123,7 +102,7 @@ const TopBoard = ({ id }) => {
                   className="object-cover h-[80px] w-[80px]"
                 />
               </div>
-             <Logo />
+              <Logo />
             </div>
             {/* company name and email */}
             <div className="space-y-2">

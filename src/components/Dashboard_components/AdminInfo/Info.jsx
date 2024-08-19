@@ -12,14 +12,9 @@ import { useRouter } from "next/navigation";
 const Info = () => {
   const route = useRouter();
   const user = userStore((state) => state.user);
-  // const reset = userStore((state) => state.reset);
-  // const resetState = resetAll((state) => state.resetAll);
-  // // console.log(user);
-  // // console.log('token', token_id);
   const handleLogout = async () => {
     try {
       const response = await axios.get("/api/delete-cookies");
-      // // console.log(response.data.message);
       if (response.data.message === "done!!!") {
         route.replace("/");
       }
@@ -27,17 +22,17 @@ const Info = () => {
   };
   return (
     <div className="right-section-top basis-[80px] lg:px-10  flex items-center gap-5 justify-end bg-white">
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-4">
         {/* <div className="border p-2 rounded-md mr-4 relative">
           <RiNotification2Line  size={20}/>
           <span className="h-2 w-2 inline-block rounded-full bg-red-500 absolute top-2 right-2"></span>
         </div> */}
-        <NotificationDialog />
+        {/* <NotificationDialog /> */}
         {/* user image container */}
-        <div className="w-[40px] h-[40px] rounded-full border overflow-hidden"></div>
+        {/* <div className="w-[40px] h-[40px] rounded-full border overflow-hidden"></div> */}
         {/* user name and position */}
         <div className="space-y-1">
-          <p className="text-sm text-black font-normal">{user.fullname}</p>
+          <p className="text-sm text-black font-medium">{user.fullname}</p>
         </div>
         <MyDropdownMenu>
           <button

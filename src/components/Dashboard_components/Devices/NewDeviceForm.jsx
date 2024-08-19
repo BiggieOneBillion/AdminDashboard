@@ -50,9 +50,7 @@ const NewDeviceForm = ({ closeBtn }) => {
     },
   });
 
-  const onSubmit = (value) => {
-    // console.log(value);
-  };
+  const onSubmit = () => {};
   return (
     <div className="space-y-3 ">
       <Container>

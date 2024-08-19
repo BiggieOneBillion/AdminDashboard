@@ -15,8 +15,6 @@ const Trigger = () => (
 const About = () => {
   const singleClient = clientStore((state) => state.singleClient);
 
-  console.log(singleClient[0]);
-
   return (
     <div className="space-y-5 mt-10 mb-[200px]">
       <section className="bg-gray-50 px-4 py-6 rounded-xl space-y-5">

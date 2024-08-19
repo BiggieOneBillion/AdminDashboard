@@ -22,33 +22,11 @@ const Trigger = () => (
 );
 
 const Index = () => {
-  // const data = [
-  //   {
-  //     number: 10,
-  //     text: "Device Owned",
-  //   },
-  //   {
-  //     number: 7,
-  //     text: "Active Device",
-  //   },
-  //   {
-  //     number: 1,
-  //     text: "Unpaid Invoice",
-  //   },
-  //   {
-  //     number: 100000,
-  //     text: "Total Revenue",
-  //   },
-  // ];
 
   const params = useParams();
   const route = useRouter();
 
   const handleGoBack = () => route.back();
-
-  const token_id = userStore((state) => state.token_id);
-
-
 
   const {
     data: tableData,
@@ -91,8 +69,6 @@ const Index = () => {
   tableData.entity.rows.forEach((row, index) => {
     row.serial = index + 1;
   });
-
-  tableData && console.log(tableData);
 
   
   return (

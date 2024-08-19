@@ -50,7 +50,7 @@ const NewInvoiceForm = ({ closeBtn, closeFn }) => {
   } = useForm({
     // resolver: zodResolver(paymentSchema),
     defaultValues: {
-      size: "11",
+      size: "10",
     },
   });
 
@@ -86,20 +86,12 @@ const NewInvoiceForm = ({ closeBtn, closeFn }) => {
         },
       ],
     };
-
-    // inputValue.details[0].description[0][1]
-
-
-
-    console.log(inputValue);
-
     handleRequest(inputValue, closeFn);
   };
 
   useEffect(() => {
     if (selectChange !== "") {
       const result = allClient.filter((element) => element.id === selectChange);
-      // console.log("Result: ", result);
       setClientData(result[0]);
     }
   }, [selectChange]);
@@ -207,10 +199,10 @@ const NewInvoiceForm = ({ closeBtn, closeFn }) => {
           <InputRadioContainer
             errors={errors}
             name={"size"}
-            label={"11 inches"}
+            label={"10 inches"}
             register={register}
-            id={"11"}
-            value={"11"}
+            id={"10"}
+            value={"10"}
           />
         </div>
       </Container>

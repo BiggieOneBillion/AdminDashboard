@@ -12,7 +12,6 @@ import api from "@/libs/api_settings";
 const TemplateContainer = () => {
   const params = useParams();
 
-  const token_id = userStore((state) => state.token_id);
   const updateIsTemplate = clientStore((state) => state.updateIsTemplate)
 
   const {
@@ -30,7 +29,7 @@ const TemplateContainer = () => {
 
   if (isLoading) {
     return (
-      <div className="fixed inset-0 w-screen h-screen bg-[rgba(0,0,0,0.5)] flex justify-center items-center">
+      <div className="fixed top-0 left-0 w-screen h-screen bg-[rgba(0,0,0,0.5)] flex justify-center items-center">
         <div className="loader"></div>
       </div>
     );
@@ -46,7 +45,6 @@ const TemplateContainer = () => {
     );
   }
 
-  // templateData && // console.log(templateData.entity.rows);
   templateData?.entity?.rows.length === 0  ? updateIsTemplate(true) : updateIsTemplate(false)
 
 

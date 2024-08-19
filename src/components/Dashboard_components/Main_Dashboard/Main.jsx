@@ -13,7 +13,6 @@ import { analyticsStore } from "@/store/clients";
 import api from "@/libs/api_settings";
 
 const Main = () => {
-  const token_id = userStore((state) => state.token_id);
 
   const updateAnalyticsData = analyticsStore(
     (state) => state.updateAnalyticsData
@@ -53,9 +52,6 @@ const Main = () => {
       allDeviceCount: data?.entity.allDeviceCount,
       activeDeviceCount: data?.entity.activeDeviceCount,
     });
-  // data && // console.log(data.entity);
-
-  // console.log(data.entity);
 
   return (
     <main className="flex flex-col gap-5">
@@ -88,26 +84,3 @@ const Main = () => {
 
 export default Main;
 
-// {clientCount: 100, allDeviceCount: 2000, activeDeviceCount: 1293, paidInvoiceCount: 0, unpaidInvoiceCount: 0, …}
-
-// activeDeviceCount
-// :
-// 1293
-// allDeviceCount
-// :
-// 2000
-// clientCount
-// :
-// 100
-// paidInvoiceCount
-// :
-// 0
-// recentPayments
-// :
-// []
-// sumOfCompletedTransactions
-// :
-// 0
-// unpaidInvoiceCount
-// :
-// 0

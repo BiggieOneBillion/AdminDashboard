@@ -1,14 +1,10 @@
 "use client";
-import { useRouter } from "next/navigation";
 import React from "react";
-import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import Topsection from "./Topsection";
 import Main from "./Main";
 
 const index = () => {
-  const route = useRouter();
 
-  const handleGoBack = () => route.back();
 
   return (
     <main className="flex flex-col gap-5">

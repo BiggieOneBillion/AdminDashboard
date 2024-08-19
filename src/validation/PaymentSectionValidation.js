@@ -22,11 +22,3 @@ export const paymentSchema = z.object({
   // deviceSize: z.enum(["complete", "incomplete"]),
 });
 
-// "clientId": "43a5ba3f-f290-4b4f-a4b4-4ee291a4c8f4",
-// "transactionId": "TX124ldk890",
-// "date": "2024-05-17",
-// "deviceName": "Tab T032",
-// "deviceSize": "10 inches",
-// "deviceId": "DEV099",
-// "amount": 15000,
-// "isComplete": true

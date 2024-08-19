@@ -83,21 +83,8 @@ const ArticleForm = ({ register }) => (
   </div>
 );
 
-// FORM INCOMPLETE
-
-// {
-//         "id": "cb916a18-3dbf-4aad-bce9-67fc1f3ba0a7",
-//         "clientId": "5c04e022-dae4-4852-ae71-61a8e2f0e046",
-//         "coverImageUrl": "jnasoiudjknfaskdjnfaskbjdnxfaskdbj",
-//         "title": "jo ookk",
-//         "subtext": "sdfsad sdf szdf arsdf a d",
-//         "createdAt": "2024-06-03T14:45:14.620Z",
-//         "updatedAt": "2024-06-03T14:45:14.620Z",
-//         "deletedAt": null
-//     }
 
 const EditNewsForm = ({ closeBtn, info }) => {
-  // console.log(info);
   const {
     register,
     handleSubmit,
@@ -130,8 +117,7 @@ const EditNewsForm = ({ closeBtn, info }) => {
   });
 
   const onSubmit = async (value) => {
-    // console.log(value);
-    // console.log(typeof value.image === 'string')
+  
     if (typeof value.image !== "string") {
       const formData = new FormData();
       formData.append("asset", value.image[0]);
@@ -147,10 +133,8 @@ const EditNewsForm = ({ closeBtn, info }) => {
             },
           }
         );
-        // console.log(response.status);
         if (response.status === 201) {
           setUpload(false);
-          // console.log(response.data.entity.url);
           const data = {
             title: value.title,
             subtext: value.subtext,
@@ -160,7 +144,6 @@ const EditNewsForm = ({ closeBtn, info }) => {
         }
       } catch (error) {
         setErrMsg("Image Not Uploaded");
-        // console.log("Error msg: " + error.message);
       }
     } else {
       const data = {
@@ -170,7 +153,6 @@ const EditNewsForm = ({ closeBtn, info }) => {
       };
       handleRequest(data);
     }
-    // handleRequest({...value})
   };
   return (
     <div className="space-y-3 ">

@@ -17,9 +17,6 @@ const SearchAndFilter = ({filtering, setFiltering, dropdownMenu}) => {
           <AiOutlineSearch />
         </button>
       </div>
-      {/* <div className="border p-2 rounded-md mr-4">
-       {dropdownMenu}
-      </div> */}
     </div>
   );
 };

@@ -2,10 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import InputContainer from "@/components/InputComponent";
 import { IoSaveSharp } from "react-icons/io5";
-import { IoMdClose } from "react-icons/io";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { paymentSchema } from "@/validation/PaymentSectionValidation";
-import usePostData from "@/hooks/usePostData";
 import useAxiosPost from "@/hooks/useAxiosPost";
 import { clientStore } from "@/store/clients";
 import SelectDropDown from "../Template/SelectDropDown";
@@ -66,12 +62,6 @@ const NewPaymentForm = ({ closeBtn, closeFn }) => {
 
   const [clientData, setClientData] = useState("");
 
-  // console.log(clientData);
-
-  // const { mutations } = usePostData({
-  //   url: "https://api-prestigecalendar.olotusquare.co/api/v1/admin/payments",
-  //   queryName: "clients_payment_overall_info",
-  // });
 
   const { handleRequest, isError, isLoading, isSuccess, errorMsg } =
     useAxiosPost({
@@ -104,9 +94,7 @@ const NewPaymentForm = ({ closeBtn, closeFn }) => {
       isComplete: value.paymentStatus !== "incomplete" ? true : false,
     };
 
-    // console.log(input);
-
-    // mutations.mutate(input);
+ 
     handleRequest(input, closeFn);
 
     // console.log(input)
@@ -115,7 +103,6 @@ const NewPaymentForm = ({ closeBtn, closeFn }) => {
   useEffect(() => {
     if (selectChange !== "") {
       const result = allClient.filter((element) => element.id === selectChange);
-      console.log("Result: ", result);
       setClientData(result[0]);
     }
   }, [selectChange]);

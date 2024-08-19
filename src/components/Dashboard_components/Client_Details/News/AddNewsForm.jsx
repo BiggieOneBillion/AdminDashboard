@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import InputContainer from "@/components/InputComponent";
 import { IoSaveSharp } from "react-icons/io5";
-import { IoMdClose } from "react-icons/io";
-import { PiImageThin, PiTrash } from "react-icons/pi";
+import { PiImageThin} from "react-icons/pi";
 import axios from "axios";
-import usePostData from "@/hooks/usePostData";
 import { useParams } from "next/navigation";
 import { userStore } from "@/store/user";
 import useAxiosPost from "@/hooks/useAxiosPost";
@@ -108,16 +105,10 @@ const AddNewsForm = ({ closeBtn, closeFn }) => {
 
   const token_id = userStore((state) => state.token_id);
 
-  const onSubmit = async (values) => {
-    console.log(values.image);
+  const onSubmit = async (values) => { 
     // Create a FormData object
     const formData = new FormData();
     formData.append("asset", values.image[0]);
-
-    // Log FormData content for debugging
-    for (let pair of formData.entries()) {
-      console.log(pair[0] + ": " + pair[1]);
-    }
 
     try {
       setUpload(true);
@@ -131,10 +122,8 @@ const AddNewsForm = ({ closeBtn, closeFn }) => {
           },
         }
       );
-      // console.log(response.status);
       if (response.status === 201) {
         setUpload(false);
-        // console.log(response.data.entity.url);
         const data = {
           title: values.title,
           subtext: values.subtext,
@@ -144,7 +133,6 @@ const AddNewsForm = ({ closeBtn, closeFn }) => {
       }
     } catch (error) {
       setErrMsg("Image Not Uploaded");
-      // console.log("Error msg: " + error.message);
     }
 
     // submit the file to s3 bucket and then get the url
