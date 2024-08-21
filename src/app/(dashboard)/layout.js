@@ -3,6 +3,7 @@ import "@radix-ui/themes/styles.css";
 import { Theme } from "@radix-ui/themes";
 import { ReactQueryProvider } from "../ReactQueryProvider";
 import Layout from "@/components/Dashboard_components/Layout";
+import ResponsiveWarning from "@/components/responsiveness/Responsiveness";
 
 export const metadata = {
   title: "Prestige Dashboard",
