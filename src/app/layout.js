@@ -3,6 +3,7 @@ import "./globals.css";
 import "@radix-ui/themes/styles.css";
 import { Theme } from "@radix-ui/themes";
 import { ReactQueryProvider } from "./ReactQueryProvider";
+import ResponsiveWarning from "@/components/responsiveness/Responsiveness";
 
 export const metadata = {
   title: "Prestige Dashboard",
@@ -14,7 +15,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <Theme>
-          <ReactQueryProvider>{children}</ReactQueryProvider>
+          <ReactQueryProvider>
+            <ResponsiveWarning>{children}</ResponsiveWarning>
+          </ReactQueryProvider>
         </Theme>
       </body>
     </html>

@@ -14,7 +14,9 @@ export default function RootLayout({ children }) {
     <section>
       <ReactQueryProvider>
         <Theme>
-          <Layout>{children}</Layout>
+          <ResponsiveWarning>
+            <Layout>{children}</Layout>
+          </ResponsiveWarning>
         </Theme>
       </ReactQueryProvider>
     </section>
