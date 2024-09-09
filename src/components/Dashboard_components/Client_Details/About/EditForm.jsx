@@ -14,7 +14,14 @@ const Container = ({ children }) => (
   </div>
 );
 
-const TextAreaContainer = ({ label, register, name, errors, value, isDisabled }) => (
+const TextAreaContainer = ({
+  label,
+  register,
+  name,
+  errors,
+  value,
+  isDisabled,
+}) => (
   <div className="flex flex-col gap-2 text-black">
     <label className="capitalize text-[13px] font-light text-[#585865]">
       {label}
@@ -51,7 +58,7 @@ const EditForm = ({ info = "", closeBtn, closeFn }) => {
 
   const { errorMsg, handleRequest, isLoading, isError, isSuccess } =
     useAxiosPut({
-      url: `https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/${params.id}/about`,
+      url: `https://api.prestigecalendar.com/api/v1/admin/clients/${params.id}/about`,
       queryName: "clients_info",
     });
 

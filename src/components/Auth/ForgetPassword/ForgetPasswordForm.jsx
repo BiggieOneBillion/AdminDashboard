@@ -28,7 +28,7 @@ const ForgetPasswordForm = ({ setIndex, userInfo, setUserInfo }) => {
     setBtnState({ ...btnState, status: true, text: "...Loading" });
     try {
       const response = await axios.post(
-        "https://api-prestigecalendar.olotusquare.co/api/v1/admin/forgot-password",
+        "https://api.prestigecalendar.com/api/v1/admin/forgot-password",
         values
       );
       // console.log(response.data);

@@ -41,7 +41,7 @@ const EditServiceForm = ({ closeBtn, closeFn }) => {
   } = useForm();
 
   const { handleRequest, isError, isLoading, isSuccess } = useAxiosPut({
-    url: `https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/${params.id}/services`,
+    url: `https://api.prestigecalendar.com/api/v1/admin/clients/${params.id}/services`,
     queryName: ["service_data_info", params.id],
   });
 
@@ -60,7 +60,7 @@ const EditServiceForm = ({ closeBtn, closeFn }) => {
 
   return (
     <div className="flex flex-col gap-5">
-       {isSuccess && (
+      {isSuccess && (
         <p className="text-green-600 bg-green-300 py-3 text-center w-full text-sm">
           Success
         </p>

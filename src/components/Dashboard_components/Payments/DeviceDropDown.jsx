@@ -5,12 +5,12 @@ import React, { useState } from "react";
 import SelectDropDown from "./SelectDropDown";
 
 const DeviceDropDown = ({ data, getDevice }) => {
-//   console.log("clientId: ", data);
+  //   console.log("clientId: ", data);
   const token_id = userStore((state) => state.token_id);
 
-//   const [selectChange, setSelectChange] = useState("");
+  //   const [selectChange, setSelectChange] = useState("");
 
-//   console.log(selectChange);
+  //   console.log(selectChange);
 
   const {
     data: tableData,
@@ -21,7 +21,7 @@ const DeviceDropDown = ({ data, getDevice }) => {
     queryKey: [`client_device_info-${data}`],
     queryFn: async () => {
       const response = await axios.get(
-        `https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/${data}/devices`,
+        `https://api.prestigecalendar.com/api/v1/admin/clients/${data}/devices`,
         {
           headers: {
             Authorization: `Bearer ${token_id}`,
@@ -58,7 +58,7 @@ const DeviceDropDown = ({ data, getDevice }) => {
     );
   }
 
-//   console.log(tableData.entity.rows);
+  //   console.log(tableData.entity.rows);
 
   return (
     <div className="flex flex-col items-stretch gap-2 mb-3">

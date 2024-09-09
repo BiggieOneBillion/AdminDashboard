@@ -89,7 +89,7 @@ const EditTemplateForm = ({ closeBtn, closeFn, data }) => {
 
   const { handleRequest, isError, isLoading, isSuccess, errorMsg } =
     useAxiosPut2({
-      url: `https://api-prestigecalendar.olotusquare.co/api/v1/admin/templates/${data.id}`,
+      url: `https://api.prestigecalendar.com/api/v1/admin/templates/${data.id}`,
       queryName: "template_data_info_0987654",
     });
 

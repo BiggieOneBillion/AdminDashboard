@@ -19,8 +19,8 @@ const TemplateModal = ({ data, header, details }) => {
   //   queryKey: [`client_template_details_info-${data.id}`, data.id],
   //   queryFn: async () => {
   //     const response = await axios.get(
-  //       // `https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/${data.clientId}/devices/${data.id}`,
-  //       `https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/${data.clientId}/templates`,
+  //       // `https://api.prestigecalendar.com/api/v1/admin/clients/${data.clientId}/devices/${data.id}`,
+  //       `https://api.prestigecalendar.com/api/v1/admin/clients/${data.clientId}/templates`,
   //       {
   //         headers: {
   //           Authorization: `Bearer ${token_id}`,
@@ -71,40 +71,38 @@ const TemplateModal = ({ data, header, details }) => {
   });
 
   // "client": {
-    //       "id": "5c04e022-dae4-4852-ae71-61a8e2f0e046",
-    //       "name": "Nigeria National Peroleum Corporation",
-    //       "location": "Port Harcourt",
-    //       "email": "hello@nnpc.com",
-    //       "mobile": "+141223344532",
-    //       "about": "Total Energies is a multi-energy company that produces and markets fuels, natural gas and electricity. Our 100,000 employees are committed to better energy that is more affordable, more reliable, cleaner and accessible to as many people as possible. Active in more than 130 countries, our ambition is to become the responsible energy major.",
-    //       "logoUrl": "https://prestige-calendar-dev.s3.us-east-1.amazonaws.com/logo/e6ee99f6-646d-41ca-b5bc-ea17c65769c2.jpg",
-    //       "status": true,
-    //       "createdAt": "2024-06-03T13:35:07.204Z",
-    //       "updatedAt": "2024-06-03T14:44:38.022Z",
-    //       "deletedAt": null
-    //   },
+  //       "id": "5c04e022-dae4-4852-ae71-61a8e2f0e046",
+  //       "name": "Nigeria National Peroleum Corporation",
+  //       "location": "Port Harcourt",
+  //       "email": "hello@nnpc.com",
+  //       "mobile": "+141223344532",
+  //       "about": "Total Energies is a multi-energy company that produces and markets fuels, natural gas and electricity. Our 100,000 employees are committed to better energy that is more affordable, more reliable, cleaner and accessible to as many people as possible. Active in more than 130 countries, our ambition is to become the responsible energy major.",
+  //       "logoUrl": "https://prestige-calendar-dev.s3.us-east-1.amazonaws.com/logo/e6ee99f6-646d-41ca-b5bc-ea17c65769c2.jpg",
+  //       "status": true,
+  //       "createdAt": "2024-06-03T13:35:07.204Z",
+  //       "updatedAt": "2024-06-03T14:44:38.022Z",
+  //       "deletedAt": null
+  //   },
 
   return (
     <Dialog.Root>
       <Dialog.Trigger className="block w-fit">
-      <div className="flex items-center gap-2">
-        <div className="h-[30px] w-[30px] rounded-full overflow-hidden">
-          <Image
-            alt="company logo"
-            src={
-              data.client.logoUrl === null
-                ? "/images/no-image-2.png"
-                : data.client.logoUrl
-            }
-            height={50}
-            width={50}
-            className="object-cover h-[30px] w-[30px]"
-          />
+        <div className="flex items-center gap-2">
+          <div className="h-[30px] w-[30px] rounded-full overflow-hidden">
+            <Image
+              alt="company logo"
+              src={
+                data.client.logoUrl === null
+                  ? "/images/no-image-2.png"
+                  : data.client.logoUrl
+              }
+              height={50}
+              width={50}
+              className="object-cover h-[30px] w-[30px]"
+            />
+          </div>
+          <span key={v4()}>{data.client.name}</span>
         </div>
-        <span key={v4()}>
-          {data.client.name}
-        </span>
-      </div>
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay

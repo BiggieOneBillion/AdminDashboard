@@ -34,7 +34,7 @@ const ArticleForm = ({ setImage, images }) => {
         setUpload(true);
         setUploadMsg("...uploading");
         const response = await axios.post(
-          `https://api-prestigecalendar.olotusquare.co/api/v1/admin/assets/for/${params.id}`,
+          `https://api.prestigecalendar.com/api/v1/admin/assets/for/${params.id}`,
           formData,
           {
             headers: {
@@ -124,7 +124,6 @@ const ArticleForm = ({ setImage, images }) => {
 };
 
 const AddNewArticle = ({ register, images = [], setImages }) => {
-
   const removeImage = (id) => {
     const result = images.filter((el, i) => i !== id);
     setImages(result);

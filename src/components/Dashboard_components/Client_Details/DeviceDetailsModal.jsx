@@ -21,7 +21,7 @@ const DeviceDetailsModal = ({ data, header, details }) => {
     queryKey: [`client_device_details_info-${data.id}`, data.id],
     queryFn: async () => {
       const response = await axios.get(
-        `https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/${data.clientId}/devices/${data.id}`,
+        `https://api.prestigecalendar.com/api/v1/admin/clients/${data.clientId}/devices/${data.id}`,
         {
           headers: {
             Authorization: `Bearer ${token_id}`,

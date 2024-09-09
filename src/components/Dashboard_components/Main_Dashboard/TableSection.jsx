@@ -31,7 +31,7 @@ const TableSection = () => {
     queryKey: ["main_dashboard_clients_info"],
     queryFn: async () => {
       const response = await axios.get(
-        "https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients?page=1&limit=15",
+        "https://api.prestigecalendar.com/api/v1/admin/clients?page=1&limit=15",
         {
           headers: {
             Authorization: `Bearer ${token_id}`,

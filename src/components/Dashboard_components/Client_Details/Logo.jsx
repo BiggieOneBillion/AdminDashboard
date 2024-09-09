@@ -15,15 +15,14 @@ const Logo = () => {
 
   const params = useParams();
 
-
   const { errorMsg, handleRequest, isLoading, isError, isSuccess } =
     useAxiosPost2({
-      url: `https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/${params.id}/logo`,
+      url: `https://api.prestigecalendar.com/api/v1/admin/clients/${params.id}/logo`,
       queryName: "clients_info",
     });
 
   const handleChangeLogo = (e) => {
-    setModal(true)
+    setModal(true);
     const formData = new FormData();
     formData.append("logo", e.target.files[0]);
     handleRequest(formData);
@@ -66,7 +65,7 @@ const Logo = () => {
           {isSuccess && (
             <div className="bg-[#28A745] text-white rounded-lg px-5 py-5 min-w-[300px]">
               <p className="flex items-center gap-4">
-                <FaRegCheckCircle  />
+                <FaRegCheckCircle />
                 <span className="text-base">Done</span>
               </p>
             </div>

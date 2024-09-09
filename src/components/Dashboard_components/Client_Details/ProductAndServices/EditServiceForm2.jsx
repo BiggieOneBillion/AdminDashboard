@@ -45,7 +45,7 @@ const EditServiceForm2 = ({ closeBtn, closeFn, data }) => {
   });
 
   const { handleRequest, isError, isLoading, isSuccess } = useAxiosPut({
-    url: `https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/${params.id}/services`,
+    url: `https://api.prestigecalendar.com/api/v1/admin/clients/${params.id}/services`,
     queryName: ["service_data_info", params.id],
   });
 

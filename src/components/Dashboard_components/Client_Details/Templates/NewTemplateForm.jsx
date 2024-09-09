@@ -147,7 +147,7 @@ const NewTemplateForm = ({ closeBtn, closeFn }) => {
 
   const { handleRequest, isError, isLoading, isSuccess, errorMsg } =
     useAxiosPost2({
-      url: `https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/${params.id}/templates`,
+      url: `https://api.prestigecalendar.com/api/v1/admin/clients/${params.id}/templates`,
       queryName: "template_data_info_0987654",
     });
 

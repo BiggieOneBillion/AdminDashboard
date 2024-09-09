@@ -13,7 +13,7 @@ const Service = () => {
 
   const token_id = userStore((state) => state.token_id);
 
-  // https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/:clientId/services
+  // https://api.prestigecalendar.com/api/v1/admin/clients/:clientId/services
 
   const {
     data: serviceData,
@@ -22,7 +22,7 @@ const Service = () => {
   } = useQuery({
     queryKey: ["service_data_info", params.id],
     queryFn: async () => {
-      const response = await api.get(`admin/clients/${params.id}/services`)
+      const response = await api.get(`admin/clients/${params.id}/services`);
       return response.data;
     },
     staleTime: 5 * 1000,

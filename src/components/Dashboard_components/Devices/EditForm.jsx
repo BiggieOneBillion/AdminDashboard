@@ -4,7 +4,6 @@ import InputContainer from "@/components/InputComponent";
 import { IoSaveSharp } from "react-icons/io5";
 import useAxiosPut from "@/hooks/useAxiosPut";
 
-
 const Container = ({ children }) => (
   <div className="p-4 border rounded-lg flex flex-col gap-2 bg-whitey">
     {children}
@@ -65,7 +64,7 @@ const EditForm = ({ closeBtn, data }) => {
 
   const { handleRequest, isError, isLoading, isSuccess } = useAxiosPut({
     queryName: "mutiple_device_info",
-    url: `https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/${data.clientId}/devices/${data.id}`,
+    url: `https://api.prestigecalendar.com/api/v1/admin/clients/${data.clientId}/devices/${data.id}`,
   });
 
   const onSubmit = (value) => {

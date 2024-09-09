@@ -18,7 +18,7 @@ const TableContainer = ({ children }) => {
     queryKey: ["clients_template_overall_info"],
     queryFn: async () => {
       // const response = await axios.get(
-      //   `https://api-prestigecalendar.olotusquare.co/api/v1/admin/templates?page=1&limit=25`,
+      //   `https://api.prestigecalendar.com/api/v1/admin/templates?page=1&limit=25`,
       //   {
       //     headers: {
       //       Authorization: `Bearer ${token_id}`,
@@ -26,7 +26,7 @@ const TableContainer = ({ children }) => {
       //     },
       //   }
       // );
-      const response = await api.get(`admin/templates?page=1&limit=25`)
+      const response = await api.get(`admin/templates?page=1&limit=25`);
       return response.data;
     },
     staleTime: 5 * 1000,

@@ -62,10 +62,9 @@ const NewPaymentForm = ({ closeBtn, closeFn }) => {
 
   const [clientData, setClientData] = useState("");
 
-
   const { handleRequest, isError, isLoading, isSuccess, errorMsg } =
     useAxiosPost({
-      url: "https://api-prestigecalendar.olotusquare.co/api/v1/admin/payments",
+      url: "https://api.prestigecalendar.com/api/v1/admin/payments",
       queryName: "clients_payment_overall_info",
       fn: () => {
         reset({
@@ -94,7 +93,6 @@ const NewPaymentForm = ({ closeBtn, closeFn }) => {
       isComplete: value.paymentStatus !== "incomplete" ? true : false,
     };
 
- 
     handleRequest(input, closeFn);
 
     // console.log(input)

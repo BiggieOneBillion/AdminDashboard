@@ -6,7 +6,7 @@ import axios from "axios";
 import { userStore } from "@/store/user";
 import { QueryClient, useQueryClient } from "@tanstack/react-query";
 
-const DeleteTemplateModal = ({id }) => {
+const DeleteTemplateModal = ({ id }) => {
   const [btnText, setBtnText] = useState("Delete");
   const token_id = userStore((state) => state.token_id);
   const queryClient = useQueryClient();
@@ -17,7 +17,7 @@ const DeleteTemplateModal = ({id }) => {
     setBtnText("Deleting....");
     try {
       await axios.delete(
-        `https://api-prestigecalendar.olotusquare.co/api/v1/admin/templates/${id}`,
+        `https://api.prestigecalendar.com/api/v1/admin/templates/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token_id}`,
@@ -26,7 +26,9 @@ const DeleteTemplateModal = ({id }) => {
         }
       );
       setBtnText("Done!!");
-      queryClient.invalidateQueries({ queryKey: ["template_data_info_0987654", params.id] });
+      queryClient.invalidateQueries({
+        queryKey: ["template_data_info_0987654", params.id],
+      });
     } catch (error) {
       //   // console.log(error);
       setBtnText("Try Again");

@@ -43,10 +43,9 @@ const InputRadioContainer = ({ label, register, name, errors, id, value }) => (
 );
 
 const NewInvoiceForm = ({ closeBtn, closeFn }) => {
-
   // alert('hi')
 
-  const params = useParams()
+  const params = useParams();
 
   const {
     register,
@@ -56,14 +55,13 @@ const NewInvoiceForm = ({ closeBtn, closeFn }) => {
     // resolver: zodResolver(paymentSchema),
     defaultValues: {
       size: "11",
-      clientId: params.id
+      clientId: params.id,
     },
   });
 
-
   const { handleRequest, isLoading, isSuccess, isError, errorMsg } =
     useAxiosPost({
-      url: "https://api-prestigecalendar.olotusquare.co/api/v1/admin/invoices",
+      url: "https://api.prestigecalendar.com/api/v1/admin/invoices",
       queryName: "client_invoice_info",
     });
 
@@ -86,13 +84,10 @@ const NewInvoiceForm = ({ closeBtn, closeFn }) => {
 
     // inputValue.details[0].description[0][1]
 
-
-
     console.log(inputValue);
 
     handleRequest(inputValue, closeFn);
   };
-
 
   return (
     <div className="space-y-3">

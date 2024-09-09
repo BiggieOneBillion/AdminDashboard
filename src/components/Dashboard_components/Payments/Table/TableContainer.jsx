@@ -17,7 +17,7 @@ const TableContainer = ({ children }) => {
     queryKey: ["clients_payment_overall_info"],
     queryFn: async () => {
       const response = await axios.get(
-        `https://api-prestigecalendar.olotusquare.co/api/v1/admin/payments?page=1&limit=3`,
+        `https://api.prestigecalendar.com/api/v1/admin/payments?page=1&limit=3`,
         {
           headers: {
             Authorization: `Bearer ${token_id}`,

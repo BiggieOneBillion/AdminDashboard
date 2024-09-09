@@ -22,7 +22,6 @@
 //   </div>
 // );
 
-
 // const InputRadioContainer = ({ label, register, name, errors, id, value }) => (
 //   <div className="flex flex-col gap-2 text-black">
 //     <div className="flex items-center justify-start gap-1">
@@ -171,7 +170,7 @@
 
 //   const { handleRequest, isError, isLoading, isSuccess, errorMsg } =
 //     useAxiosPost2({
-//       url: `https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/${params.id}/templates`,
+//       url: `https://api.prestigecalendar.com/api/v1/admin/clients/${params.id}/templates`,
 //       queryName: "template_data_info_0987654",
 //     });
 

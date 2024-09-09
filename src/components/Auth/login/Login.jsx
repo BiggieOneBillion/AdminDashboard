@@ -58,7 +58,7 @@ const Login = () => {
     setBtnState({ ...btnState, status: true, text: "...Loading" });
     try {
       const response = await axios.post(
-        "https://api-prestigecalendar.olotusquare.co/api/v1/admin/login",
+        "https://api.prestigecalendar.com/api/v1/admin/login",
         values
       );
       // // console.log(response.data.entity.admin.fullname);

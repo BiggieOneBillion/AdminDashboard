@@ -2,11 +2,11 @@
 import React, { useState, useEffect } from "react";
 
 const ResponsiveWarning = ({ children }) => {
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsSmallScreen(window.innerWidth <= 1024);
+      setIsSmallScreen(!(window.innerWidth > 1024));
     };
 
     // Set the initial value

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { IoSaveSharp } from "react-icons/io5";
-import { PiImageThin} from "react-icons/pi";
+import { PiImageThin } from "react-icons/pi";
 import axios from "axios";
 import { useParams } from "next/navigation";
 import { userStore } from "@/store/user";
@@ -92,7 +92,7 @@ const AddNewsForm = ({ closeBtn, closeFn }) => {
   const [errMsg, setErrMsg] = useState("Network Error");
 
   const { handleRequest, isError, isLoading, isSuccess } = useAxiosPost({
-    url: `https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/${params.id}/news`,
+    url: `https://api.prestigecalendar.com/api/v1/admin/clients/${params.id}/news`,
     queryName: "client_news_info",
     fn: () =>
       reset({
@@ -105,7 +105,7 @@ const AddNewsForm = ({ closeBtn, closeFn }) => {
 
   const token_id = userStore((state) => state.token_id);
 
-  const onSubmit = async (values) => { 
+  const onSubmit = async (values) => {
     // Create a FormData object
     const formData = new FormData();
     formData.append("asset", values.image[0]);
@@ -113,7 +113,7 @@ const AddNewsForm = ({ closeBtn, closeFn }) => {
     try {
       setUpload(true);
       const response = await axios.post(
-        `https://api-prestigecalendar.olotusquare.co/api/v1/admin/assets/for/${params.id}`,
+        `https://api.prestigecalendar.com/api/v1/admin/assets/for/${params.id}`,
         formData,
         {
           headers: {

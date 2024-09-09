@@ -8,11 +8,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import useAxiosPost from "@/hooks/useAxiosPost";
 
 const NewClientForm = ({ closeBtn, closeFn }) => {
-  const { handleRequest, isError, isLoading, isSuccess, errorMsg } = useAxiosPost({
-    url: "https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients",
-    queryName: "clients_info",
-  });
-
+  const { handleRequest, isError, isLoading, isSuccess, errorMsg } =
+    useAxiosPost({
+      url: "https://api.prestigecalendar.com/api/v1/admin/clients",
+      queryName: "clients_info",
+    });
 
   const {
     register,
@@ -39,7 +39,7 @@ const NewClientForm = ({ closeBtn, closeFn }) => {
 
   return (
     <div className="space-y-3">
-      { isError && (
+      {isError && (
         <p className="text-red-600 bg-red-300 py-3 text-center w-full text-sm">
           {/* Credentials already exists */}
           {errorMsg}

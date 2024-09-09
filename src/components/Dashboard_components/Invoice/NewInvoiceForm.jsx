@@ -65,7 +65,7 @@ const NewInvoiceForm = ({ closeBtn, closeFn }) => {
 
   const { handleRequest, isLoading, isSuccess, isError, errorMsg } =
     useAxiosPost({
-      url: "https://api-prestigecalendar.olotusquare.co/api/v1/admin/invoices",
+      url: "https://api.prestigecalendar.com/api/v1/admin/invoices",
       queryName: "clients_invoice_overall_info_table_data",
     });
 

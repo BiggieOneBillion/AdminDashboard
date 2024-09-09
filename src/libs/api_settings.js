@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 const api = axios.create({
-  baseURL: "https://api-prestigecalendar.olotusquare.co/api/v1/",
+  baseURL: "https://api.prestigecalendar.com/api/v1/",
 });
 
 api.interceptors.request.use((request) => {

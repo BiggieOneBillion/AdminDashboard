@@ -34,7 +34,7 @@ const ResetCodeForm = ({ setIndex, userInfo }) => {
     setBtnState({ ...btnState, status: true, text: "...Loading" });
     try {
       const response = await axios.post(
-        "https://api-prestigecalendar.olotusquare.co/api/v1/admin/verify-otp",
+        "https://api.prestigecalendar.com/api/v1/admin/verify-otp",
         { email: userInfo.email, otp: values.code }
       );
       // console.log(response.data);

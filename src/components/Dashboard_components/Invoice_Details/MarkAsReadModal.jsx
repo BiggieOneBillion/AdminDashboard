@@ -20,7 +20,8 @@ const MarkAsCompletedModal = ({ id }) => {
     setBtnText("processing....");
     try {
       await axios.patch(
-        `https://api-prestigecalendar.olotusquare.co/api/v1/admin/invoices/${id}`,{},
+        `https://api.prestigecalendar.com/api/v1/admin/invoices/${id}`,
+        {},
         {
           headers: {
             Authorization: `Bearer ${token_id}`,
@@ -32,7 +33,7 @@ const MarkAsCompletedModal = ({ id }) => {
         queryKey: ["client_invoice_info", params.id],
       });
     } catch (error) {
-        console.log(error);
+      console.log(error);
       setBtnText("Try Again");
     }
   };

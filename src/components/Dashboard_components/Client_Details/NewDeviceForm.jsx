@@ -43,9 +43,9 @@ const InputRadioContainer = ({ label, register, name, errors, id, value }) => (
 );
 
 function handleError(error, fn) {
-   if (error.response.status === 400) {
-      fn(error.response.data.message)
-   }
+  if (error.response.status === 400) {
+    fn(error.response.data.message);
+  }
 }
 
 const NewDeviceForm = ({ closeBtn, closeFn }) => {
@@ -55,7 +55,7 @@ const NewDeviceForm = ({ closeBtn, closeFn }) => {
 
   // submiting data
   // const { mutations } = usePostData({
-  //   url: `https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/${singleClient[0]?.id}/devices`,
+  //   url: `https://api.prestigecalendar.com/api/v1/admin/clients/${singleClient[0]?.id}/devices`,
   //   queryName: "client_device_info",
   // });
 
@@ -76,11 +76,9 @@ const NewDeviceForm = ({ closeBtn, closeFn }) => {
     },
   });
 
-
-
   const { handleRequest, isError, isLoading, isSuccess, errorMsg } =
     useAxiosPost({
-      url: `https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/${singleClient[0]?.id}/devices`,
+      url: `https://api.prestigecalendar.com/api/v1/admin/clients/${singleClient[0]?.id}/devices`,
       queryName: "client_device_info",
       // mainfn: handleError,
       // fn: () => {
@@ -125,7 +123,7 @@ const NewDeviceForm = ({ closeBtn, closeFn }) => {
     <div className="space-y-3">
       {isError && (
         <p className="text-red-600 bg-red-300 py-3 text-center w-full text-sm">
-         {errorMsg}
+          {errorMsg}
         </p>
       )}
       {isSuccess && (

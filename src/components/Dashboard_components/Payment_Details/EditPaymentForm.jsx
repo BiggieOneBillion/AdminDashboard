@@ -78,7 +78,7 @@ const EditPaymentForm = ({ closeBtn, data }) => {
 
   const { handleRequest, isError, isLoading, isSuccess, errorMsg } =
     useAxiosPut({
-      url: `https://api-prestigecalendar.olotusquare.co/api/v1/admin/payments/${data.id}`,
+      url: `https://api.prestigecalendar.com/api/v1/admin/payments/${data.id}`,
       queryName: "client_invoice_info",
     });
 

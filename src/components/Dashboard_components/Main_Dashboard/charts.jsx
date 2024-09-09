@@ -66,7 +66,7 @@ const Chart = () => {
     queryKey: ["chart_info"],
     queryFn: async () => {
       const response = await axios.get(
-        "https://api-prestigecalendar.olotusquare.co/api/v1/admin/sales-overview?year=current",
+        "https://api.prestigecalendar.com/api/v1/admin/sales-overview?year=current",
         {
           headers: {
             Authorization: `Bearer ${token_id}`,

@@ -6,6 +6,7 @@ import { useParams } from "next/navigation";
 import axios from "axios";
 import { userStore } from "@/store/user";
 import { QueryClient, useQueryClient } from "@tanstack/react-query";
+import api from "@/libs/api_settings";
 
 const DeleteNewsModal = ({ clientId, newsId }) => {
   const [btnText, setBtnText] = useState("Delete");
@@ -15,15 +16,16 @@ const DeleteNewsModal = ({ clientId, newsId }) => {
   const handleDelete = async () => {
     setBtnText("Deleting....");
     try {
-      await axios.delete(
-        `https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/${clientId}/news/${newsId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token_id}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      // await axios.delete(
+      //   `https://api.prestigecalendar.com/api/v1/admin/clients/${clientId}/news/${newsId}`,
+      //   {
+      //     headers: {
+      //       Authorization: `Bearer ${token_id}`,
+      //       "Content-Type": "application/json",
+      //     },
+      //   }
+      // );
+      await api.delete(`admin/clients/${clientId}/news/${newsId}`);
       setBtnText("Done!!");
       queryClient.invalidateQueries({ queryKey: ["client_news_info"] });
     } catch (error) {

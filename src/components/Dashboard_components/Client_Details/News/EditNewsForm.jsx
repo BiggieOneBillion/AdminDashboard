@@ -83,7 +83,6 @@ const ArticleForm = ({ register }) => (
   </div>
 );
 
-
 const EditNewsForm = ({ closeBtn, info }) => {
   const {
     register,
@@ -105,7 +104,7 @@ const EditNewsForm = ({ closeBtn, info }) => {
   const [errMsg, setErrMsg] = useState("Network Error");
 
   const { handleRequest, isError, isLoading, isSuccess } = useAxiosPut({
-    url: `https://api-prestigecalendar.olotusquare.co/api/v1/admin/clients/${params.id}/news/${info.id}`,
+    url: `https://api.prestigecalendar.com/api/v1/admin/clients/${params.id}/news/${info.id}`,
     queryName: "client_news_info",
     fn: () =>
       reset({
@@ -117,14 +116,13 @@ const EditNewsForm = ({ closeBtn, info }) => {
   });
 
   const onSubmit = async (value) => {
-  
     if (typeof value.image !== "string") {
       const formData = new FormData();
       formData.append("asset", value.image[0]);
       try {
         setUpload(true);
         const response = await axios.post(
-          `https://api-prestigecalendar.olotusquare.co/api/v1/admin/assets/for/${params.id}`,
+          `https://api.prestigecalendar.com/api/v1/admin/assets/for/${params.id}`,
           formData,
           {
             headers: {
